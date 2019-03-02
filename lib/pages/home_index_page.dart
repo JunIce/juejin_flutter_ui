@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/home_top_recs.dart';
+import 'home_follow_page.dart';
 
 
 class HomeIndexPage extends StatefulWidget {
@@ -7,13 +8,47 @@ class HomeIndexPage extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<HomeIndexPage> {
+class _MyAppState extends State<HomeIndexPage> with SingleTickerProviderStateMixin {
+
+  TabController _tabController;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) => index == 0 ? HomeTopRec(): _itemBuild(),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        title: Container(
+          width: 200,
+          child: TabBar(
+            controller: _tabController,
+            tabs: <Widget>[
+              Tab(text: '首页',),
+              Tab(text: '关注',),
+            ]
+          ),
+        ),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: Icon(Icons.arrow_drop_down),
+          )
+        ],
+      ),
+      body: TabBarView(
+          controller: _tabController,
+          children: <Widget>[
+            ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) => index == 0 ? HomeTopRec(): _itemBuild(),
+            ),
+            HomeFollowPage()
+          ],
+      ),
     );
   }
 
