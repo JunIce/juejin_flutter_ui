@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'pages/home_index_page.dart';
+import 'pages/search_page.dart';
+import 'pages/shop_page.dart';
+import 'pages/user_page.dart';
+// import 'pages/search_page.dart';
+
+
 
 class JueJinHome extends StatefulWidget {
   @override
@@ -19,7 +25,9 @@ class _JueJinHome extends State<JueJinHome> {
   ];
   var _tabs = [
     HomeIndexPage(),
-
+    SearchPage(),
+    ShopPage(),
+    UserPage(),
   ];
 
   @override
@@ -44,7 +52,12 @@ class _JueJinHome extends State<JueJinHome> {
         items: _bottomTabs.map((t) => BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text(t)
-          )).toList()
+          )).toList(),
+        onTap: (int index){
+          setState(() {
+            _tabIndex = index;
+          });
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

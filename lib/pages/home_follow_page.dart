@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/components/item_panel_head.dart';
+import 'package:flutter_app/components/item_panel_bottom_bar.dart';
 
 class HomeFollowPage extends StatelessWidget {
   Widget build(BuildContext context) => _HomeFollowPages();
@@ -26,13 +28,13 @@ class _HomeFollowPage extends State<_HomeFollowPages>  {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(left: 20, top: 18, right: 10),
-            child: _itemHead,
+            child: ItemPanelHead(),
           ),
           _title,
           Divider(height: 0,),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10),
-            child: _bottomTab,
+            child: ItemPanelBottomBar(),
           )
         ],
       ),
@@ -66,64 +68,5 @@ class _HomeFollowPage extends State<_HomeFollowPages>  {
         )
       ],
     ),
-  );
-
-  Row _itemHead =Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: <Widget>[
-      Row(
-        children: <Widget>[
-          Container(child: CircleAvatar(
-            backgroundImage: NetworkImage('https://img2.woyaogexing.com/2019/03/02/ee38a03fceb34c7db6040fd240229987!400x400.jpeg'),
-          ),),
-          SizedBox(width: 8,),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-            Text('用户名', style: TextStyle(
-              fontSize: 16,
-              color: Color(0xff333333)
-            ),),
-            Text('11小时', style: TextStyle(
-              fontSize: 14,
-              color: Color(0xff666666)
-            ),)
-          ],)
-        ],
-      ),
-
-      IconButton(
-        icon: Icon(Icons.more_horiz),
-        onPressed: null,
-      )
-    ],
-  );
-
-  Row _bottomTab =Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: <Widget>[
-      Row(
-        children: <Widget>[
-          Icon(Icons.hd),
-          SizedBox(width: 8,),
-          Text('赞')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          Icon(Icons.comment),
-          SizedBox(width: 8,),
-          Text('评论')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          Icon(Icons.share),
-          SizedBox(width: 8,),
-          Text('分享')
-        ],
-      ),
-    ],
   );
 }
