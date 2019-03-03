@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/home_index_page.dart';
+import 'pages/society_page.dart';
 import 'pages/search_page.dart';
 import 'pages/shop_page.dart';
 import 'pages/user_page.dart';
@@ -25,6 +26,7 @@ class _JueJinHome extends State<JueJinHome> {
   ];
   var _tabs = [
     HomeIndexPage(),
+    SocietyPage(),
     SearchPage(),
     ShopPage(),
     UserPage(),
@@ -40,7 +42,7 @@ class _JueJinHome extends State<JueJinHome> {
     return Scaffold(
       body: DecoratedBox(
         decoration: BoxDecoration(
-          color: Color(0xfff5f6fa)
+          color: Color(0xfff6f6f6)
         ),
         child: _tabs[_tabIndex]
       ),

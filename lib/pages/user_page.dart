@@ -9,17 +9,21 @@ class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('search'),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(32.0),
-        child: Center(
-          child: Column(
-            children: <Widget>[],
-          ),
-        ),
-      ),
+      backgroundColor: Color(0xfff4f4f4),
+      body: Column(
+        children: <Widget>[
+          // Container(
+          //   color: Colors.blue,
+          //   height: double.infinity,
+          // ),
+          SafeArea(
+            child: Container(
+              color: Colors.red,
+              height: 200,
+            ),
+          )
+        ],
+      )
     );
   }
 }
