@@ -10,19 +10,13 @@ class _ShopPageState extends State<ShopPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff4f4f4),
-      body: Column(
+      body: SafeArea(
+        child: Column(
         children: <Widget>[
-          // Container(
-          //   color: Colors.blue,
-          //   height: double.infinity,
-          // ),
-          SafeArea(
-            child: Container(
-              color: Colors.red[300],
-              height: 200,
-            ),
-          )
+          Container(height: 100,color: Colors.red[100],),
+          
         ],
+      ),
       )
     );
   }

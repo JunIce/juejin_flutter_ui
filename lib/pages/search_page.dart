@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/components/list_item_listtile.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -6,6 +7,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  bool show =true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,12 +70,35 @@ class _SearchPageState extends State<SearchPage> {
                 ],
               ),
             ),
+            
             Divider(
               height: 0,
             ),
+            ListItemListTile(show: show,),
+            ListItemListTile(show: show,),
+            ListItemListTile(show: show,),
+            ListItemListTile(show: show,),
+            ListItemListTile(show: show,),
+            ListItemListTile(show: show,),
+            ListItemListTile(show: show,),
+            ListItemListTile(show: show,),
+            ListItemListTile(show: show,),
+            ListItemListTile(show: show,),
           ],
         )));
   }
+
+  List<Widget> _renderList() {
+    List _renderLists = [];
+    for(var i = 0; i < 10; i++) {
+      _renderLists.add(ListItemListTile(show: show,));
+      if(i < 9) {
+        _renderLists.add(Divider());
+      }
+    }
+    return _renderLists;
+  }
+
 
   List<Widget> _renderPageMenu() {
     List<String> _menuNames = ['本周最热', '收藏集', '活动'];
