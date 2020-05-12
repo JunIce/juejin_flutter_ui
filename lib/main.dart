@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './juejin_home.dart';
+import 'juejin_home.dart';
 
 void main() => runApp(MyApp());
 
