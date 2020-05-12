@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/components/demo_card.dart';
+import 'package:flutter_app/components/demo_comtainer.dart';
+
+import 'package:flutter_app/components/list_tile.dart';
 
 class ShopPage extends StatefulWidget {
   @override
@@ -13,8 +17,10 @@ class _ShopPageState extends State<ShopPage> {
       body: SafeArea(
         child: Column(
         children: <Widget>[
-          Container(height: 100,color: Colors.red[100],),
-          
+            DemoContainer()
+//          Container(height: 100,color: Colors.red,),
+//          DemoListTile(),
+//            DemoCard()
         ],
       ),
       )

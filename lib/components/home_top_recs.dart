@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeTopRec extends StatelessWidget {
@@ -10,8 +11,11 @@ class HomeTopRec extends StatelessWidget {
       child: Column(
         children: <Widget>[
           _topTitle,
-          Divider(
-            height: 0,
+          Container(
+            margin: EdgeInsets.only(left: 20),
+            child: Divider(
+              height: 10,
+            ),
           ),
           _itemTile,
           Divider(
@@ -27,20 +31,25 @@ class HomeTopRec extends StatelessWidget {
     );
   }
 
-  ListTile _itemTile = ListTile(
+  final ListTile _itemTile = ListTile(
     title: Padding(
       padding: EdgeInsets.symmetric(vertical: 12),
-      child: Text('Hooks 对 Vue 而言意味着什么'),
+      child: Text('Hooks 对12 Vue 而言意味着什么'),
     ),
     subtitle: Padding(
         padding: EdgeInsets.only(bottom: 14),
-        child: Text(
-          '57人赞|清秋|2天前',
-          style: TextStyle(fontSize: 14, color: Color(0xff999999)),
-        )),
+        child: Container(
+          child: Container(
+              child: Text(
+                '57人赞|清秋|2天前',
+                style: TextStyle(fontSize: 14, color: Colors.red[400]),
+              )
+          ),
+        )
+    ),
   );
 
-  Padding _topTitle = Padding(
+  final Padding _topTitle = Padding(
       padding: EdgeInsets.only(left: 12, right: 12, top: 10, bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,8 +58,8 @@ class HomeTopRec extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Icon(
-                Icons.hot_tub,
-                color: Colors.blue,
+                Icons.favorite,
+                color: Colors.red,
               ),
               SizedBox(
                 width: 10,

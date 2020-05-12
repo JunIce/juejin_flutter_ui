@@ -25,7 +25,7 @@ class _JueJinHome extends State<JueJinHome> {
   @override
   void initState() {
     super.initState();
-    _tabIndex = 0;
+    _tabIndex = 4;
   }
 
   @override
