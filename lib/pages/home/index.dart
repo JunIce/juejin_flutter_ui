@@ -4,6 +4,7 @@ import 'package:flutter_app/components/home_list_item2.dart';
 
 import '../../components/home_top_recs.dart';
 import '../../components/list_top_tag.dart';
+import '../search/search.dart';
 
 class HomeIndexPage extends StatefulWidget {
   @override
@@ -61,7 +62,7 @@ class _JueJinHomeState extends State<HomeIndexPage>
         title: _renderPageTitle(context),
       ),
       body: ListView(
-        children: [HomeListItem2(), ListTopTag(), HomeTopRec(data: hots), _itemBuild(), _itemBuild(), _itemBuild()],
+        children: [HomeTopRec(data: hots), _itemBuild(), _itemBuild(), _itemBuild()],
       ),
       backgroundColor: Config.primaryBgColor,
     );
@@ -96,24 +97,34 @@ class _JueJinHomeState extends State<HomeIndexPage>
           child: Container(
             color: Colors.blue[300],
             width: double.maxFinite,
-            child: Padding(
-                padding:
-                    EdgeInsets.only(top: 8, bottom: 8, left: 10, right: 10),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "搜索文章、用户、标签",
-                      style: TextStyle(color: Colors.blue[50], fontSize: 14),
-                    )
-                  ],
-                )),
+            child: InkWell(
+              onTap: () {
+                print("dddd");
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return SearchPage();
+                 })
+                );
+              },
+              child: Padding(
+                  padding:
+                  EdgeInsets.only(top: 8, bottom: 8, left: 10, right: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "搜索文章、用户、标签",
+                        style: TextStyle(color: Colors.blue[50], fontSize: 14),
+                      )
+                    ],
+                  )
+              ),
+            )
           ),
         ),
         Container(
