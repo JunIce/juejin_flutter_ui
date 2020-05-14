@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/book/book.dart';
+import 'package:flutter_app/pages/me/me.dart';
 import 'pages/home/index.dart';
 import 'pages/society_page.dart';
 import 'pages/search_page.dart';
-import 'pages/shop_page.dart';
-import 'pages/user_page.dart';
-// import 'pages/search_page.dart';
 
 class JueJinHome extends StatefulWidget {
   @override
@@ -20,14 +19,14 @@ class _JueJinHome extends State<JueJinHome> {
     HomeIndexPage(),
     SocietyPage(),
     SearchPage(),
-    ShopPage(),
-    UserPage(),
+    BookPage(),
+    MePage(),
   ];
 
   @override
   void initState() {
     super.initState();
-    _tabIndex = 0;
+    _tabIndex = 4;
   }
 
   @override
