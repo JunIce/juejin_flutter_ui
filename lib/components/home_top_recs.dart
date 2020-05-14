@@ -1,33 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class HomeTopRec extends StatelessWidget {
-  
+  List<dynamic> data = [];
+
+  HomeTopRec({this.data});
+
+  final divider = Divider(height: 0,);
+
   @override
   Widget build(BuildContext context) {
+    List<Widget> listData = [_topTitle];
+    for(int i = 0; i < data.length; i++) {
+        listData.add(divider);
+        listData.add(_itemTile);
+    }
+
     return Container(
       margin: EdgeInsets.only(top: 12),
       color: Colors.white,
       child: Column(
-        children: <Widget>[
-          _topTitle,
-          Container(
-            margin: EdgeInsets.only(left: 20),
-            child: Divider(
-              height: 10,
-            ),
-          ),
-          _itemTile,
-          Divider(
-            height: 0,
-          ),
-          _itemTile,
-          Divider(
-            height: 0,
-          ),
-          _itemTile,
-        ],
-      ),
+        children: listData,
+      )
     );
   }
 
@@ -39,14 +34,23 @@ class HomeTopRec extends StatelessWidget {
     subtitle: Padding(
         padding: EdgeInsets.only(bottom: 14),
         child: Container(
-          child: Container(
-              child: Text(
-                '57人赞|清秋|2天前',
-                style: TextStyle(fontSize: 14, color: Colors.red[400]),
-              )
-          ),
+          child: Row(
+            children: [
+              Text("57人赞",style: TextStyle(fontSize: 12, color: Color(0xff999999))),
+              Padding(padding: EdgeInsets.only(left: 4, right: 4), child: Text("·"),),
+              Text("清秋", style: TextStyle(fontSize: 12, color: Color(0xff999999))),
+              Padding(padding: EdgeInsets.only(left: 4, right: 4), child: Text("·"),),
+              Text("2天前", style: TextStyle(fontSize: 12, color: Color(0xff999999)))
+            ],
+          )
         )
-    ),
+    ), 
+      trailing: Container(
+        width: 80,
+        child: Container(
+          child: Image.network("https://img2.woyaogexing.com/2020/05/13/00d3b0d3f027478eb821225abb27a673!400x400.jpeg"),
+        ),
+      )
   );
 
   final Padding _topTitle = Padding(
@@ -58,31 +62,28 @@ class HomeTopRec extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Icon(
-                Icons.favorite,
-                color: Colors.red,
+                Icons.favorite_border,
+                color: Colors.blue,
+                size: 14,
               ),
               SizedBox(
-                width: 10,
+                width: 8,
               ),
               Text(
                 '热门推荐',
-                style: TextStyle(fontSize: 16, color: Colors.blue),
+                style: TextStyle(fontSize: 16, color: Colors.blue, fontWeight: FontWeight.bold),
               )
             ],
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+              Text("文章榜", style: TextStyle(color: Color(0xff999999), fontSize: 14),),
+
               Icon(
-                Icons.refresh,
-                color: Color(0xffaaaaaa),
-              ),
-              SizedBox(
-                width: 18,
-              ),
-              Icon(
-                Icons.close,
-                color: Color(0xffaaaaaa),
+                Icons.chevron_right,
+                color: Color(0xff999999),
+                size: 20,
               ),
             ],
           ),

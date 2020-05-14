@@ -13,7 +13,9 @@ class JueJinHome extends StatefulWidget {
 
 class _JueJinHome extends State<JueJinHome> {
   int _tabIndex;
+
   List _bottomTabs = ['home', 'refresh', 'search', 'book', 'read'];
+  List _bottomIcons = [Icon(Icons.home), Icon(Icons.refresh), Icon(Icons.search), Icon(Icons.book), Icon(Icons.supervised_user_circle)];
   var _tabs = [
     HomeIndexPage(),
     SocietyPage(),
@@ -25,7 +27,7 @@ class _JueJinHome extends State<JueJinHome> {
   @override
   void initState() {
     super.initState();
-    _tabIndex = 4;
+    _tabIndex = 0;
   }
 
   @override
@@ -35,26 +37,23 @@ class _JueJinHome extends State<JueJinHome> {
           decoration: BoxDecoration(color: Color(0xfff6f6f6)),
           child: _tabs[_tabIndex]),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _tabIndex,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         items: _bottomTabs
-            .map((t) =>
-                BottomNavigationBarItem(icon: Icon(Icons.home), title: Text(t)))
+            .asMap().keys.map((t) =>
+                BottomNavigationBarItem(icon: _bottomIcons[t], title: Text(_bottomTabs[t])))
             .toList(),
         onTap: (int index) {
+          print(index);
           setState(() {
             _tabIndex = index;
           });
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          sayHello();
-        },
-      ),
+      floatingActionButton: _renderButton(),
     );
   }
 
@@ -87,4 +86,28 @@ class _JueJinHome extends State<JueJinHome> {
       print(val);
     });
   }
+
+  _renderButton() {
+    if(_tabIndex == 0) {
+      return FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          sayHello();
+        },
+      );
+    }
+
+    if(_tabIndex == 1) {
+      return FloatingActionButton(
+        child: Icon(Icons.people),
+        onPressed: () {
+          sayHello();
+        },
+      );
+    }
+
+    return null;
+
+  }
+
 }
