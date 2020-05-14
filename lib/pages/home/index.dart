@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/config.dart';
 import 'package:flutter_app/components/home_list_item2.dart';
+import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
 
 import '../../components/home_top_recs.dart';
 import '../../components/list_top_tag.dart';
@@ -130,7 +131,10 @@ class _JueJinHomeState extends State<HomeIndexPage>
         Container(
           child: GestureDetector(
             onTap: () {
-              print("标签点击");
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return TagManagePage();
+              })
+              );
             },
             child: Row(children: [
               SizedBox(

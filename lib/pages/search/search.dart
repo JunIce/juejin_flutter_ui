@@ -19,12 +19,10 @@ class _SearchPage extends State<SearchPage> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-          leading: InkWell(
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-            child: Icon(Icons.chevron_left, size: 28,),
-          ),
+          leading:BackButton(onPressed: () {
+            Navigator.of(context).pop();
+          },),
+
           title: Container(
             child: TextField(
                 style: TextStyle(color: Colors.white),
