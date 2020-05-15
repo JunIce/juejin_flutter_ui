@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
 
 class ListItemListTile extends StatelessWidget {
-  ListItemListTile({Key key, this.show}):super(key: key);
+  ListItemListTile({Key key,
+    @required this.title,
+    this.image
+  }):super(key: key);
+
   bool show = true;
+
+  Widget title;
+  Widget image;
+
+  var trailing;
 
   @override
   Widget build(BuildContext context) {
+
+    if(image != null) {
+      trailing = Container(
+        width: 80,
+        height: 80,
+        child: Container(
+          child: image,
+        ),
+      );
+    }
     return Container(
       color: Colors.white,
       child: ListTile(
           title: Padding(
             padding: EdgeInsets.only(top: 14, bottom: 14),
-            child: Text('Hooks 对12 Vue 而言意味着什么'),
+            child: title,
           ),
           subtitle: Padding(
               padding: EdgeInsets.only(bottom: 14),
@@ -27,13 +46,7 @@ class ListItemListTile extends StatelessWidget {
                   )
               )
           ),
-          trailing: Container(
-            width: 80,
-            height: 80,
-            child: Container(
-              child: Image.network("https://img2.woyaogexing.com/2020/05/13/00d3b0d3f027478eb821225abb27a673!400x400.jpeg"),
-            ),
-          )
+          trailing: trailing
       )
     );
   }

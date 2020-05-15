@@ -151,17 +151,21 @@ class _TagManagePage extends State<TagManagePage> with SingleTickerProviderState
 
   Widget _renderButton(bool active) {
     if(active) {
-      return FlatButton(onPressed: (){}, child: Text("已关注"), color: Color(0xff6cbd45),textColor: Colors.white);
+      return FlatButton.icon(
+          icon: Icon(Icons.check),
+          label: Text("已关注"),
+          onPressed: (){}, color: Color(0xff6cbd45),textColor: Colors.white);
     }else{
-      return OutlineButton(
+      return OutlineButton.icon(
+          icon: Icon(Icons.add),
+          label: Text("关注"),
           onPressed: (){},
           textColor: Color(0xff6cbd45),
           borderSide: BorderSide(
             color: Color(0xff6cbd45),
             width: 2.0,
             style: BorderStyle.solid
-          ),
-          child: Text("关注"),
+          )
       );
     }
   }

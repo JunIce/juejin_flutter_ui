@@ -113,17 +113,15 @@ class _Bookpage extends State<BookPage> with SingleTickerProviderStateMixin {
               ),
             ),
             SizedBox(width: 10,),
-            Center(
-              child: Chip(label: Text('19.9'), labelStyle: TextStyle(color: Colors.blue, ),backgroundColor: Color(0xfff4f4f4)),
+            FlatButton(
+              onPressed: () {},
+                child: Text('19.9' ,style: TextStyle(color: Colors.blue, ),),
+                color: Color(0xfff4f4f4),
+                shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                clipBehavior: Clip.hardEdge
             )
           ],
       ),
-//      child: ListTile(
-//            leading: ,
-//            title: ,
-//            subtitle: ,
-//            trailing:
-//      )
     );
   }
 }

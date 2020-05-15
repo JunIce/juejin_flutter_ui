@@ -60,16 +60,16 @@ class _SocietyPageState extends State<SocietyPage> with SingleTickerProviderStat
       ),
       body: TabBarView(
         controller: _controller,
-        children: _renderList()
+        children: _renderList(context)
       )
     );
   }
 
-  List _renderList() {
+  List _renderList(context) {
     List<Widget> list = List();
 
     for(int i = 0; i< tabList.length; i++){
-      list.add(Text(i.toString()));
+        list.add(Text(i.toString()));
     }
 
     return list;

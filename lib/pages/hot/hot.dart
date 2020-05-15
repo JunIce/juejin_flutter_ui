@@ -80,29 +80,13 @@ class _SearchPageState extends State<SearchPage> {
             Divider(
               height: 0,
             ),
-            ListItemListTile(show: show,),
-            ListItemListTile(show: show,),
-            ListItemListTile(show: show,),
-            ListItemListTile(show: show,),
-            ListItemListTile(show: show,),
-            ListItemListTile(show: show,),
-
+            ListItemListTile(
+              title: Text("用得上听得懂抄得走的前端经用得上听得懂抄得走的前端经用得上听得懂抄得走的前端经jeklsfjkelfjekl")
+            )
           ],
         )
     );
   }
-
-  List<Widget> _renderList() {
-    List _renderLists = [];
-    for(var i = 0; i < 10; i++) {
-      _renderLists.add(ListItemListTile(show: show,));
-      if(i < 9) {
-        _renderLists.add(Divider());
-      }
-    }
-    return _renderLists;
-  }
-
 
   List<Widget> _renderPageMenu() {
     List<String> _menuNames = ['文章榜', '作者榜', '看一看', '话题广场', '活动'];

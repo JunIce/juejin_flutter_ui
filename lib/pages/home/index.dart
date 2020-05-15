@@ -160,38 +160,6 @@ class _JueJinHomeState extends State<HomeIndexPage>
     );
   }
 
-//  Scaffold(
-//  appBar: AppBar(
-//  centerTitle: false,
-//  title: Container(
-//  width: 200,
-//  child: TabBar(
-//  controller: _tabController,
-//  tabs: <Widget>[
-//  Tab(text: '首页',),
-//  Tab(text: '关注',),
-//  ]
-//  ),
-//  ),
-//  actions: <Widget>[
-//  Padding(
-//  padding: const EdgeInsets.only(right: 12.0),
-//  child: Icon(Icons.arrow_drop_down),
-//  )
-//  ],
-//  ),
-//  body: TabBarView(
-//  controller: _tabController,
-//  children: <Widget>[
-//  ListView.builder(
-//  itemCount: 5,
-//  itemBuilder: (context, index) => index == 0 ? HomeTopRec(): _itemBuild(),
-//  ),
-//  HomeFollowPage()
-//  ],
-//  ),
-//  );
-
   Widget _itemBuild() {
     return ContentButton(child:
         Container(
@@ -270,7 +238,10 @@ class _JueJinHomeState extends State<HomeIndexPage>
                 shape: BoxShape.circle,
                 image: DecorationImage(
                     image: NetworkImage(
-                        'https://img2.woyaogexing.com/2019/03/01/f4471c4c54bd2c63!400x400_big.jpg'))),
+                        'https://img2.woyaogexing.com/2019/03/01/f4471c4c54bd2c63!400x400_big.jpg'
+                    )
+                )
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(left: 8),
@@ -287,7 +258,6 @@ class _JueJinHomeState extends State<HomeIndexPage>
   );
 
   Row _itemMain = Row(
-//    mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
       Expanded(
           child:Container(

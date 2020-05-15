@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class DetailPage extends StatefulWidget {
   @override
@@ -30,8 +31,9 @@ class _DetailPage extends State<DetailPage> {
         ],
       ),
       body: Container(
-        child: Center(
-          child: Text("detail"),
+        child: WebView(
+          initialUrl: 'https://juejin.im/post/5ebe292e5188256d42662700',
+          javascriptMode: JavascriptMode.unrestricted,
         ),
       ),
       bottomNavigationBar: Container(
