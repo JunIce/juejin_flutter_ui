@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common/config.dart';
+import 'package:flutter_app/common/util.dart';
 import 'package:flutter_app/components/list_item_listtile.dart';
+import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -11,44 +14,39 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xfff6f6f6),
-        body: SafeArea(
-            child: Column(
+        backgroundColor: Config.primaryBgColor,
+        appBar: AppBar(
+          title: Container(
+              color: Colors.blue[300],
+              padding: EdgeInsets.all(10),
+              child: Container(
+                child: Row(
+                  children: <Widget>[
+                    Icon(Icons.search, color: Colors.white, size: 18,),
+                    SizedBox(width: 10,),
+                    Text(
+                      '搜索文章、用户、标签',
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    )
+                  ],
+                ),
+              )),
+        ),
+        body: ListView(
           children: <Widget>[
             Container(
-                height: 45,
-                color: Colors.blue,
-                padding: EdgeInsets.all(10),
-                child: Container(
-                  height: 20,
-                  width: double.infinity,
-                  // color: Colors.red,
-                  color: Color(0xff3399fe),
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Icon(Icons.search, color: Colors.white),
-                      ),
-                      Text(
-                        '搜索',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      )
-                    ],
-                  ),
-                )),
-            Container(
-              height: 130,
+              height: 150,
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(
                           'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551606381887&di=bbd9625453a6e0efa1b25a2e990862f0&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F0df3d7ca7bcb0a46b2ac46146063f6246b60af15.jpg'),
-                      fit: BoxFit.cover)),
+                      fit: BoxFit.fill)
+              ),
             ),
             Container(
               color: Colors.white,
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
+                padding: EdgeInsets.only(top: 14,bottom: 14),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,7 +64,15 @@ class _SearchPageState extends State<SearchPage> {
                     '热门文章',
                     style: TextStyle(fontSize: 16, color: Colors.black),
                   ),
-                  Text('热门定制')
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                        return TagManagePage();
+                      })
+                      );
+                    },
+                    child: Text('定制热门'),
+                  )
                 ],
               ),
             ),
@@ -80,12 +86,10 @@ class _SearchPageState extends State<SearchPage> {
             ListItemListTile(show: show,),
             ListItemListTile(show: show,),
             ListItemListTile(show: show,),
-            ListItemListTile(show: show,),
-            ListItemListTile(show: show,),
-            ListItemListTile(show: show,),
-            ListItemListTile(show: show,),
+
           ],
-        )));
+        )
+    );
   }
 
   List<Widget> _renderList() {
@@ -101,19 +105,32 @@ class _SearchPageState extends State<SearchPage> {
 
 
   List<Widget> _renderPageMenu() {
-    List<String> _menuNames = ['本周最热', '收藏集', '活动'];
+    List<String> _menuNames = ['文章榜', '作者榜', '看一看', '话题广场', '活动'];
     List<Icon> _menuIcons = [
       Icon(
         Icons.hot_tub,
-        color: Colors.black,
+        color: Util.slRandomColor(),
+        size: 18,
       ),
       Icon(
         Icons.favorite,
-        color: Colors.black,
+        color: Util.slRandomColor(),
+        size: 18,
       ),
       Icon(
         Icons.local_activity,
-        color: Colors.black,
+        color: Util.slRandomColor(),
+        size: 18,
+      ),
+      Icon(
+        Icons.local_cafe,
+        color: Util.slRandomColor(),
+        size: 18,
+      ),
+      Icon(
+        Icons.local_bar,
+        color: Util.slRandomColor(),
+        size: 18,
       )
     ];
 
@@ -128,7 +145,7 @@ class _SearchPageState extends State<SearchPage> {
             SizedBox(
               height: 4,
             ),
-            Text(_menuNames[i], style: TextStyle(color: Colors.black))
+            Text(_menuNames[i], style: TextStyle(color: Color(0xff666666), fontSize: 14))
           ],
         )),
       );

@@ -3,7 +3,7 @@ import 'package:flutter_app/pages/book/book.dart';
 import 'package:flutter_app/pages/me/me.dart';
 import 'pages/home/index.dart';
 import 'pages/society_page.dart';
-import 'pages/search_page.dart';
+import 'pages/hot/hot.dart';
 
 class JueJinHome extends StatefulWidget {
   @override
@@ -26,7 +26,7 @@ class _JueJinHome extends State<JueJinHome> {
   @override
   void initState() {
     super.initState();
-    _tabIndex = 4;
+    _tabIndex = 1;
   }
 
   @override
@@ -41,10 +41,12 @@ class _JueJinHome extends State<JueJinHome> {
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
+
         items: _bottomTabs
             .asMap().keys.map((t) =>
-                BottomNavigationBarItem(icon: _bottomIcons[t], title: Text(_bottomTabs[t])))
+                BottomNavigationBarItem(icon: _bottomIcons[t], title: Container()))
             .toList(),
+
         onTap: (int index) {
           print(index);
           setState(() {

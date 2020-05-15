@@ -6,26 +6,34 @@ class ListItemListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Padding(
-        padding: EdgeInsets.symmetric(vertical: 12),
-        child: Text('Hooks 对 Vue 而言意味着什么Hooks 对 Vue 而言意味着什么Hooks'),
-      ),
-      subtitle: Padding(
-          padding: EdgeInsets.only(bottom: 14),
-          child: Text(
-            '57人赞|清秋|2天前',
-            style: TextStyle(fontSize: 14, color: Color(0xff999999)),
-          )),
-      trailing: Container(
-        width: 80,
-        height: 80,
-        decoration: !show ? null : BoxDecoration(
-          borderRadius: BorderRadius.circular(4.0),
-          image: DecorationImage(
-            image: NetworkImage('https://img2.woyaogexing.com/2019/03/01/b27e308d4a574c5a97fa33299e43c681!400x400.webp')
+    return Container(
+      color: Colors.white,
+      child: ListTile(
+          title: Padding(
+            padding: EdgeInsets.only(top: 14, bottom: 14),
+            child: Text('Hooks 对12 Vue 而言意味着什么'),
+          ),
+          subtitle: Padding(
+              padding: EdgeInsets.only(bottom: 14),
+              child: Container(
+                  child: Row(
+                    children: [
+                      Text("57人赞",style: TextStyle(fontSize: 12, color: Color(0xff999999))),
+                      Padding(padding: EdgeInsets.only(left: 4, right: 4), child: Text("·"),),
+                      Text("清秋", style: TextStyle(fontSize: 12, color: Color(0xff999999))),
+                      Padding(padding: EdgeInsets.only(left: 4, right: 4), child: Text("·"),),
+                      Text("2天前", style: TextStyle(fontSize: 12, color: Color(0xff999999)))
+                    ],
+                  )
+              )
+          ),
+          trailing: Container(
+            width: 80,
+            height: 80,
+            child: Container(
+              child: Image.network("https://img2.woyaogexing.com/2020/05/13/00d3b0d3f027478eb821225abb27a673!400x400.jpeg"),
+            ),
           )
-        ),
       )
     );
   }

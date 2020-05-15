@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_app/components/custom_list_item.dart';
 
 class HomeTopRec extends StatelessWidget {
   List<dynamic> data = [];
@@ -28,7 +29,7 @@ class HomeTopRec extends StatelessWidget {
 
   final ListTile _itemTile = ListTile(
     title: Padding(
-      padding: EdgeInsets.symmetric(vertical: 12),
+      padding: EdgeInsets.only(top: 14, bottom: 14),
       child: Text('Hooks 对12 Vue 而言意味着什么'),
     ),
     subtitle: Padding(
@@ -47,6 +48,7 @@ class HomeTopRec extends StatelessWidget {
     ), 
       trailing: Container(
         width: 80,
+        height: 80,
         child: Container(
           child: Image.network("https://img2.woyaogexing.com/2020/05/13/00d3b0d3f027478eb821225abb27a673!400x400.jpeg"),
         ),

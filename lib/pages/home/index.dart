@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/config.dart';
+import 'package:flutter_app/components/content_button.dart';
 import 'package:flutter_app/components/home_list_item2.dart';
 import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
 
@@ -192,12 +193,13 @@ class _JueJinHomeState extends State<HomeIndexPage>
 //  );
 
   Widget _itemBuild() {
-    return Container(
+    return ContentButton(child:
+        Container(
       padding: EdgeInsets.only(top: 20, bottom: 20, left: 12, right: 12),
       color: Colors.white,
       child: _itemCard(),
       margin: EdgeInsets.only(top: 12),
-    );
+    ));
   }
 
   Widget _itemCard() {
@@ -288,32 +290,32 @@ class _JueJinHomeState extends State<HomeIndexPage>
 //    mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
       Expanded(
-          child: Container(
+          child:Container(
               child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        textDirection: TextDirection.ltr,
-        children: <Widget>[
-          Text(
-            '为前端工程之崛起而编程',
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87),
-            softWrap: true,
-            textDirection: TextDirection.ltr,
-          ),
-          SizedBox(
-            height: 6,
-          ),
-          Text(
-            '当时的角度主要',
-            style: TextStyle(fontSize: 14, color: Color(0xff666666)),
-            softWrap: true,
-            textDirection: TextDirection.ltr,
-          )
-        ],
-      ))),
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                textDirection: TextDirection.ltr,
+                children: <Widget>[
+                  Text(
+                    '为前端工程之崛起而编程',
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black87),
+                    softWrap: true,
+                    textDirection: TextDirection.ltr,
+                  ),
+                  SizedBox(
+                    height: 6,
+                  ),
+                  Text(
+                    '当时的角度主要',
+                    style: TextStyle(fontSize: 14, color: Color(0xff666666)),
+                    softWrap: true,
+                    textDirection: TextDirection.ltr,
+                  )
+                ],
+              )) ),
       SizedBox(
         width: 10,
       ),
