@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/config.dart';
 import 'package:flutter_app/common/util.dart';
@@ -55,37 +56,86 @@ class _JueJinHomeState extends State<HomeIndexPage>
     return list;
   }
 
+  List _textList = [
+    const Text('He\'d have you all unravel at the'),
+    const Text('Heed not the rabble'),
+    const Text('Sound of screams but the'),
+    const Text('Who scream'),
+    const Text('Revolution is coming...'),
+    const Text('Revolution, they...'),
+  ];
+
+
   @override
   Widget build(BuildContext context) {
     List hots = [1, 2, 3];
 
+
+
     return Scaffold(
       body:
-       CustomScrollView(
-         semanticChildCount: 4,
-         slivers: <Widget>[
-           SliverGrid(
-//             key: ,
-             gridDelegate: _gridDelegate,
-             delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                  return Text('苏打粉我发');
-                },
-                childCount: 2,
+          SafeArea(child: CustomScrollView(
+            primary: false,
+            controller: _scrollController,
+            slivers: <Widget>[
+              SliverToBoxAdapter(
+                child: Container(
+                  height: 100,
+                  child: Text("Grid列表"),
+                ),
               ),
-            ),
-           SliverGrid(
-             gridDelegate: _gridDelegate,
-             delegate: SliverChildBuilderDelegate(
-               (BuildContext context, int index) {
-                  return Text('...');
+              SliverGrid(
+                delegate: SliverChildBuilderDelegate((BuildContext context, int index){
+                  return Container(
+                    color: Util.slRandomColor(),
+                  );
                 },
-                childCount: 2,
-                semanticIndexOffset: 2,
+                  childCount: 10,
+                ),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    crossAxisCount: 3
+                ),
               ),
-            ),
-         ],
-       ),
+              SliverToBoxAdapter(
+                child: Container(
+                  height: 100,
+                  child: Text("SliverList列表"),
+                ),
+              ),
+              SliverPersistentHeader(
+                pinned: false,
+                floating: true,
+                delegate: _SliverAppBarDelegate(
+                  maxHeight: 80,
+                  minHeight: 50,
+                  child: Container(
+                    color: Util.slRandomColor(),
+                    child: Center(
+                      child: Text("SliverPersistentHeader -header"),
+                    )
+                  )
+                ),
+              ),
+              SliverList(
+                  delegate:
+                  SliverChildBuilderDelegate(
+                          (BuildContext context,int index){
+//                            print("List1_$index");
+                    return Container(
+                      height: 50,
+                      color: Util.slRandomColor(),
+                    );
+                    },
+                    childCount: 10
+                  )
+              ),
+
+            ],
+          )
+          )
+
     );
 
 //    return Scaffold(
@@ -351,4 +401,37 @@ class _JueJinHomeState extends State<HomeIndexPage>
       )
     ],
   );
+}
+
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate({
+    @required this.minHeight,
+    @required this.maxHeight,
+    @required this.child,
+  });
+
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
+  @override
+  double get minExtent => minHeight;
+
+  @override
+  double get maxExtent => max(maxHeight, minHeight);
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(child: child);
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    print(oldDelegate.maxHeight);
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
+  }
 }

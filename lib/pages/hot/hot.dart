@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/config.dart';
@@ -12,7 +13,55 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  List list = List.generate(10, (index) => index);
+  List _datalist = [];
+
+  List _menus = [
+    {
+      "label": Text("文章榜"),
+      "icon": Icon(
+        Icons.hot_tub,
+        color: Util.slRandomColor(),
+        size: 18,
+      ),
+    },
+    {
+      "label": Text("作者榜"),
+      "icon": Icon(
+        Icons.favorite,
+        color: Util.slRandomColor(),
+        size: 18,
+      ),
+    },
+    {
+      "label": Text("看一看"),
+      "icon": Icon(
+        Icons.local_activity,
+        color: Util.slRandomColor(),
+        size: 18,
+      ),
+    },
+    {
+      "label": Text("话题广场"),
+      "icon": Icon(
+        Icons.local_cafe,
+        color: Util.slRandomColor(),
+        size: 18,
+      ),
+    },
+    {
+      "label": Text("活动"),
+      "icon": Icon(
+        Icons.local_bar,
+        color: Util.slRandomColor(),
+        size: 18,
+      )
+    }
+  ];
+
+  // 下拉刷新
+  bool _hideloading = true;
+  //上拉加载
+  bool _showMore = false;
 
   ScrollController _scrollController = new ScrollController();
   bool isRequest = false;
@@ -22,32 +71,32 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _getMoreData();
 
-    _scrollController.addListener(() {
+    _scrollController.addListener(()async {
       if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-        _getMoreData();
+        setState(() {
+          _showMore = true;
+        });
+        await _getMoreData();
       }
     });
 
   }
 
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
 
   _getMoreData() async {
-    if (!isRequest) {
+    if (_hideloading) {
       num++;
-      setState(() => isRequest = true);
+      print("fetching...");
+      setState(() => _hideloading = false);
       Timer(Duration(seconds: 3), (){
         var newList = List.generate(10, (index) => index);
         setState(() {
           print("请求:$num");
-          list.addAll(newList);
-          isRequest = false;
+          _datalist.addAll(newList);
+          _hideloading = true;
+          _showMore = false;
         });
       });
     }
@@ -75,91 +124,50 @@ class _SearchPageState extends State<SearchPage> {
                 ),
               )),
         ),
-        body: RefreshIndicator(child:
-        ListView.separated(
-            itemCount: list.length + 1,
-            separatorBuilder: (BuildContext context, int index) => Divider(height: 1,),
-            itemBuilder: (context, index) {
-              if(index == 0) {
-                return _renderFirstChild();
-              }
-
-              if(index == list.length) {
-                return _buildProgressIndicator();
-              }
-
-              return ListItemListTile(
-                  title: Text("用得上听得懂抄得走的前端经用得上听得懂抄得走的前端经用得上听得懂抄得走的前端经jeklsfjkelfjekl")
-              );
-            },
-            controller: _scrollController,
+        body: RefreshIndicator(
+            child: CustomScrollView(
+              controller: _scrollController,
+            slivers: _renderFirstChild(),
+          ),
+            onRefresh: _refresh
         )
-            , onRefresh: _refresh)
+
     );
   }
 
   Future<Null> _refresh() async {
-    list.clear();
+    _datalist.clear();
+    print("refresh: "+ 111.toString());
     await _getMoreData();
     return;
   }
 
-  List<Widget> _renderPageMenu() {
-    List<String> _menuNames = ['文章榜', '作者榜', '看一看', '话题广场', '活动'];
-    List<Icon> _menuIcons = [
-      Icon(
-        Icons.hot_tub,
-        color: Util.slRandomColor(),
-        size: 18,
-      ),
-      Icon(
-        Icons.favorite,
-        color: Util.slRandomColor(),
-        size: 18,
-      ),
-      Icon(
-        Icons.local_activity,
-        color: Util.slRandomColor(),
-        size: 18,
-      ),
-      Icon(
-        Icons.local_cafe,
-        color: Util.slRandomColor(),
-        size: 18,
-      ),
-      Icon(
-        Icons.local_bar,
-        color: Util.slRandomColor(),
-        size: 18,
-      )
-    ];
 
-    List<Widget> _menus = [];
+  List<Widget> _renderFirstChild () {
 
-    for (var i = 0; i < _menuNames.length; i++) {
-      _menus.add(
-        Expanded(
-            child: Column(
-          children: <Widget>[
-            _menuIcons[i],
-            SizedBox(
-              height: 4,
+    List<Widget> list = List();
+
+    // Loading
+    list.add(
+      SliverOffstage(
+          offstage: _hideloading,
+        sliver: SliverToBoxAdapter(
+          child: Container(
+            height: 100,
+            child: Center(
+              child: Text("正在加载数据，请稍后..."),
             ),
-            Text(_menuNames[i], style: TextStyle(color: Color(0xff666666), fontSize: 14))
-          ],
-        )),
-      );
-    }
+          ),
+        ),
+      )
+    );
 
-    return _menus;
-  }
-
-
-  Widget _renderFirstChild () {
-    return  Column(
-      children: [
+    // Banner
+    list.add(
+      SliverToBoxAdapter(
+        child:
         Container(
-          height: 150,
+          height: 180,
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: NetworkImage(
@@ -167,18 +175,45 @@ class _SearchPageState extends State<SearchPage> {
                   fit: BoxFit.fill)
           ),
         ),
-        Container(
-          color: Colors.white,
-          child: Padding(
-            padding: EdgeInsets.only(top: 14,bottom: 14),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: _renderPageMenu().toList()),
+      )
+    );
+
+    // GridView
+    list.add(
+      SliverGrid(
+          delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index){
+                  return Container(
+                      padding: EdgeInsets.only(top: 20, bottom: 0),
+                      color: Colors.white,
+                      child: Column(
+                        children: <Widget>[
+                          _menus[index]["icon"],
+                          SizedBox(
+                            height: 4,
+                          ),
+                          _menus[index]["label"]
+//                          Text(, style: TextStyle(color: Color(0xff666666), fontSize: 14))
+                        ],
+                      )
+                  );
+                },
+              childCount: _menus.length
           ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 10),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: _menus.length,
+            mainAxisSpacing: 10
+          )
+      )
+    );
+
+    // Divider
+    list.add(SliverToBoxAdapter(child: Container(height: 10,),));
+
+    // title
+    list.add(
+      SliverToBoxAdapter(
+        child: Container(
           padding: EdgeInsets.all(14),
           color: Colors.white,
           child: Row(
@@ -200,8 +235,36 @@ class _SearchPageState extends State<SearchPage> {
             ],
           ),
         ),
-      ],
+      )
     );
+
+    // mainlist
+    list.add(
+      SliverList(
+          delegate: SliverChildBuilderDelegate((BuildContext context, int index){
+            return ListItemListTile(title: Text("sjfelkejlkfjeljf"));
+          },
+            childCount: _datalist.length
+          )
+      )
+    );
+
+    // Loading
+    list.add(
+        SliverToBoxAdapter(
+          child: Visibility(
+              visible: _showMore,
+              child: Container(
+                height: 100,
+                child: Center(
+                  child: Text("正在加载数据，请稍后..."),
+                ),
+              ),
+          ),
+        )
+    );
+
+    return list;
   }
 
   Widget _buildProgressIndicator() {
@@ -214,5 +277,11 @@ class _SearchPageState extends State<SearchPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }
