@@ -1,5 +1,8 @@
+import 'dart:async' show Future;
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/config.dart';
+import 'package:flutter_app/common/request.dart';
 
 class SocietyPage extends StatefulWidget {
   @override
@@ -23,6 +26,7 @@ class _SocietyPageState extends State<SocietyPage> with SingleTickerProviderStat
   void initState() {
     super.initState();
     _controller = TabController(length: tabList.length, vsync: this);
+    getList();
   }
 
 
@@ -73,5 +77,10 @@ class _SocietyPageState extends State<SocietyPage> with SingleTickerProviderStat
     }
 
     return list;
+  }
+
+  Future getList() async {
+    var res = await Request.get("/list");
+    print("response: $res");
   }
 }

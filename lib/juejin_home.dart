@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/book/book.dart';
 import 'package:flutter_app/pages/me/me.dart';
+import 'package:flutter_app/pages/user/personal.dart';
 import 'pages/home/index.dart';
 import 'pages/society_page.dart';
 import 'pages/hot/hot.dart';
@@ -26,7 +27,7 @@ class _JueJinHome extends State<JueJinHome> {
   @override
   void initState() {
     super.initState();
-    _tabIndex = 1;
+    _tabIndex = 0;
   }
 
   @override
@@ -102,7 +103,10 @@ class _JueJinHome extends State<JueJinHome> {
       return FloatingActionButton(
         child: Icon(Icons.people),
         onPressed: () {
-          sayHello();
+//          sayHello();
+          Navigator.of(context).push(MaterialPageRoute(builder: (context){
+            return UserPersonalPage();
+          }));
         },
       );
     }

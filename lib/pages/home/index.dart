@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/config.dart';
+import 'package:flutter_app/common/util.dart';
 import 'package:flutter_app/components/content_button.dart';
 import 'package:flutter_app/components/home_list_item2.dart';
 import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
@@ -13,84 +14,138 @@ class HomeIndexPage extends StatefulWidget {
   _JueJinHomeState createState() => _JueJinHomeState();
 }
 
+SliverGridDelegateWithMaxCrossAxisExtent _gridDelegate;
+
+
 class _JueJinHomeState extends State<HomeIndexPage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+  ScrollController _scrollController;
   int _initIndex = 0;
+  bool isShow = true;
+
 
   @override
   void initState() {
     super.initState();
     _tabController =
-        TabController(initialIndex: _initIndex, length: 4, vsync: this);
+        TabController(initialIndex: _initIndex, length: _tabs.length, vsync: this);
   }
 
-  final tabs = [
-    SizedBox(width: 40, height: 40, child: Text("测试1")),
-    SizedBox(width: 40, height: 40, child: Text("测试2")),
-    SizedBox(width: 40, height: 40, child: Text("测试3")),
-    SizedBox(width: 40, height: 40, child: Text("测试4")),
+  List<Tab> _tabs = [
+    Tab(text: "测试1",),
+    Tab(text: "测试2",),
+    Tab(text: "测试3",),
+    Tab(text: "测试4",),
+    Tab(text: "测试5",),
+    Tab(text: "测试6",),
+    Tab(text: "测试7",),
+    Tab(text: "测试8",),
   ];
 
-  final tabViews = [
-    Expanded(
-      child: Center(
-        child: Text("页面1"),
-      ),
-    ),
-    Expanded(
-      child: Center(
-        child: Text("页面2"),
-      ),
-    ),
-    Expanded(
-      child: Center(
-        child: Text("页面3"),
-      ),
-    ),
-    Expanded(
-      child: Center(
-        child: Text("页面4"),
-      ),
-    )
-  ];
+  List<Widget> _renderPages() {
+    List<Widget> list = List();
+    for(int i = 0; i < _tabs.length; i++) {
+      list.add(Container(
+        color: Util.slRandomColor(),
+        child: Center(child: Text("$i",style: TextStyle(color: Colors.black, fontSize: 40),),)
+      ));
+    }
+
+    return list;
+  }
 
   @override
   Widget build(BuildContext context) {
     List hots = [1, 2, 3];
 
     return Scaffold(
-      appBar: AppBar(
-        title: _renderPageTitle(context),
-      ),
-      body: ListView(
-        children: [HomeTopRec(data: hots), _itemBuild(), _itemBuild(), _itemBuild()],
-      ),
-      backgroundColor: Config.primaryBgColor,
+      body:
+       CustomScrollView(
+         semanticChildCount: 4,
+         slivers: <Widget>[
+           SliverGrid(
+//             key: ,
+             gridDelegate: _gridDelegate,
+             delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                  return Text('苏打粉我发');
+                },
+                childCount: 2,
+              ),
+            ),
+           SliverGrid(
+             gridDelegate: _gridDelegate,
+             delegate: SliverChildBuilderDelegate(
+               (BuildContext context, int index) {
+                  return Text('...');
+                },
+                childCount: 2,
+                semanticIndexOffset: 2,
+              ),
+            ),
+         ],
+       ),
     );
+
+//    return Scaffold(
+////      appBar: AppBar(
+////        title: _renderPageTitle(context),
+////      ),
+//      body: CustomScrollView(
+//        controller: _scrollController,
+//          slivers: [
+//            SliverOffstage(
+//              offstage: isShow,
+//              sliver: ,
+//            ),
+////            SliverAppBar(
+////              title:  ,
+////              pinned: true,
+////              backgroundColor: Colors.transparent,
+////              expandedHeight: 300,
+////              bottom: TabBar(
+////                tabs: _tabs,
+////                isScrollable: true,
+////                controller: _tabController,
+////                labelColor: Colors.black,
+////                onTap: (int index) {
+////                  setState(() {
+////                    _initIndex = index;
+////                  });
+////                },
+////              ),
+////            ),
+//
+//            SliverFillRemaining(
+//              child: Container(
+//                color: Colors.yellow,
+//                child: Center(
+//                  child: RaisedButton(
+//                    child: Text("显示隐藏"),
+//                    onPressed: () {
+//                      setState(() {
+//                        isShow = !isShow;
+//                      });
+//                    },
+//                  ),
+//                ),
+////                child: TabBarView(
+////                    controller: _tabController,
+////                    children: _renderPages()
+////                ),
+//              ),
+//            ),
+//          ],
+//
+//      ),
+//      backgroundColor: Config.primaryBgColor,
+//    );
   }
 
-  Widget _renderTabBox() {
-    return Column(
-      children: [
-        TabBar(
-          tabs: tabs,
-          controller: _tabController,
-          labelColor: Colors.black,
-          onTap: (int index) {
-            setState(() {
-              _initIndex = index;
-            });
-          },
-        ),
-        Expanded(
-            child: TabBarView(
-          controller: _tabController,
-          children: tabViews,
-        ))
-      ],
-    );
-  }
+//  ListView(
+//  children: [HomeTopRec(data: hots), _itemBuild(), _itemBuild(), _itemBuild()],
+//  ),
 
   Row _renderPageTitle(BuildContext context) {
     return Row(

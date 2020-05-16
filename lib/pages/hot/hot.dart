@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/config.dart';
 import 'package:flutter_app/common/util.dart';
@@ -10,7 +12,48 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  bool show =true;
+  List list = List.generate(10, (index) => index);
+
+  ScrollController _scrollController = new ScrollController();
+  bool isRequest = false;
+  int num = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        _getMoreData();
+      }
+    });
+
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+
+  _getMoreData() async {
+    if (!isRequest) {
+      num++;
+      setState(() => isRequest = true);
+      Timer(Duration(seconds: 3), (){
+        var newList = List.generate(10, (index) => index);
+        setState(() {
+          print("请求:$num");
+          list.addAll(newList);
+          isRequest = false;
+        });
+      });
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,60 +75,33 @@ class _SearchPageState extends State<SearchPage> {
                 ),
               )),
         ),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              height: 150,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(
-                          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551606381887&di=bbd9625453a6e0efa1b25a2e990862f0&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F0df3d7ca7bcb0a46b2ac46146063f6246b60af15.jpg'),
-                      fit: BoxFit.fill)
-              ),
-            ),
-            Container(
-              color: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.only(top: 14,bottom: 14),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: _renderPageMenu().toList()),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(top: 10),
-              padding: EdgeInsets.all(14),
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text(
-                    '热门文章',
-                    style: TextStyle(fontSize: 16, color: Colors.black),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                        return TagManagePage();
-                      })
-                      );
-                    },
-                    child: Text('定制热门'),
-                  )
-                ],
-              ),
-            ),
-            
-            Divider(
-              height: 0,
-            ),
-            ListItemListTile(
-              title: Text("用得上听得懂抄得走的前端经用得上听得懂抄得走的前端经用得上听得懂抄得走的前端经jeklsfjkelfjekl")
-            )
-          ],
+        body: RefreshIndicator(child:
+        ListView.separated(
+            itemCount: list.length + 1,
+            separatorBuilder: (BuildContext context, int index) => Divider(height: 1,),
+            itemBuilder: (context, index) {
+              if(index == 0) {
+                return _renderFirstChild();
+              }
+
+              if(index == list.length) {
+                return _buildProgressIndicator();
+              }
+
+              return ListItemListTile(
+                  title: Text("用得上听得懂抄得走的前端经用得上听得懂抄得走的前端经用得上听得懂抄得走的前端经jeklsfjkelfjekl")
+              );
+            },
+            controller: _scrollController,
         )
+            , onRefresh: _refresh)
     );
+  }
+
+  Future<Null> _refresh() async {
+    list.clear();
+    await _getMoreData();
+    return;
   }
 
   List<Widget> _renderPageMenu() {
@@ -136,5 +152,67 @@ class _SearchPageState extends State<SearchPage> {
     }
 
     return _menus;
+  }
+
+
+  Widget _renderFirstChild () {
+    return  Column(
+      children: [
+        Container(
+          height: 150,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                      'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551606381887&di=bbd9625453a6e0efa1b25a2e990862f0&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F0df3d7ca7bcb0a46b2ac46146063f6246b60af15.jpg'),
+                  fit: BoxFit.fill)
+          ),
+        ),
+        Container(
+          color: Colors.white,
+          child: Padding(
+            padding: EdgeInsets.only(top: 14,bottom: 14),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: _renderPageMenu().toList()),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 10),
+          padding: EdgeInsets.all(14),
+          color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(
+                '热门文章',
+                style: TextStyle(fontSize: 16, color: Colors.black),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                    return TagManagePage();
+                  })
+                  );
+                },
+                child: Text('定制热门'),
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProgressIndicator() {
+    return Padding(
+      padding:  EdgeInsets.all(8.0),
+      child:  Center(
+        child:  Opacity(
+          opacity: isRequest ? 1.0 : 0.0,
+          child:  CircularProgressIndicator(),
+        ),
+      ),
+    );
   }
 }
