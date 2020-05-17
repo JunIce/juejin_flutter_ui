@@ -17,7 +17,6 @@ class HomeIndexPage extends StatefulWidget {
 
 SliverGridDelegateWithMaxCrossAxisExtent _gridDelegate;
 
-
 class _JueJinHomeState extends State<HomeIndexPage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
@@ -25,32 +24,51 @@ class _JueJinHomeState extends State<HomeIndexPage>
   int _initIndex = 0;
   bool isShow = true;
 
-
   @override
   void initState() {
     super.initState();
-    _tabController =
-        TabController(initialIndex: _initIndex, length: _tabs.length, vsync: this);
+    _tabController = TabController(
+        initialIndex: _initIndex, length: _tabs.length, vsync: this);
   }
 
   List<Tab> _tabs = [
-    Tab(text: "测试1",),
-    Tab(text: "测试2",),
-    Tab(text: "测试3",),
-    Tab(text: "测试4",),
-    Tab(text: "测试5",),
-    Tab(text: "测试6",),
-    Tab(text: "测试7",),
-    Tab(text: "测试8",),
+    Tab(
+      text: "测试1",
+    ),
+    Tab(
+      text: "测试2",
+    ),
+    Tab(
+      text: "测试3",
+    ),
+    Tab(
+      text: "测试4",
+    ),
+    Tab(
+      text: "测试5",
+    ),
+    Tab(
+      text: "测试6",
+    ),
+    Tab(
+      text: "测试7",
+    ),
+    Tab(
+      text: "测试8",
+    ),
   ];
 
   List<Widget> _renderPages() {
     List<Widget> list = List();
-    for(int i = 0; i < _tabs.length; i++) {
+    for (int i = 0; i < _tabs.length; i++) {
       list.add(Container(
-        color: Util.slRandomColor(),
-        child: Center(child: Text("$i",style: TextStyle(color: Colors.black, fontSize: 40),),)
-      ));
+          color: Util.slRandomColor(),
+          child: Center(
+            child: Text(
+              "$i",
+              style: TextStyle(color: Colors.black, fontSize: 40),
+            ),
+          )));
     }
 
     return list;
@@ -65,78 +83,113 @@ class _JueJinHomeState extends State<HomeIndexPage>
     const Text('Revolution, they...'),
   ];
 
-
   @override
   Widget build(BuildContext context) {
     List hots = [1, 2, 3];
 
-
-
-    return Scaffold(
-      body:
-          SafeArea(child: CustomScrollView(
-            primary: false,
-            controller: _scrollController,
-            slivers: <Widget>[
-              SliverToBoxAdapter(
-                child: Container(
-                  height: 100,
-                  child: Text("Grid列表"),
+    return new Scaffold(
+//      appBar: ,
+      body: Container(
+        width: double.maxFinite,
+        child: Column(
+          children: [
+            new PreferredSize(
+              child: new Container(
+                padding: new EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                width: double.maxFinite,
+                child: new Padding(
+                  padding: const EdgeInsets.only(left: 30.0, top: 20.0, bottom: 20.0),
+                  child: new Text(
+                    'Arnold Parge',
+                    style: new TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white),
+                  ),
                 ),
+                decoration: new BoxDecoration(
+                    gradient: new LinearGradient(colors: [Colors.red, Colors.yellow]),
+                    boxShadow: [
+                      new BoxShadow(
+                        color: Colors.grey[500],
+                        blurRadius: 20.0,
+                        spreadRadius: 1.0,
+                      )
+                    ]),
               ),
-              SliverGrid(
-                delegate: SliverChildBuilderDelegate((BuildContext context, int index){
-                  return Container(
-                    color: Util.slRandomColor(),
-                  );
-                },
-                  childCount: 10,
-                ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                    crossAxisCount: 3
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: Container(
-                  height: 100,
-                  child: Text("SliverList列表"),
-                ),
-              ),
-              SliverPersistentHeader(
-                pinned: false,
-                floating: true,
-                delegate: _SliverAppBarDelegate(
-                  maxHeight: 80,
-                  minHeight: 50,
-                  child: Container(
-                    color: Util.slRandomColor(),
-                    child: Center(
-                      child: Text("SliverPersistentHeader -header"),
-                    )
-                  )
-                ),
-              ),
-              SliverList(
-                  delegate:
-                  SliverChildBuilderDelegate(
-                          (BuildContext context,int index){
-//                            print("List1_$index");
-                    return Container(
-                      height: 50,
-                      color: Util.slRandomColor(),
-                    );
-                    },
-                    childCount: 10
-                  )
-              ),
-
-            ],
-          )
-          )
-
+              preferredSize: new Size(MediaQuery.of(context).size.width, 150.0),
+            )
+          ],
+        ),
+      )
     );
+
+//    return Scaffold(
+//      body:
+//          SafeArea(bottom: false, child: CustomScrollView(
+//            primary: false,
+//            controller: _scrollController,
+//            slivers: <Widget>[
+//              SliverToBoxAdapter(
+//                child: Container(
+//                  height: 100,
+//                  child: Text("Grid列表"),
+//                ),
+//              ),
+//              SliverGrid(
+//                delegate: SliverChildBuilderDelegate((BuildContext context, int index){
+//                  return Container(
+//                    color: Util.slRandomColor(),
+//                  );
+//                },
+//                  childCount: 10,
+//                ),
+//                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                    mainAxisSpacing: 10,
+//                    crossAxisSpacing: 10,
+//                    crossAxisCount: 3
+//                ),
+//              ),
+//              SliverToBoxAdapter(
+//                child: Container(
+//                  height: 100,
+//                  child: Text("SliverList列表"),
+//                ),
+//              ),
+//              SliverPersistentHeader(
+//                pinned: false,
+//                floating: true,
+//                delegate: _SliverAppBarDelegate(
+//                  maxHeight: 80,
+//                  minHeight: 50,
+//                  child: Container(
+//                    color: Util.slRandomColor(),
+//                    child: Center(
+//                      child: Text("SliverPersistentHeader -header"),
+//                    )
+//                  )
+//                ),
+//              ),
+//              SliverList(
+//                  delegate:
+//                  SliverChildBuilderDelegate(
+//                          (BuildContext context,int index){
+////                            print("List1_$index");
+//                    return Container(
+//                      height: 50,
+//                      color: Util.slRandomColor(),
+//                    );
+//                    },
+//                    childCount: 10
+//                  )
+//              ),
+//
+//            ],
+//          )
+//          ),
+//      backgroundColor: Config.primaryBgColor,
+//
+//    );
 
 //    return Scaffold(
 ////      appBar: AppBar(
@@ -189,7 +242,6 @@ class _JueJinHomeState extends State<HomeIndexPage>
 //          ],
 //
 //      ),
-//      backgroundColor: Config.primaryBgColor,
 //    );
   }
 
@@ -202,45 +254,42 @@ class _JueJinHomeState extends State<HomeIndexPage>
       children: [
         Expanded(
           child: Container(
-            color: Colors.blue[300],
-            width: double.maxFinite,
-            child: InkWell(
-              onTap: () {
-                print("dddd");
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
+              color: Colors.blue[300],
+              width: double.maxFinite,
+              child: InkWell(
+                onTap: () {
+                  print("dddd");
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return SearchPage();
-                 })
-                );
-              },
-              child: Padding(
-                  padding:
-                  EdgeInsets.only(top: 8, bottom: 8, left: 10, right: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "搜索文章、用户、标签",
-                        style: TextStyle(color: Colors.blue[50], fontSize: 14),
-                      )
-                    ],
-                  )
-              ),
-            )
-          ),
+                  }));
+                },
+                child: Padding(
+                    padding:
+                        EdgeInsets.only(top: 8, bottom: 8, left: 10, right: 10),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "搜索文章、用户、标签",
+                          style:
+                              TextStyle(color: Colors.blue[50], fontSize: 14),
+                        )
+                      ],
+                    )),
+              )),
         ),
         Container(
           child: GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return TagManagePage();
-              })
-              );
+              }));
             },
             child: Row(children: [
               SizedBox(
@@ -266,8 +315,8 @@ class _JueJinHomeState extends State<HomeIndexPage>
   }
 
   Widget _itemBuild() {
-    return ContentButton(child:
-        Container(
+    return ContentButton(
+        child: Container(
       padding: EdgeInsets.only(top: 20, bottom: 20, left: 12, right: 12),
       color: Colors.white,
       child: _itemCard(),
@@ -343,10 +392,7 @@ class _JueJinHomeState extends State<HomeIndexPage>
                 shape: BoxShape.circle,
                 image: DecorationImage(
                     image: NetworkImage(
-                        'https://img2.woyaogexing.com/2019/03/01/f4471c4c54bd2c63!400x400_big.jpg'
-                    )
-                )
-            ),
+                        'https://img2.woyaogexing.com/2019/03/01/f4471c4c54bd2c63!400x400_big.jpg'))),
           ),
           Padding(
             padding: EdgeInsets.only(left: 8),
@@ -365,32 +411,32 @@ class _JueJinHomeState extends State<HomeIndexPage>
   Row _itemMain = Row(
     children: <Widget>[
       Expanded(
-          child:Container(
+          child: Container(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                textDirection: TextDirection.ltr,
-                children: <Widget>[
-                  Text(
-                    '为前端工程之崛起而编程',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87),
-                    softWrap: true,
-                    textDirection: TextDirection.ltr,
-                  ),
-                  SizedBox(
-                    height: 6,
-                  ),
-                  Text(
-                    '当时的角度主要',
-                    style: TextStyle(fontSize: 14, color: Color(0xff666666)),
-                    softWrap: true,
-                    textDirection: TextDirection.ltr,
-                  )
-                ],
-              )) ),
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        textDirection: TextDirection.ltr,
+        children: <Widget>[
+          Text(
+            '为前端工程之崛起而编程',
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: Colors.black87),
+            softWrap: true,
+            textDirection: TextDirection.ltr,
+          ),
+          SizedBox(
+            height: 6,
+          ),
+          Text(
+            '当时的角度主要',
+            style: TextStyle(fontSize: 14, color: Color(0xff666666)),
+            softWrap: true,
+            textDirection: TextDirection.ltr,
+          )
+        ],
+      ))),
       SizedBox(
         width: 10,
       ),
@@ -402,7 +448,6 @@ class _JueJinHomeState extends State<HomeIndexPage>
     ],
   );
 }
-
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   _SliverAppBarDelegate({
