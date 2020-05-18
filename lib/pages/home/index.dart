@@ -86,7 +86,7 @@ class _JueJinHomeState extends State<HomeIndexPage>
   @override
   Widget build(BuildContext context) {
     List hots = [1, 2, 3];
-
+print("top: " + MediaQuery.of(context).padding.top.toString());
     return new Scaffold(
 //      appBar: ,
       body: Container(
