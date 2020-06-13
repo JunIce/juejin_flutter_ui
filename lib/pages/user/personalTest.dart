@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class UserPersonalTestPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -22,15 +21,16 @@ class _UserPeronalPage extends State<UserPersonalTestPage> {
     return Scaffold(
       body:
 
-      /// 加TabBar
-      DefaultTabController(
+          /// 加TabBar
+          DefaultTabController(
         length: _tabs.length, // This is the number of tabs.
         child: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             // These are the slivers that show up in the "outer" scroll view.
             return <Widget>[
               SliverOverlapAbsorber(
-                handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                handle:
+                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 child: SliverAppBar(
                   leading: IconButton(
                     icon: Icon(Icons.arrow_back),
@@ -59,12 +59,11 @@ class _UserPeronalPage extends State<UserPersonalTestPage> {
 
                   flexibleSpace: FlexibleSpaceBar(
                     background: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image:NetworkImage("https://hbimg.huabanimg.com/62c225941f47f7df533e1dc378cd6e3beddfabaf34922-0ECiKt_fw658/format/webp")
-                      )
-                    ),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                  "https://hbimg.huabanimg.com/62c225941f47f7df533e1dc378cd6e3beddfabaf34922-0ECiKt_fw658/format/webp"))),
                       child: Column(
                         children: [
                           Container(
@@ -73,22 +72,19 @@ class _UserPeronalPage extends State<UserPersonalTestPage> {
                           Row(
                             children: [
                               CircleAvatar(
-                                backgroundImage: NetworkImage("https://hbimg.huabanimg.com/b7db1a54f7b7f7a1d7fca9eb0e8918662e2530336c31-sVAsue_fw86/format/webp"),
+                                backgroundImage: NetworkImage(
+                                    "https://hbimg.huabanimg.com/b7db1a54f7b7f7a1d7fca9eb0e8918662e2530336c31-sVAsue_fw86/format/webp"),
                               ),
-
                             ],
                           ),
-                          Container(  //TabBar圆角背景颜色
+                          Container(
+                            //TabBar圆角背景颜色
                             height: 50,
                             color: Colors.white,
                           )
                         ],
                       ),
                     ),
-//                    centerTitle: false,
-//                    background: Image.network("https://hbimg.huabanimg.com/62c225941f47f7df533e1dc378cd6e3beddfabaf34922-0ECiKt_fw658/format/webp"
-//                    ,fit: BoxFit.cover,
-//                    ),
                   ),
 
                   bottom: TabBar(
@@ -113,15 +109,15 @@ class _UserPeronalPage extends State<UserPersonalTestPage> {
                       slivers: <Widget>[
                         SliverOverlapInjector(
                           handle:
-                          NestedScrollView.sliverOverlapAbsorberHandleFor(
-                              context),
+                              NestedScrollView.sliverOverlapAbsorberHandleFor(
+                                  context),
                         ),
                         SliverPadding(
                           padding: const EdgeInsets.all(10.0),
                           sliver: SliverFixedExtentList(
                             itemExtent: 50.0, //item高度或宽度，取决于滑动方向
                             delegate: SliverChildBuilderDelegate(
-                                  (BuildContext context, int index) {
+                              (BuildContext context, int index) {
                                 return ListTile(
                                   title: Text('Item $index'),
                                 );
@@ -138,56 +134,7 @@ class _UserPeronalPage extends State<UserPersonalTestPage> {
             }).toList(),
           ),
         ),
-      ),
-
-      /// 不加TabBar
-//      new CustomScrollView(
-//        slivers: <Widget>[
-//          new SliverAppBar(
-//            leading: new IconButton(
-//              icon: Icon(Icons.arrow_back),
-//              onPressed: () {},
-//            ),
-//
-//            title: Text("标题"),
-//
-//            actions: <Widget>[
-//              new IconButton(
-//                icon: Icon(Icons.add),
-//                onPressed: () {
-//                  print("添加");
-//                },
-//              ),
-//              new IconButton(
-//                icon: Icon(Icons.more_horiz),
-//                onPressed: () {
-//                  print("更多");
-//                },
-//              ),
-//            ],
-//
-//            expandedHeight: 230.0,
-//            floating: false,
-//            pinned: true,
-//            snap: false,
-//            brightness: Brightness.dark,
-//
-//            flexibleSpace: new FlexibleSpaceBar(
-//              background: Image.asset("images/a.jpg", fit: BoxFit.fill),
-//            ),
-//
-//          ),
-//          new SliverFixedExtentList(
-//            itemExtent: 50.0,
-//            delegate: new SliverChildBuilderDelegate(
-//              (context, index) => new ListTile(
-//                    title: new Text("Item $index"),
-//                  ),
-//              childCount: 30,
-//            ),
-//          ),
-//        ],
-//      ),
+      )
     );
   }
 }

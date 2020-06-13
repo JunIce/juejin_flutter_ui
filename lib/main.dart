@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        primaryColor:Colors.blue,
+        primaryColor: Colors.blue,
       ),
       home: JueJinHome(),
     );

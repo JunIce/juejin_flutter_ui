@@ -16,7 +16,13 @@ class _JueJinHome extends State<JueJinHome> {
   int _tabIndex;
 
   List _bottomTabs = ['home', 'refresh', 'search', 'book', 'read'];
-  List _bottomIcons = [Icon(Icons.home), Icon(Icons.refresh), Icon(Icons.search), Icon(Icons.book), Icon(Icons.supervised_user_circle)];
+  List _bottomIcons = [
+    Icon(Icons.home),
+    Icon(Icons.refresh),
+    Icon(Icons.search),
+    Icon(Icons.book),
+    Icon(Icons.supervised_user_circle)
+  ];
   var _tabs = [
     HomeIndexPage(),
     SocietyPage(),
@@ -43,12 +49,12 @@ class _JueJinHome extends State<JueJinHome> {
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
-
         items: _bottomTabs
-            .asMap().keys.map((t) =>
-                BottomNavigationBarItem(icon: _bottomIcons[t], title: Container()))
+            .asMap()
+            .keys
+            .map((t) => BottomNavigationBarItem(
+                icon: _bottomIcons[t], title: Container()))
             .toList(),
-
         onTap: (int index) {
           print(index);
           setState(() {
@@ -91,25 +97,25 @@ class _JueJinHome extends State<JueJinHome> {
   }
 
   _renderButton() {
-    if(_tabIndex == 0) {
+    if (_tabIndex == 0) {
       return FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
 //          sayHello();
 
-          Navigator.of(context).push(MaterialPageRoute(builder: (context){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
             return ActivityPage();
           }));
         },
       );
     }
 
-    if(_tabIndex == 1) {
+    if (_tabIndex == 1) {
       return FloatingActionButton(
         child: Icon(Icons.people),
         onPressed: () {
 //          sayHello();
-          Navigator.of(context).push(MaterialPageRoute(builder: (context){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
             return UserPersonalPage();
           }));
         },
@@ -117,7 +123,5 @@ class _JueJinHome extends State<JueJinHome> {
     }
 
     return null;
-
   }
-
 }

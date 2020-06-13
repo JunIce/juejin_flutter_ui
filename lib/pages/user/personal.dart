@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/util.dart';
 
-
 class UserPersonalPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -10,8 +9,8 @@ class UserPersonalPage extends StatefulWidget {
   }
 }
 
-class _UserPeronalPage extends State<UserPersonalPage> with SingleTickerProviderStateMixin{
-
+class _UserPeronalPage extends State<UserPersonalPage>
+    with SingleTickerProviderStateMixin {
   ScrollController _scrollController;
   TabController _controller;
 
@@ -33,48 +32,38 @@ class _UserPeronalPage extends State<UserPersonalPage> with SingleTickerProvider
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: CustomScrollView(
-          controller: _scrollController,
-          slivers: [
-              SliverAppBar(
-                leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: null),
-                pinned: true,
+        body: CustomScrollView(controller: _scrollController, slivers: [
+      SliverAppBar(
+          leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: null),
+          pinned: true,
 //                backgroundColor: Colors.transparent,
-                expandedHeight: 300,
-                  bottom: TabBar(
-                    controller: _controller,
-                    tabs: _tabs,
-                  )
-              ),
-            SliverFillRemaining(
-              child: TabBarView(
-                  controller: _controller,
-                  children: _renderTabView()
-              ),
-            )
-          ]
+          expandedHeight: 300,
+          bottom: TabBar(
+            controller: _controller,
+            tabs: _tabs,
+          )),
+      SliverFillRemaining(
+        child: TabBarView(controller: _controller, children: _renderTabView()),
       )
-    );
+    ]));
   }
-
 
   List<Widget> _renderTabView() {
     List<Widget> list = List();
-    for(int i = 0; i< _tabs.length; i++){
-      list.add(
-        Container(
-          color: Util.slRandomColor(),
-          child: Center(
-            child: Container(
-              child: Text("${i+1}", style: TextStyle(fontSize: 30, color: Colors.black),),
+    for (int i = 0; i < _tabs.length; i++) {
+      list.add(Container(
+        color: Util.slRandomColor(),
+        child: Center(
+          child: Container(
+            child: Text(
+              "${i + 1}",
+              style: TextStyle(fontSize: 30, color: Colors.black),
             ),
           ),
-        )
-
-      );
+        ),
+      ));
     }
 
     return list;
   }
-
 }

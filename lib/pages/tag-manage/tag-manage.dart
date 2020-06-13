@@ -11,13 +11,17 @@ class TagManagePage extends StatefulWidget {
   }
 }
 
-class _TagManagePage extends State<TagManagePage> with SingleTickerProviderStateMixin{
-
+class _TagManagePage extends State<TagManagePage>
+    with SingleTickerProviderStateMixin {
   TabController _controller;
 
   var tabs = <Tab>[
-    Tab(text: "已关注标签",),
-    Tab(text: "所有标签",),
+    Tab(
+      text: "已关注标签",
+    ),
+    Tab(
+      text: "所有标签",
+    ),
   ];
 
   @override
@@ -33,48 +37,58 @@ class _TagManagePage extends State<TagManagePage> with SingleTickerProviderState
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        leading:BackButton(onPressed: () {
-          Navigator.of(context).pop();
-        },),
-
-        title: Text("标签管理", style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),),
-
+          leading: BackButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          title: Text(
+            "标签管理",
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+          ),
           actions: [
             InkWell(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return SearchPage();
-                })
-                );
+                }));
               },
-              child: Icon(Icons.search, size: 24, color: Colors.white,),
+              child: Icon(
+                Icons.search,
+                size: 24,
+                color: Colors.white,
+              ),
             ),
-            SizedBox(width: 10,)
+            SizedBox(
+              width: 10,
+            )
           ],
-          elevation: 0
-      ),
+          elevation: 0),
       body: Column(
         children: [
           Container(
             color: Colors.blue,
             child: Row(
-              children: [TabBar(
-                controller: _controller,
-                tabs: tabs,
-                isScrollable: true,
-                labelColor: Colors.white,
-                indicatorColor: Colors.white,
-              )],
+              children: [
+                TabBar(
+                  controller: _controller,
+                  tabs: tabs,
+                  isScrollable: true,
+                  labelColor: Colors.white,
+                  indicatorColor: Colors.white,
+                )
+              ],
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _controller,
+              children: [
+                _renderFollowList(),
+                _renderAllTagList(),
+              ],
             ),
           )
-          ,
-          Expanded(child: TabBarView(
-            controller: _controller,
-            children: [
-              _renderFollowList(),
-              _renderAllTagList(),
-            ],
-          ),)
         ],
       ),
       backgroundColor: Color(0xfff4f4f4),
@@ -85,12 +99,15 @@ class _TagManagePage extends State<TagManagePage> with SingleTickerProviderState
     return ListView.builder(
         itemCount: 30,
         itemBuilder: (context, index) {
-          if(index.isOdd) return Divider(height: 1,);
-           return _renderItem();
+          if (index.isOdd)
+            return Divider(
+              height: 1,
+            );
+          return _renderItem();
         });
   }
 
-  Widget _renderAllTagList () {
+  Widget _renderAllTagList() {
     return ListView(
       children: [
         Container(
@@ -98,75 +115,94 @@ class _TagManagePage extends State<TagManagePage> with SingleTickerProviderState
           child: Text("推荐标签"),
         ),
         _renderItem(),
-        Divider(height: 1,),
+        Divider(
+          height: 1,
+        ),
         _renderItem(),
-        Divider(height: 1,),
+        Divider(
+          height: 1,
+        ),
         _renderItem(),
-        Divider(height: 1,),
+        Divider(
+          height: 1,
+        ),
         _renderItem(),
-        Divider(height: 1,),
+        Divider(
+          height: 1,
+        ),
         _renderItem(),
-
         Container(
           padding: EdgeInsets.only(top: 12, bottom: 12, left: 8),
           child: Text("你可能感兴趣的标签"),
         ),
         _renderItem(),
-        Divider(height: 1,),
+        Divider(
+          height: 1,
+        ),
         _renderItem(),
-        Divider(height: 1,),
+        Divider(
+          height: 1,
+        ),
         _renderItem(),
-        Divider(height: 1,),
+        Divider(
+          height: 1,
+        ),
         _renderItem(),
-        Divider(height: 1,),
+        Divider(
+          height: 1,
+        ),
         _renderItem()
       ],
     );
   }
 
-
   Widget _renderItem() {
     bool active = Random().nextBool();
-    return Container(color: Colors.white,
-    child: ListTile(
-      leading: Container(
-        width: 50,
-        height: 50,
-        child: CircleAvatar(backgroundImage: NetworkImage("https://img2.woyaogexing.com/2020/05/13/6a6bc5e61e864388bf102528be9ffa8c!400x400.webp"),),
-      ),
-      title: Text("Go"),
-      subtitle: Container(
-        child: Row(
-          children: [
-            Text("71582人关注"),
-            Container(width: 10,child: Text("·"),),
-            Text("5000篇文章"),
-          ],
+    return Container(
+      color: Colors.white,
+      child: ListTile(
+        leading: Container(
+          width: 50,
+          height: 50,
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(
+                "https://img2.woyaogexing.com/2020/05/13/6a6bc5e61e864388bf102528be9ffa8c!400x400.webp"),
+          ),
         ),
+        title: Text("Go"),
+        subtitle: Container(
+          child: Row(
+            children: [
+              Text("71582人关注"),
+              Container(
+                width: 10,
+                child: Text("·"),
+              ),
+              Text("5000篇文章"),
+            ],
+          ),
+        ),
+        trailing: _renderButton(active),
       ),
-      trailing: _renderButton(active),
-    ),
     );
   }
 
   Widget _renderButton(bool active) {
-    if(active) {
+    if (active) {
       return FlatButton.icon(
           icon: Icon(Icons.check),
           label: Text("已关注"),
-          onPressed: (){}, color: Color(0xff6cbd45),textColor: Colors.white);
-    }else{
+          onPressed: () {},
+          color: Color(0xff6cbd45),
+          textColor: Colors.white);
+    } else {
       return OutlineButton.icon(
           icon: Icon(Icons.add),
           label: Text("关注"),
-          onPressed: (){},
+          onPressed: () {},
           textColor: Color(0xff6cbd45),
           borderSide: BorderSide(
-            color: Color(0xff6cbd45),
-            width: 2.0,
-            style: BorderStyle.solid
-          )
-      );
+              color: Color(0xff6cbd45), width: 2.0, style: BorderStyle.solid));
     }
   }
 }

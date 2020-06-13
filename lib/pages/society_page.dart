@@ -1,5 +1,4 @@
 import 'dart:async' show Future;
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/config.dart';
 import 'package:flutter_app/common/request.dart';
@@ -64,7 +63,8 @@ class _SocietyPageState extends State<SocietyPage>
                   )
                 ],
               )),
-          preferredSize: Size(MediaQuery.of(context).size.width, double.maxFinite),
+          preferredSize:
+              Size(MediaQuery.of(context).size.width, double.maxFinite),
         ),
         body: TabBarView(
             controller: _controller, children: _renderList(context)));
@@ -74,25 +74,22 @@ class _SocietyPageState extends State<SocietyPage>
     List<Widget> list = List();
 
     for (int i = 0; i < tabList.length; i++) {
-      list.add(
-          CustomScrollView(
-            key: PageStorageKey<String>("tab_$i"),
-            slivers: [
-              SliverFixedExtentList(
-                  delegate: SliverChildBuilderDelegate(
-                          (BuildContext context, int index) {
-                    return Container(
-                      color: Util.slRandomColor(),
-                      height: 50,
-                    );
-                  },
-                      childCount: 50,
-                  ),
-                  itemExtent: 100
-              )
-            ],
-          )
-      );
+      list.add(CustomScrollView(
+        key: PageStorageKey<String>("tab_$i"),
+        slivers: [
+          SliverFixedExtentList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return Container(
+                    color: Util.slRandomColor(),
+                    height: 50,
+                  );
+                },
+                childCount: 50,
+              ),
+              itemExtent: 100)
+        ],
+      ));
     }
 
     return list;

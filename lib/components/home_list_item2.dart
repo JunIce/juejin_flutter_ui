@@ -121,7 +121,7 @@ class HomeListItem2 extends StatelessWidget {
         ),)
         ),
         IconButton(
-          icon: Icon(Icons.menu),
+          icon: Icon(Icons.more_horiz),
           color: Color(0xff999999),
           iconSize: 18,
           onPressed: () {
