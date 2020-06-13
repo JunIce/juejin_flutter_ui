@@ -4,7 +4,6 @@ import 'package:webview_flutter/webview_flutter.dart';
 class DetailPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _DetailPage();
   }
 }
@@ -12,7 +11,6 @@ class DetailPage extends StatefulWidget {
 class _DetailPage extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -27,6 +25,9 @@ class _DetailPage extends State<DetailPage> {
           IconButton(
             icon: Icon(Icons.share),
             iconSize: 18,
+            onPressed: () {
+
+            },
           )
         ],
       ),

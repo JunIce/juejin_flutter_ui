@@ -125,7 +125,7 @@ class _JueJinHomeState extends State<HomeIndexPage>
 //  children: [HomeTopRec(data: hots), _itemBuild(), _itemBuild(), _itemBuild()],
 //  ),
 
-  Row _renderPageTitle(BuildContext context) {
+  Widget _renderPageTitle(BuildContext context) {
     return Row(
       children: [
         Expanded(
