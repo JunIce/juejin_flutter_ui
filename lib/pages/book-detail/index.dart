@@ -18,6 +18,9 @@ class _BookDetail extends State<BookDetail> {
         appBar: AppBar(
           backgroundColor: Colors.blue,
           title: Text("深入理解TCP协议"),
+          actions: [
+            GestureDetector(onTap: () {},child: Padding(padding: EdgeInsets.symmetric(horizontal: 8), child: Icon(Icons.share),),),
+          ],
         ),
         body: renderBody(),
         bottomNavigationBar: renderBottomButtons()
