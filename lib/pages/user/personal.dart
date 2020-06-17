@@ -13,7 +13,7 @@ class UserPersonalPage extends StatefulWidget {
 
 class _UserPeronalPage extends State<UserPersonalPage>
     with SingleTickerProviderStateMixin {
-  ScrollController _scrollController;
+  ScrollController _scrollController = new ScrollController(initialScrollOffset: 0);
   TabController _tabController;
 
   List<Tab> _tabs = [
@@ -39,16 +39,17 @@ class _UserPeronalPage extends State<UserPersonalPage>
     // TODO: implement build
     return Scaffold(
       backgroundColor: Color(0xfff4f4f4),
+//        appBar: renderAppBar(),
         body: renderBody()
     );
   }
 
   Widget renderAppBar() {
 
-    return AppBar(
-      toolbarOpacity: 1,
+    return SliverAppBar(
       elevation: 0,
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.transparent,
+      pinned: true,
       actions: [
         GestureDetector(
           onTap: (){},
@@ -74,6 +75,7 @@ class _UserPeronalPage extends State<UserPersonalPage>
         controller: _scrollController,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
+            renderAppBar(),
             SliverToBoxAdapter(
               child: Column(
                 children: [
@@ -95,7 +97,7 @@ class _UserPeronalPage extends State<UserPersonalPage>
   // 标题背景图片
   Widget renderHeaderImage() {
     return Container(
-      height: 140,
+      height: 180,
       decoration: BoxDecoration(
         image: DecorationImage(
             image: NetworkImage("https://img2.woyaogexing.com/2020/06/15/60c3cd9b349f4aa5b8b6b9f9178b54ee!1242x9999.jpeg",),
