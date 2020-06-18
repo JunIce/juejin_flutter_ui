@@ -21,9 +21,18 @@ class HomeListView extends StatelessWidget {
   });
 
   List<ChoiceChip> _tabs = [
-    ChoiceChip(label: Text("全部"),labelStyle:TextStyle(color: Colors.black),  selected: true, selectedColor: Colors.blue, padding: EdgeInsets.only(top: 2, bottom: 2, left: 8, right: 8),),
+    ChoiceChip(label: Text("全部"),labelStyle:TextStyle(color: Colors.black),  selected: true, selectedColor: Colors.blue),
     ChoiceChip(label: Text("Java"),selected: false,),
     ChoiceChip(label: Text("Python"),selected: false,),
+    ChoiceChip(label: Text("Go"),selected: false,),
+    ChoiceChip(label: Text("php"),selected: false,),
+    ChoiceChip(label: Text("Nodejs"),selected: false,),
+    ChoiceChip(label: Text("Go"),selected: false,),
+    ChoiceChip(label: Text("php"),selected: false,),
+    ChoiceChip(label: Text("Nodejs"),selected: false,),
+    ChoiceChip(label: Text("Go"),selected: false,),
+    ChoiceChip(label: Text("php"),selected: false,),
+    ChoiceChip(label: Text("Nodejs"),selected: false,),
     ChoiceChip(label: Text("Go"),selected: false,),
     ChoiceChip(label: Text("php"),selected: false,),
     ChoiceChip(label: Text("Nodejs"),selected: false,),
@@ -67,20 +76,29 @@ class HomeListView extends StatelessWidget {
 
       return Column(
         children: [
-          DefaultTabController(
-              length: _tabs.length,
-              child: TabBar(
-                tabs: _tabs,
-                isScrollable: true,
-                  indicatorColor: Colors.transparent,
+          ColoredBox(
+              color: Colors.white,
+              child: Container(
+                height: 56,
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                child:  ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _tabs.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
+                      onTap: () {},
+                      child: _tabs[index],
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return SizedBox(width: 10,);
+                  },
+                ),
               )
           ),
           Expanded(child: listview)
         ],
       );
     }
-
-
-
   }
 }

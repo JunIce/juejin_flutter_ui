@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/components/home_list_view.dart';
 import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
@@ -57,10 +56,8 @@ class _JueJinHomeState extends State<HomeIndexPage>
   List<Widget> _renderPages() {
     List<Widget> list = List();
 
-
-
     for (int i = 0; i < _tabs.length; i++) {
-      list.add(HomeListView(controller: _scrollController, list: List(50), type: i,));
+      list.add(HomeListView(list: List(50), type: i,));
     }
 
     return list;
@@ -69,64 +66,74 @@ class _JueJinHomeState extends State<HomeIndexPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-          child: Container(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-              width: double.maxFinite,
-              child: Container(
-                padding: EdgeInsets.all(10),
-                child: _renderPageTitle(context),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              )),
-          preferredSize: Size(MediaQuery.of(context).size.width, 80),
-        ),
-        body: Column(
-          children: [
-            // tabbar
-            Container(
-              color: Colors.blue,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(child: TabBar(
-                    tabs: _tabs,
-                    isScrollable: true,
-                    controller: _tabController,
-                    labelColor: Colors.white,
-                    indicatorColor: Colors.white,
-                    onTap: (int index) {
-                      setState(() {
-                        _initIndex = index;
-                      });
-                    },
-                  ),
-                  ),
-                  IconButton(
-                    color: Colors.white,
-                    icon: Icon(Icons.flash_on, color: Colors.white,),
-                  )
-                ],
-              )
-            ),
-
-            // scrollview
-            Expanded(
-                child: TabBarView(
-                    key: PageStorageKey<String>("tabBar"),
-                    controller: _tabController,
-                    children: _renderPages()))
-          ],
-        ));
+        appBar: renderAppBar(),
+        body: renderBody()
+    );
   }
 
-//  ListView(
-//  children: [HomeTopRec(data: hots), _itemBuild(), _itemBuild(), _itemBuild()],
-//  ),
 
-  Widget _renderPageTitle(BuildContext context) {
-    return Row(
+  // 状态栏
+  Widget renderAppBar() {
+    return PreferredSize(
+      child: Container(
+          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+          child: _renderPageTitle(),
+          decoration: BoxDecoration(
+            color: Colors.blue,
+          )),
+      preferredSize: Size(MediaQuery.of(context).size.width, 50),
+    );
+  }
+
+  // tabBar
+  Widget renderTabBar() {
+    return Container(
+        color: Colors.blue,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(child: TabBar(
+              tabs: _tabs,
+              isScrollable: true,
+              controller: _tabController,
+              labelColor: Colors.white,
+              indicatorColor: Colors.white,
+              onTap: (int index) {
+                setState(() {
+                  _initIndex = index;
+                });
+              },
+            ),
+            ),
+            IconButton(
+              color: Colors.white,
+              icon: Icon(Icons.flash_on, color: Colors.white,),
+            )
+          ],
+        )
+    );
+  }
+
+  // 页面主体
+  Widget renderBody() {
+    return Column(
+      children: [
+        renderTabBar(),
+        Expanded(
+            child: TabBarView(
+                controller: _tabController,
+                key: PageStorageKey<String>("tabBar"),
+                children: _renderPages()
+            )
+        )
+      ],
+    );
+  }
+
+  Widget _renderPageTitle() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
       children: [
         Expanded(
           child: Container(
@@ -134,14 +141,12 @@ class _JueJinHomeState extends State<HomeIndexPage>
               width: double.maxFinite,
               child: InkWell(
                 onTap: () {
-                  print("dddd");
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return SearchPage();
                   }));
                 },
                 child: Padding(
-                    padding:
-                        EdgeInsets.only(top: 8, bottom: 8, left: 10, right: 10),
+                    padding: EdgeInsets.symmetric(vertical: 8,horizontal: 10),
                     child: Row(
                       children: [
                         Icon(
@@ -153,19 +158,21 @@ class _JueJinHomeState extends State<HomeIndexPage>
                         ),
                         Text(
                           "搜索文章、用户、标签",
-                          style:
-                              TextStyle(color: Colors.blue[50], fontSize: 14),
+                          style: TextStyle(color: Colors.blue[50], fontSize: 14),
                         )
                       ],
-                    )),
-              )),
+                    )
+                ),
+              )
+          ),
         ),
         Container(
           child: GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return TagManagePage();
-              }));
+              })
+              );
             },
             child: Row(children: [
               SizedBox(
@@ -187,6 +194,7 @@ class _JueJinHomeState extends State<HomeIndexPage>
           ),
         )
       ],
+      )
     );
   }
 
@@ -197,37 +205,5 @@ class _JueJinHomeState extends State<HomeIndexPage>
     _tabController.dispose();
 
     super.dispose();
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate({
-    @required this.minHeight,
-    @required this.maxHeight,
-    @required this.child,
-  });
-
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-
-  @override
-  double get minExtent => minHeight;
-
-  @override
-  double get maxExtent => max(maxHeight, minHeight);
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(child: child);
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    print(oldDelegate.maxHeight);
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
   }
 }
