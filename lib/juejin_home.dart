@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/activity/activity.dart';
 import 'package:flutter_app/pages/book-detail/index.dart';
 import 'package:flutter_app/pages/book/book.dart';
+import 'package:flutter_app/pages/collection/index.dart';
 import 'package:flutter_app/pages/me/me.dart';
 import 'package:flutter_app/pages/share-article/index.dart';
 import 'package:flutter_app/pages/user/personal.dart';
@@ -106,7 +107,7 @@ class _JueJinHome extends State<JueJinHome> {
 //          sayHello();
 
           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return ShareArticle();
+            return CollectionPage();
           }));
         },
       );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/collection/index.dart';
+import 'package:flutter_app/pages/setting/index.dart';
 
 class MePage extends StatefulWidget {
   @override
@@ -60,13 +62,18 @@ class _MePage extends State<MePage>{
           ),
           Divider(height: 1,),
           Container(
-            color: Colors.white,
-            child: ListTile(
-              leading: Icon(Icons.star, size: 18, color: Colors.blue,),
-              title: Text("收藏集"),
-                trailing: Text("4个", style: TextStyle(color: Color(0xff999999), fontSize: 14),)
+              color: Colors.white,
+              child: ListTile(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                    return CollectionPage();
+                  }));
+                },
+                  leading: Icon(Icons.star, size: 18, color: Colors.blue,),
+                  title: Text("收藏集"),
+                  trailing: Text("4个", style: TextStyle(color: Color(0xff999999), fontSize: 14),)
+              ),
             ),
-          ),
           Divider(height: 1,),
           Container(
             color: Colors.white,
@@ -123,6 +130,11 @@ class _MePage extends State<MePage>{
           Container(
             color: Colors.white,
             child: ListTile(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                    return SettingPage();
+                  }));
+                },
                 leading: Icon(Icons.settings, size: 18, color: Colors.grey,),
                 title: Text("设置"),
             ),
