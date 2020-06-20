@@ -171,12 +171,9 @@ class _SettingPage extends State<SettingPage> {
       Text(
         title,
         style: TextStyle(fontSize: 16, color: Color(0xff333333)),
-      )
+      ),
+      child != null ? child : Container()
     ];
-
-    if (child != null) {
-      list.add(child);
-    }
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20),

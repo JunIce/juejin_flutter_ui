@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/activity/activity.dart';
-import 'package:flutter_app/pages/book-detail/index.dart';
 import 'package:flutter_app/pages/book/book.dart';
-import 'package:flutter_app/pages/collection/index.dart';
+import 'package:flutter_app/pages/me-collection/index.dart';
 import 'package:flutter_app/pages/me/me.dart';
-import 'package:flutter_app/pages/share-article/index.dart';
 import 'package:flutter_app/pages/user/personal.dart';
 import 'pages/home/index.dart';
 import 'pages/society_page.dart';

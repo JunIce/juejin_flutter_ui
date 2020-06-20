@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/collection/index.dart';
-import 'package:flutter_app/pages/setting/index.dart';
+import 'package:flutter_app/pages/me-collection/index.dart';
+import 'package:flutter_app/pages/me-do-like/index.dart';
+import 'package:flutter_app/pages/me-read-articles/index.dart';
+import 'package:flutter_app/pages/me-setting/index.dart';
+import 'package:flutter_app/pages/me-setting/me-item.dart';
 
 class MePage extends StatefulWidget {
   @override
@@ -10,8 +13,7 @@ class MePage extends StatefulWidget {
   }
 }
 
-class _MePage extends State<MePage>{
-
+class _MePage extends State<MePage> {
   bool switchActive = false;
 
   @override
@@ -24,123 +26,151 @@ class _MePage extends State<MePage>{
       backgroundColor: Color(0xfff4f4f4),
       body: ListView(
         children: [
-          SizedBox(height: 16,),
+          SizedBox(
+            height: 16,
+          ),
           Container(
             color: Colors.white,
             child: ListTile(
-              contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
-              leading: CircleAvatar(
-
-                  backgroundImage: NetworkImage("https://user-gold-cdn.xitu.io/2019/9/6/16d024e432ffb853?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1")
-              ),
-              title: Text("用户名", style: TextStyle(fontSize: 16, color: Color(0xff333333), fontWeight: FontWeight.bold),),
-              subtitle: Text("前端",style: TextStyle(fontSize: 12, color: Color(0xff666666)),),
-                trailing: Icon(Icons.chevron_right, color: Color(0xffcccccc), size: 32,)
-            ),
+                contentPadding:
+                    EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+                leading: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://user-gold-cdn.xitu.io/2019/9/6/16d024e432ffb853?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1")),
+                title: Text(
+                  "用户名",
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xff333333),
+                      fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text(
+                  "前端",
+                  style: TextStyle(fontSize: 12, color: Color(0xff666666)),
+                ),
+                trailing: Icon(
+                  Icons.chevron_right,
+                  color: Color(0xffcccccc),
+                  size: 32,
+                )),
           ),
-
-
-
-          SizedBox(height: 16,),
-
-
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              leading: Icon(Icons.ring_volume, size: 18, color: Colors.blue,),
-              title: Text("消息中心"),
-            ),
+          SizedBox(
+            height: 16,
           ),
-          Divider(height: 1,),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              leading: Icon(Icons.favorite, size: 18, color: Colors.greenAccent,),
-              title: Text("我赞过的"),
-                trailing: Text("16篇", style: TextStyle(color: Color(0xff999999), fontSize: 14),)
+          renderCard([
+            MeListItem(
+              icon: Icons.ring_volume,
+              title: "消息中心",
+              onTap: () {},
             ),
+            MeListItem(
+              icon: Icons.favorite,
+              title: "我赞过的",
+              trailing: "16篇",
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return MeDoLikePage();
+                }));
+              },
+            ),
+            MeListItem(
+              icon: Icons.star,
+              iconColor: Colors.red,
+              title: "收藏集",
+              trailing: "4个",
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return CollectionPage();
+                }));
+              },
+            ),
+            MeListItem(
+              icon: Icons.star,
+              iconColor: Colors.red,
+              title: "已购小册",
+              trailing: "0本",
+              onTap: () {},
+            ),
+            MeListItem(
+              icon: Icons.remove_red_eye,
+              iconColor: Colors.red,
+              title: "阅读过的文章",
+              trailing: "3000篇",
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return ReadArticles();
+                }));
+              },
+            ),
+            MeListItem(
+              icon: Icons.filter_vintage,
+              iconColor: Colors.red,
+              title: "标签管理",
+              trailing: "21个",
+              onTap: () {},
+            )
+          ]),
+          SizedBox(
+            height: 16,
           ),
-          Divider(height: 1,),
-          Container(
-              color: Colors.white,
-              child: ListTile(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                    return CollectionPage();
-                  }));
-                },
-                  leading: Icon(Icons.star, size: 18, color: Colors.blue,),
-                  title: Text("收藏集"),
-                  trailing: Text("4个", style: TextStyle(color: Color(0xff999999), fontSize: 14),)
-              ),
+          renderCard([
+            MeListItem(
+              icon: Icons.wb_sunny,
+              iconColor: Colors.grey,
+              title: "夜间模式",
+              trailing: Switch(
+                  value: switchActive,
+                  onChanged: (e) {
+                    setState(() {
+                      switchActive = e;
+                    });
+                  }),
+              onTap: () {},
             ),
-          Divider(height: 1,),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              leading: Icon(Icons.book, size: 18, color: Colors.blue,),
-              title: Text("已购小册"),
-                trailing: Text("0本", style: TextStyle(color: Color(0xff999999), fontSize: 14),)
+            MeListItem(
+              icon: Icons.question_answer,
+              iconColor: Colors.grey,
+              title: "意见反馈",
+              onTap: () {},
             ),
-          ),
-          Divider(height: 1,),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-              leading: Icon(Icons.remove_red_eye, size: 18, color: Colors.grey,),
-              title: Text("阅读过的文章"),
-                trailing: Text("3000篇", style: TextStyle(color: Color(0xff999999), fontSize: 14),)
-            ),
-          ),
-          Divider(height: 1,),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-                leading: Icon(Icons.filter_vintage, size: 18, color: Colors.grey,),
-                title: Text("标签管理"),
-                trailing: Text("21个", style: TextStyle(color: Color(0xff999999), fontSize: 14),)
-            ),
-          ),
-
-          SizedBox(height: 16,),
-
-
-//          Divider(height: 1,),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-                leading: Icon(Icons.wb_sunny, size: 18, color: Colors.grey,),
-                title: Text("夜间模式"),
-                trailing: Switch(value: switchActive, onChanged: (e){
-                  setState(() {
-                    switchActive = e;
-                  });
-                }),
-            ),
-          ),
-          Divider(height: 1,),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-                leading: Icon(Icons.question_answer, size: 18, color: Colors.grey,),
-                title: Text("意见反馈"),
-            ),
-          ),
-          Divider(height: 1,),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                    return SettingPage();
-                  }));
-                },
-                leading: Icon(Icons.settings, size: 18, color: Colors.grey,),
-                title: Text("设置"),
-            ),
-          ),
+            MeListItem(
+              icon: Icons.settings,
+              iconColor: Colors.grey,
+              title: "设置",
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return SettingPage();
+                }));
+              },
+            )
+          ]),
         ],
       ),
     );
   }
+
+  Widget renderCard(List widgets) {
+    List<Widget> list = [];
+
+    for (int i = 0; i < widgets.length; i++) {
+      list
+        ..add(widgets[i])
+        ..add(Divider(
+          height: 1,
+        ));
+    }
+    list.removeLast();
+
+    return Container(
+        color: Colors.white,
+        child: Column(
+          children: list.toList(),
+        ));
+  }
 }
+
+
