@@ -4,6 +4,7 @@ import 'package:flutter_app/pages/me-do-like/index.dart';
 import 'package:flutter_app/pages/me-read-articles/index.dart';
 import 'package:flutter_app/pages/me-setting/index.dart';
 import 'package:flutter_app/pages/me-setting/me-item.dart';
+import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
 
 class MePage extends StatefulWidget {
   @override
@@ -110,7 +111,12 @@ class _MePage extends State<MePage> {
               iconColor: Colors.red,
               title: "标签管理",
               trailing: "21个",
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return TagManagePage();
+                }));
+              },
             )
           ]),
           SizedBox(

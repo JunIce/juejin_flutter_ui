@@ -62,8 +62,7 @@ class _CollectionPage extends State<CollectionPage> with SingleTickerProviderSta
             indicatorColor: Colors.white,
             controller: _tabController,
           ),
-        )
-        ,
+        ),
         Expanded(child:
           TabBarView(
             controller: _tabController,
