@@ -122,7 +122,16 @@ class HomeListView extends StatelessWidget {
     if (type == 1) {
       return ListView.separated(
         itemBuilder: (BuildContext context, int index) {
-          return HomeListItem1();
+          return HomeListItem1(
+            avatar: avatar,
+            username: "出现在v你健康",
+            category: "Python / Flutter",
+            title: title,
+            content: content,
+            titlePic: random.nextBool() ? titlePic : null,
+            commentCount: "4367",
+            likeCount: "2343",
+          );
         },
         separatorBuilder: (BuildContext context, int index) => SizedBox(
           height: 10,

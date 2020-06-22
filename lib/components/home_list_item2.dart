@@ -187,8 +187,6 @@ class HomeListItem2 extends StatelessWidget {
       );
     }
 
-    print(titlePic);
-
     return Column(
       children: [
         Row(
