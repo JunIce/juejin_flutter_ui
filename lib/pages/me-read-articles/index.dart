@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/components/article-list-item.dart';
+import 'package:flutter_app/pages/detail/detail.dart';
 
 class ReadArticles extends StatefulWidget {
   @override
@@ -30,6 +31,11 @@ class _ReadArticles extends State<ReadArticles> {
             title: title,
             extra: itemInfo,
             coverImage: bgCover,
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return DetailPage();
+              }));
+            },
           );
         },
         separatorBuilder: (BuildContext context, int index) => Divider(height: 1),

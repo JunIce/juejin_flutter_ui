@@ -5,6 +5,7 @@ import 'package:flutter_app/pages/me-read-articles/index.dart';
 import 'package:flutter_app/pages/me-setting/index.dart';
 import 'package:flutter_app/pages/me-setting/me-item.dart';
 import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
+import 'package:flutter_app/pages/user/personal.dart';
 
 class MePage extends StatefulWidget {
   @override
@@ -30,31 +31,7 @@ class _MePage extends State<MePage> {
           SizedBox(
             height: 16,
           ),
-          Container(
-            color: Colors.white,
-            child: ListTile(
-                contentPadding:
-                    EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
-                leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        "https://user-gold-cdn.xitu.io/2019/9/6/16d024e432ffb853?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1")),
-                title: Text(
-                  "用户名",
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xff333333),
-                      fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text(
-                  "前端",
-                  style: TextStyle(fontSize: 12, color: Color(0xff666666)),
-                ),
-                trailing: Icon(
-                  Icons.chevron_right,
-                  color: Color(0xffcccccc),
-                  size: 32,
-                )),
-          ),
+          _renderUserCard(),
           SizedBox(
             height: 16,
           ),
@@ -176,6 +153,40 @@ class _MePage extends State<MePage> {
         child: Column(
           children: list.toList(),
         ));
+  }
+
+  Widget _renderUserCard() {
+    return Container(
+      color: Colors.white,
+      child: ListTile(
+          onTap: () {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) {
+              return UserPersonalPage();
+            }));
+          },
+          contentPadding:
+          EdgeInsets.all(10),
+          leading: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  "https://user-gold-cdn.xitu.io/2019/9/6/16d024e432ffb853?imageView2/1/w/180/h/180/q/85/format/webp/interlace/1")),
+          title: Text(
+            "用户名",
+            style: TextStyle(
+                fontSize: 16,
+                color: Color(0xff333333),
+                fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(
+            "前端",
+            style: TextStyle(fontSize: 12, color: Color(0xff666666)),
+          ),
+          trailing: Icon(
+            Icons.chevron_right,
+            color: Color(0xffcccccc),
+            size: 32,
+          )),
+    );
   }
 }
 
