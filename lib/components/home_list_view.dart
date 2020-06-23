@@ -1,85 +1,51 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/util.dart';
 import 'package:flutter_app/components/home_list_item1.dart';
 import 'package:flutter_app/components/home_list_item2.dart';
 
-class HomeListView extends StatelessWidget {
+class HomeListView extends StatefulWidget {
   final ScrollController controller;
   final List list;
   final int type;
   final TabController tabController;
-  final String Wkey = Util.slRandomColor().toString();
 
   HomeListView(
-      {@required this.controller,
-      @required this.list,
-      @required this.type,
-      this.tabController});
+      {Key key,
+        @required this.controller,
+        @required this.list,
+        @required this.type,
+        this.tabController})
+      : super(key: key);
 
-  List<ChoiceChip> _tabs = [
-    ChoiceChip(
-        label: Text("全部"),
-        labelStyle: TextStyle(color: Colors.black),
-        selected: true,
-        selectedColor: Colors.blue),
-    ChoiceChip(
-      label: Text("Java"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("Python"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("Go"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("php"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("Nodejs"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("Go"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("php"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("Nodejs"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("Go"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("php"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("Nodejs"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("Go"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("php"),
-      selected: false,
-    ),
-    ChoiceChip(
-      label: Text("Nodejs"),
-      selected: false,
-    ),
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _HomeListView();
+  }
+}
+
+class _HomeListView extends State<HomeListView> {
+
+
+  List<String> _tabs = [
+    "全部",
+    "Java",
+    "python",
+    "Go",
+    "php",
+    "NodeJs",
+    "Go",
+    "python",
+    "Go",
+    "php",
+    "NodeJs",
+    "Go",
+    "python",
+    "Go",
+    "php",
+    "NodeJs",
+    "Go"
   ];
 
   var avatar =
@@ -90,17 +56,46 @@ class HomeListView extends StatelessWidget {
   var titlePic =
       "https://img2.woyaogexing.com/2020/06/22/717b5eb949f64e8e9064a86772ca6621!400x400.jpeg";
   var random = Random();
+  int _checkedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    if (type == 0) {
-      return ListView.separated(
-        controller: controller,
-        key: PageStorageKey<String>("tab_${Wkey}"),
-        separatorBuilder: (BuildContext context, int index) => SizedBox(
-          height: 10,
+    return Column(
+      children: [_renderSecondTab(), Expanded(child: _renderList())],
+    );
+  }
+
+  Widget _renderSecondTab() {
+    if (widget.type < 2) return Container();
+
+    List<Widget> _list = [];
+    for (int i = 0; i < _tabs.length; i++) {
+      _list.add(Container(
+          margin: EdgeInsets.only(left: 10), child: CircleTag(text: _tabs[i], checked: _checkedIndex == i, onTap: (){
+            print(i);
+            setState((){
+                  _checkedIndex = i;
+                }
+            );
+      },)));
+    }
+
+    return Container(
+      color: Colors.white,
+      margin: EdgeInsets.only(bottom: 10),
+      padding: EdgeInsets.only(top: 10, bottom: 10, right: 10),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: _list,
         ),
-        itemBuilder: (BuildContext context, int index) {
+      ),
+    );
+  }
+
+  Widget _renderList() {
+    return ListView.separated(
+      itemBuilder: (BuildContext context, int index) {
+        if (widget.type == 0) {
           return HomeListItem2(
             avatar: avatar,
             username: "山东分局开会",
@@ -114,69 +109,46 @@ class HomeListView extends StatelessWidget {
             titlePic: random.nextBool() ? titlePic : null,
             onTap: () {},
           );
-        },
-        itemCount: list.length,
-      );
-    }
+        }
 
-    if (type == 1) {
-      return ListView.separated(
-        itemBuilder: (BuildContext context, int index) {
-          return HomeListItem1(
-            avatar: avatar,
-            username: "出现在v你健康",
-            category: "Python / Flutter",
-            title: title,
-            content: content,
-            titlePic: random.nextBool() ? titlePic : null,
-            commentCount: "4367",
-            likeCount: "2343",
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) => SizedBox(
-          height: 10,
-        ),
-        itemCount: list.length,
-      );
-    }
+        return HomeListItem1(
+          avatar: avatar,
+          username: "出现在v你健康",
+          category: "Python / Flutter",
+          title: title,
+          content: content,
+          titlePic: random.nextBool() ? titlePic : null,
+          commentCount: "4367",
+          likeCount: "2343",
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) => SizedBox(
+        height: 10,
+      ),
+      itemCount: widget.list.length,
+    );
+  }
+}
 
-    if (type > 1) {
-      BoxScrollView listview = ListView.separated(
-        itemBuilder: (BuildContext context, int index) {
-          return HomeListItem1();
-        },
-        separatorBuilder: (BuildContext context, int index) => SizedBox(
-          height: 10,
-        ),
-        itemCount: list.length,
-      );
+class CircleTag extends StatelessWidget {
+  final String text;
+  final bool checked;
+  final Function onTap;
 
-      return Column(
-        children: [
-          ColoredBox(
-              color: Colors.white,
-              child: Container(
-                height: 56,
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _tabs.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return InkWell(
-                      onTap: () {},
-                      child: _tabs[index],
-                    );
-                  },
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      width: 10,
-                    );
-                  },
-                ),
-              )),
-          Expanded(child: listview)
-        ],
-      );
-    }
+  const CircleTag({Key key, this.text, this.checked = false, this.onTap}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return GestureDetector(onTap: onTap,child: Container(
+      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 15),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: checked ? Colors.blue : Color(0xfff4f4f4)),
+      child: Text(
+        text,
+        style: TextStyle(color: checked ? Colors.white : Colors.grey),
+      ),
+    ),);
   }
 }
