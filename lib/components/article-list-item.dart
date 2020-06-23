@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ArticleListItem extends StatelessWidget {
-
   final String title;
   final String extra;
   final String coverImage;
   final Function onTap;
 
-  const ArticleListItem({Key key, this.title, this.extra, this.coverImage, this.onTap}) : super(key: key);
+  const ArticleListItem(
+      {Key key, this.title, this.extra, this.coverImage, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +22,16 @@ class ArticleListItem extends StatelessWidget {
           Expanded(
             child: Text(title, style: TextStyle(fontSize: 16, height: 1.4)),
           ),
-          SizedBox(height: 4,),
-          Expanded(
-            child: Text(extra, style: TextStyle(fontSize: 12, color: Colors.grey)),
+          SizedBox(
+            height: 4,
           ),
-        ]
-    );
+          Expanded(
+            child:
+                Text(extra, style: TextStyle(fontSize: 12, color: Colors.grey)),
+          ),
+        ]);
 
-    if(coverImage != null) {
+    if (coverImage != null) {
       child = Row(
         children: [
           Expanded(child: itemMain),
@@ -38,26 +41,24 @@ class ArticleListItem extends StatelessWidget {
             margin: EdgeInsets.only(left: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(4),
-              image: DecorationImage(image: NetworkImage(coverImage), fit: BoxFit.cover),
+              image: DecorationImage(
+                  image: NetworkImage(coverImage), fit: BoxFit.cover),
             ),
           )
         ],
       );
-    }else {
+    } else {
       child = itemMain;
     }
 
-
-
-    return
-      GestureDetector(
-        onTap: onTap,
-        child: Container(
-          height: 130,
-          color: Colors.white,
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          child: child,
-        ),
-      );
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 130,
+        color: Colors.white,
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        child: child,
+      ),
+    );
   }
 }

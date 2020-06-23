@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/TabBarPersistentHeaderDelegate.dart';
 import 'package:flutter_app/common/config.dart';
+import 'package:flutter_app/components/article-list-item.dart';
 
 class ActivityPage extends StatefulWidget {
   @override
@@ -62,6 +65,10 @@ class _ActivityPage extends State<ActivityPage>
 
 // 渲染主tab页面
   Widget renderPage() {
+    var random = Random();
+    var title = "苏打粉看见了轮廓就弗兰克";
+    var extra = "1127人点赞 的萨芬健康 1年前";
+    var image = "https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3892521478,1695688217&fm=26&gp=0.jpg";
     return TabBarView(controller: _tabController, children: [
       ListView.separated(
           itemCount: 10,
@@ -69,9 +76,10 @@ class _ActivityPage extends State<ActivityPage>
             return SizedBox(height: 10);
           },
           itemBuilder: (BuildContext context, int idx) {
-            return Container(
-              color: Colors.red,
-              height: 100,
+            return ArticleListItem(
+              title: title,
+            extra: extra,
+              coverImage: random.nextBool() ? image : null,
             );
           }),
       ListView.separated(
@@ -80,9 +88,10 @@ class _ActivityPage extends State<ActivityPage>
             return SizedBox(height: 10);
           },
           itemBuilder: (BuildContext context, int idx) {
-            return Container(
-              color: Colors.blue,
-              height: 100,
+            return ArticleListItem(
+              title: title,
+              extra: extra,
+              coverImage: random.nextBool() ? image : null,
             );
           }),
     ]);

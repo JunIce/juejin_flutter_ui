@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/content_button.dart';
 import 'package:flutter_app/components/icon-text.dart';
+import 'package:flutter_app/pages/user/personal.dart';
 
 class HomeListItem1 extends StatelessWidget {
   final String avatar;
@@ -34,7 +34,7 @@ class HomeListItem1 extends StatelessWidget {
           color: Colors.white,
           child: Column(
             children: <Widget>[
-              _itemCardHeader(),
+              _itemCardHeader(context),
               SizedBox(
                 height: 12,
               ),
@@ -48,16 +48,23 @@ class HomeListItem1 extends StatelessWidget {
         ));
   }
 
-  Widget _itemCardHeader() {
+  Widget _itemCardHeader(BuildContext context) {
     return Row(
       children: <Widget>[
-        Container(
-          width: 28,
-          height: 28,
-          decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                  fit: BoxFit.cover, image: NetworkImage(avatar))),
+        GestureDetector(
+          onTap: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              return UserPersonalPage();
+            }));
+          },
+          child: Container(
+            width: 28,
+            height: 28,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    fit: BoxFit.cover, image: NetworkImage(avatar))),
+          ),
         ),
         Expanded(
             child: Container(

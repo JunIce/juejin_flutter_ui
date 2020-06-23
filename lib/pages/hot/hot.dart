@@ -4,8 +4,14 @@ import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/config.dart';
 import 'package:flutter_app/common/util.dart';
+import 'package:flutter_app/components/article-list-item.dart';
+import 'package:flutter_app/components/icon-text.dart';
 import 'package:flutter_app/components/list_item_listtile.dart';
+import 'package:flutter_app/pages/activity/activity.dart';
+import 'package:flutter_app/pages/author-rank/index.dart';
+import 'package:flutter_app/pages/offline-activity/index.dart';
 import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
+import 'package:flutter_app/pages/topics/index.dart';
 
 class SearchPage extends StatefulWidget {
   @override
@@ -14,49 +20,6 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   List _datalist = [];
-
-  List _menus = [
-    {
-      "label": Text("文章榜"),
-      "icon": Icon(
-        Icons.hot_tub,
-        color: Util.slRandomColor(),
-        size: 18,
-      ),
-    },
-    {
-      "label": Text("作者榜"),
-      "icon": Icon(
-        Icons.favorite,
-        color: Util.slRandomColor(),
-        size: 18,
-      ),
-    },
-    {
-      "label": Text("看一看"),
-      "icon": Icon(
-        Icons.local_activity,
-        color: Util.slRandomColor(),
-        size: 18,
-      ),
-    },
-    {
-      "label": Text("话题广场"),
-      "icon": Icon(
-        Icons.local_cafe,
-        color: Util.slRandomColor(),
-        size: 18,
-      ),
-    },
-    {
-      "label": Text("活动"),
-      "icon": Icon(
-        Icons.local_bar,
-        color: Util.slRandomColor(),
-        size: 18,
-      )
-    }
-  ];
 
   // 下拉刷新
   bool _hideloading = true;
@@ -73,24 +36,23 @@ class _SearchPageState extends State<SearchPage> {
     super.initState();
     _getMoreData();
 
-    _scrollController.addListener(()async {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+    _scrollController.addListener(() async {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
         setState(() {
           _showMore = true;
         });
         await _getMoreData();
       }
     });
-
   }
-
 
   _getMoreData() async {
     if (_hideloading) {
       num++;
       print("fetching...");
       setState(() => _hideloading = false);
-      Timer(Duration(seconds: 3), (){
+      Timer(Duration(seconds: 3), () {
         var newList = List.generate(10, (index) => index);
         setState(() {
           print("请求:$num");
@@ -102,7 +64,6 @@ class _SearchPageState extends State<SearchPage> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,169 +72,242 @@ class _SearchPageState extends State<SearchPage> {
           title: Container(
               color: Colors.blue[300],
               padding: EdgeInsets.all(10),
-              child: Container(
-                child: Row(
-                  children: <Widget>[
-                    Icon(Icons.search, color: Colors.white, size: 18,),
-                    SizedBox(width: 10,),
-                    Text(
-                      '搜索文章、用户、标签',
-                      style: TextStyle(color: Colors.white, fontSize: 14),
-                    )
-                  ],
-                ),
+              height: 40,
+              child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.search,
+                    color: Colors.white,
+                    size: 18,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    '搜索文章、用户、标签',
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  )
+                ],
               )),
         ),
         body: RefreshIndicator(
-            child: CustomScrollView(
-              controller: _scrollController,
-            slivers: _renderFirstChild(),
-          ),
+            child: ListView(
+                controller: _scrollController,
+                children: _renderFirstChild().toList()),
             onRefresh: _refresh
         )
-
     );
   }
 
   Future<Null> _refresh() async {
     _datalist.clear();
-    print("refresh: "+ 111.toString());
+    print("refresh: " + 111.toString());
     await _getMoreData();
     return;
   }
 
-
-  List<Widget> _renderFirstChild () {
-
+  List<Widget> _renderFirstChild() {
     List<Widget> list = List();
 
     // Loading
-    list.add(
-      SliverOffstage(
-          offstage: _hideloading,
-        sliver: SliverToBoxAdapter(
-          child: Container(
-            height: 100,
-            child: Center(
-              child: Text("正在加载数据，请稍后..."),
-            ),
+    list.add(Offstage(
+        offstage: _hideloading,
+        child: Container(
+          height: 100,
+          child: Center(
+            child: Text("正在加载数据，请稍后..."),
           ),
-        ),
-      )
-    );
+        )));
 
     // Banner
-    list.add(
-      SliverToBoxAdapter(
-        child:
-        Container(
-          height: 180,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                      'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551606381887&di=bbd9625453a6e0efa1b25a2e990862f0&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F0df3d7ca7bcb0a46b2ac46146063f6246b60af15.jpg'),
-                  fit: BoxFit.fill)
-          ),
-        ),
-      )
-    );
+    list.add(Container(
+      height: 180,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(
+                  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551606381887&di=bbd9625453a6e0efa1b25a2e990862f0&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F0df3d7ca7bcb0a46b2ac46146063f6246b60af15.jpg'),
+              fit: BoxFit.fill)),
+    ));
 
     // GridView
-    list.add(
-      SliverGrid(
-          delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index){
-                  return Container(
-                      padding: EdgeInsets.only(top: 20, bottom: 0),
-                      color: Colors.white,
-                      child: Column(
-                        children: <Widget>[
-                          _menus[index]["icon"],
-                          SizedBox(
-                            height: 4,
-                          ),
-                          _menus[index]["label"]
-//                          Text(, style: TextStyle(color: Color(0xff666666), fontSize: 14))
-                        ],
-                      )
-                  );
-                },
-              childCount: _menus.length
-          ),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: _menus.length,
-            mainAxisSpacing: 10
-          )
-      )
-    );
+    list.add(GridView.count(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      crossAxisCount: 5,
+      childAspectRatio: 1.1,
+      children: _renderGridList().toList(),
+    ));
 
     // Divider
-    list.add(SliverToBoxAdapter(child: Container(height: 10,),));
+    list.add(SizedBox(
+      height: 10,
+    ));
 
     // title
-    list.add(
-      SliverToBoxAdapter(
-        child: Container(
-          padding: EdgeInsets.all(14),
+    list.add(Container(
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      decoration: BoxDecoration(
           color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text(
-                '热门文章',
-                style: TextStyle(fontSize: 16, color: Colors.black),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                    return TagManagePage();
-                  })
-                  );
-                },
-                child: Text('定制热门'),
-              )
-            ],
+          border:
+              Border(bottom: BorderSide(width: 1, color: Color(0xffeeeeee)))),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          IconText(
+            icon: Icons.favorite,
+            iconSize: 18,
+            iconColor: Colors.red,
+            textColor: Colors.black87,
+            textSize: 15,
+            text: '热门文章',
           ),
-        ),
-      )
-    );
-
-    // mainlist
-    list.add(
-      SliverList(
-          delegate: SliverChildBuilderDelegate((BuildContext context, int index){
-            return ListItemListTile(title: Text("sjfelkejlkfjeljf"));
-          },
-            childCount: _datalist.length
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return TagManagePage();
+              }));
+            },
+            child: IconText(
+              icon: Icons.settings,
+              iconColor: Colors.black87,
+              textColor: Colors.black87,
+              iconSize: 18,
+              textSize: 15,
+              text: '定制热门',
+            ),
           )
-      )
-    );
+        ],
+      ),
+    ));
+
+    list.add(ListView.separated(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context,int index) {
+          return ArticleListItem(
+            title: "圣诞节狂欢凤凰科技符合健康",
+            extra: "114人赞 前端谨记着 11小时前",
+          );
+        },
+        separatorBuilder: (BuildContext context,int index) {
+          return Divider(height: 1,);
+        },
+        itemCount: _datalist.length
+    ));
 
     // Loading
-    list.add(
-        SliverToBoxAdapter(
-          child: Visibility(
-              visible: _showMore,
-              child: Container(
-                height: 100,
-                child: Center(
-                  child: Text("正在加载数据，请稍后..."),
-                ),
-              ),
-          ),
-        )
-    );
+    list.add(Visibility(
+      visible: _showMore,
+      child: Container(
+        height: 100,
+        child: Center(
+          child: Text("正在加载数据，请稍后..."),
+        ),
+      ),
+    ));
 
     return list;
   }
 
+  List<Widget> _renderGridList() {
+    List<Widget> _list = [];
+    _list
+        ..add(Container(
+          padding: EdgeInsets.only(top: 20, bottom: 0),
+          color: Colors.white,
+          child: IconText(
+            direction: Axis.vertical,
+            icon: Icons.hot_tub,
+            iconSize: 18,
+            textSize: 14,
+            iconColor: Util.slRandomColor(),
+            text: "文章榜",
+            )
+          )
+        )
+        ..add(
+            Container(
+                padding: EdgeInsets.only(top: 20, bottom: 0),
+                color: Colors.white,
+                child: IconText(
+                  direction: Axis.vertical,
+                  icon: Icons.favorite,
+                  iconSize: 18,
+                  textSize: 14,
+                  iconColor: Util.slRandomColor(),
+                  text: "作者榜",
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                      return AuthorRankPage();
+                    }));
+                  },
+                )
+            )
+        )
+      ..add(
+          Container(
+              padding: EdgeInsets.only(top: 20, bottom: 0),
+              color: Colors.white,
+              child: IconText(
+                direction: Axis.vertical,
+                icon: Icons.local_activity,
+                iconColor: Util.slRandomColor(),
+                text: "看一看",
+                iconSize: 18,
+                textSize: 14,
+              )
+          )
+      )
+      ..add(
+          Container(
+              padding: EdgeInsets.only(top: 20, bottom: 0),
+              color: Colors.white,
+              child: IconText(
+                direction: Axis.vertical,
+                icon: Icons.local_cafe,
+                iconColor: Util.slRandomColor(),
+                text: "话题广场",
+                iconSize: 18,
+                textSize: 14,
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                    return TopicListPage();
+                  }));
+                },
+              )
+          )
+      )
+      ..add(
+          Container(
+              padding: EdgeInsets.only(top: 20, bottom: 0),
+              color: Colors.white,
+              child: IconText(
+                direction: Axis.vertical,
+                icon: Icons.local_bar,
+                iconColor: Util.slRandomColor(),
+                text: "活动",
+                iconSize: 18,
+                textSize: 14,
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                    return OfflineActivityPage();
+                  }));
+                },
+              )
+          )
+      );
+
+
+    return _list;
+  }
+
   Widget _buildProgressIndicator() {
     return Padding(
-      padding:  EdgeInsets.all(8.0),
-      child:  Center(
-        child:  Opacity(
+      padding: EdgeInsets.all(8.0),
+      child: Center(
+        child: Opacity(
           opacity: isRequest ? 1.0 : 0.0,
-          child:  CircularProgressIndicator(),
+          child: CircularProgressIndicator(),
         ),
       ),
     );
