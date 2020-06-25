@@ -26,9 +26,6 @@ class TabBarPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(TabBarPersistentHeaderDelegate oldDelegate) {
-    print(oldDelegate.maxHeight);
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
+    return true;
   }
 }
