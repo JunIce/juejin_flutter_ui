@@ -58,7 +58,7 @@ class IconText extends StatelessWidget {
     return GestureDetector(
         onTap: onTap,
         child: Container(
-          child: child,
+          child: Center(child: child,),
         ));
   }
 }

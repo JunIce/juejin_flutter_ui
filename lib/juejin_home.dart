@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/author-rank/index.dart';
 import 'package:flutter_app/pages/book/book.dart';
+import 'package:flutter_app/pages/me-article-info/index.dart';
 import 'package:flutter_app/pages/me/me.dart';
 import 'package:flutter_app/pages/offline-activity/index.dart';
 import 'package:flutter_app/pages/tag-detail/index.dart';
@@ -104,7 +105,7 @@ class _JueJinHome extends State<JueJinHome> {
         child: Icon(Icons.add),
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return TagDetailPage();
+            return MeArticleInfo();
           }));
         },
       );
