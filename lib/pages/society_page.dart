@@ -30,6 +30,56 @@ class _SocietyPageState extends State<SocietyPage>
     getList();
   }
 
+  void _showDialog() {
+    Size size = MediaQuery.of(context).size;
+    showDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (BuildContext context) {
+      return Dialog(
+        backgroundColor: Colors.transparent,
+        child: Center(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Container(
+
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Container(
+                    height: 100,
+                    color: Colors.blue,
+                    child: Center(
+                      child: Text("关注掘金官方账号", style: TextStyle(color:  Colors.white, fontSize: 24),),
+                    ),
+                  ),
+                  Expanded(child: ListView.separated(
+                      itemBuilder: (BuildContext context, int index) {
+                        return  Container(height: 100,color: Colors.greenAccent,);
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return Divider(height: 1,);
+                      }, itemCount: 4
+                  )),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: FlatButton(
+                        color: Colors.blue,
+                        textColor: Colors.white,
+                        onPressed: (){
+                          Navigator.of(context).pop();
+                        }, child: Text("关注全部4人， 进入沸点")),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,6 +110,9 @@ class _SocietyPageState extends State<SocietyPage>
                       Icons.arrow_drop_down,
                       color: Colors.white,
                     ),
+                    onPressed: () {
+                      _showDialog();
+                    },
                   )
                 ],
               )),
