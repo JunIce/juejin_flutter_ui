@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/title-tag.dart';
 import 'bottom-share-card.dart';
 import 'icon-text.dart';
 
-class HomeListItem2 extends StatelessWidget {
+class HomeListItem3 extends StatelessWidget {
   final String avatar;
   final String username;
-  final String newstime;
-  final String readCount;
   final String title;
   final String content;
-  final String titlePic;
   final String likeCount;
+  final List<String> images;
   final String commentCount;
-  final bool isSpecial;
   final Function onTap;
+  final String extra;
+  final String tag;
 
-  const HomeListItem2(
+  const HomeListItem3(
       {Key key,
       this.avatar,
       this.username,
-      this.newstime,
-      this.readCount,
       this.title,
       this.content,
-      this.titlePic,
       this.likeCount,
       this.commentCount,
-      this.isSpecial = false,
-      this.onTap})
+      this.onTap,
+      this.extra,
+      this.images, this.tag})
       : super(key: key);
 
   @override
@@ -91,12 +87,14 @@ class HomeListItem2 extends StatelessWidget {
                   height: 4,
                 ),
                 Text(
-                  "$newstime 阅读$readCount",
+                  "$extra",
                   style: TextStyle(fontSize: 12, color: Color(0xff999999)),
                 ),
               ],
             ),
           )),
+          OutlineButton.icon(
+              onPressed: () {}, icon: Icon(Icons.add), label: Text("关注")),
           IconButton(
             icon: Icon(Icons.more_horiz),
             color: Color(0xff999999),
@@ -114,63 +112,47 @@ class HomeListItem2 extends StatelessWidget {
 
   // 内容主体
   Widget _renderItemBody() {
-    Widget _tag = isSpecial
-        ? Container(
-            child: TitleTag(text: "专栏"),
-          )
-        : Container();
-
-    Widget _context = null;
-    if (titlePic != null) {
-      _context = Row(
-        children: [
-          Expanded(
-              child: Text(
-            content,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 3,
-            style: TextStyle(color: Color(0xff666666), height: 1.5),
-          )),
-          Container(
-            margin: EdgeInsets.only(left: 10),
-            width: 70,
-            height: 70,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                image: DecorationImage(image: NetworkImage(titlePic))),
-          )
-        ],
-      );
-    } else {
-      _context = Text(
-        content,
-        overflow: TextOverflow.ellipsis,
-        maxLines: 3,
-        style: TextStyle(color: Color(0xff666666)),
-      );
-    }
+    Widget _context = Container();
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Row(
-          children: [
-            _tag,
-            Expanded(
-                child: Text(
-              title,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  color: Color(0xff333333),
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500),
-            )),
-          ],
+        Text(
+          title,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: Color(0xff666666),
+            fontSize: 12,
+          ),
         ),
         SizedBox(
-          height: 8,
+          height: 10,
         ),
-        _context
+        GridView.builder(
+          itemCount: images.length,
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3, crossAxisSpacing: 8, mainAxisSpacing: 8),
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage(images[index]), fit: BoxFit.cover)),
+            );
+          },
+        ),
+        tag != null ? Container(
+          margin: EdgeInsets.only(top: 10),
+          width: 100,
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(width: 1, color: Colors.greenAccent),
+          ),
+          child: Text(tag, style: TextStyle(fontSize: 12, color: Colors.greenAccent),),
+        ): Container()
       ],
     );
   }
@@ -201,5 +183,3 @@ class HomeListItem2 extends StatelessWidget {
     );
   }
 }
-
-

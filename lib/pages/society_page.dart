@@ -1,8 +1,9 @@
-import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:flutter_app/common/config.dart';
-import 'package:flutter_app/common/request.dart';
 import 'package:flutter_app/common/util.dart';
+import 'package:flutter_app/components/home-list-item3.dart';
+import 'package:flutter_app/components/home_list_item1.dart';
+import 'package:flutter_app/components/home_list_item2.dart';
 
 class SocietyPage extends StatefulWidget {
   @override
@@ -27,7 +28,6 @@ class _SocietyPageState extends State<SocietyPage>
   void initState() {
     super.initState();
     _controller = TabController(length: tabList.length, vsync: this);
-    getList();
   }
 
   void _showDialog() {
@@ -36,48 +36,68 @@ class _SocietyPageState extends State<SocietyPage>
         barrierDismissible: true,
         context: context,
         builder: (BuildContext context) {
-      return Dialog(
-        backgroundColor: Colors.transparent,
-        child: Center(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Container(
-
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Container(
-                    height: 100,
-                    color: Colors.blue,
-                    child: Center(
-                      child: Text("关注掘金官方账号", style: TextStyle(color:  Colors.white, fontSize: 24),),
-                    ),
-                  ),
-                  Expanded(child: ListView.separated(
-                      itemBuilder: (BuildContext context, int index) {
-                        return  Container(height: 100,color: Colors.greenAccent,);
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return Divider(height: 1,);
-                      }, itemCount: 4
-                  )),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    child: FlatButton(
+          return Dialog(
+            insetPadding: EdgeInsets.symmetric(vertical: 140, horizontal: 30),
+            backgroundColor: Colors.transparent,
+            child: Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Container(
+                        height: 100,
                         color: Colors.blue,
-                        textColor: Colors.white,
-                        onPressed: (){
-                          Navigator.of(context).pop();
-                        }, child: Text("关注全部4人， 进入沸点")),
-                  )
-                ],
+                        child: Center(
+                          child: Text(
+                            "关注掘金官方账号",
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                          child: ListView.separated(
+                              itemBuilder: (BuildContext context, int index) {
+                                return ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundImage: NetworkImage(
+                                        "https://p3.ssl.qhimgs1.com/bdr/326__/t01f262da6a4d90f8f3.jpg"),
+                                  ),
+                                  title: Text("掘金小册"),
+                                  subtitle: Text("掘金首席体验官"),
+                                  trailing: OutlineButton(
+                                    onPressed: () {},
+                                    child: Text("关注"),
+                                  ),
+                                );
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return Divider(
+                                  height: 1,
+                                );
+                              },
+                              itemCount: 4)),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        child: FlatButton(
+                            color: Colors.blue,
+                            textColor: Colors.white,
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("关注全部4人， 进入沸点")),
+                      )
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      );
-    });
+          );
+        });
   }
 
   @override
@@ -126,30 +146,58 @@ class _SocietyPageState extends State<SocietyPage>
   List _renderList(context) {
     List<Widget> list = List();
 
+    String avatar =
+        "https://p0.ssl.qhimgs1.com/bdr/326__/t0157d6c71e66dd5324.jpg";
+    var username = "掘金体养颜";
+    List<String> images = [
+      "https://p1.ssl.qhimgs1.com/bdr/326__/t013bfdb724ccde6227.jpg",
+      "https://p2.ssl.qhimgs1.com/bdr/326__/t0108dc82794264fe32.jpg",
+      "https://p0.ssl.qhimgs1.com/bdr/326__/t01b2a9b3103a29dba0.jpg",
+      "https://p3.ssl.qhimgs1.com/bdr/326__/t0121d70ff844efb5f9.jpg",
+      "https://p0.ssl.qhimgs1.com/bdr/326__/t013cd39cd3c08d971e.jpg",
+      "https://p2.ssl.qhimgs1.com/bdr/326__/t0154687f04bb6e87c8.jpg"
+    ];
+
     for (int i = 0; i < tabList.length; i++) {
-      list.add(CustomScrollView(
-        key: PageStorageKey<String>("tab_$i"),
-        slivers: [
-          SliverFixedExtentList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Container(
-                    color: Util.slRandomColor(),
-                    height: 50,
-                  );
-                },
-                childCount: 50,
-              ),
-              itemExtent: 100)
-        ],
-      ));
+      if (i == 1) {
+        list.add(ListView.separated(
+            itemBuilder: (BuildContext context, int index) {
+              return HomeListItem3(
+                  avatar: avatar,
+                  username: username,
+                  extra: "圣诞节看风景可怜",
+                  title: "圣诞节看风景看韩剧的经济开发",
+                  content: "但是空间氛围返回跨境电商科技发达口角是非见客户维科家纺很快就收到话费科技",
+                  likeCount: "382984",
+                  commentCount: "473847",
+                  images: images,
+                  tag: '上班摸鱼'
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) => SizedBox(
+                  height: 10,
+                ),
+            itemCount: 50));
+      } else {
+        list.add(CustomScrollView(
+          key: PageStorageKey<String>("tab_$i"),
+          slivers: [
+            SliverFixedExtentList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return Container(
+                      color: Util.slRandomColor(),
+                      height: 50,
+                    );
+                  },
+                  childCount: 50,
+                ),
+                itemExtent: 100)
+          ],
+        ));
+      }
     }
 
     return list;
-  }
-
-  Future getList() async {
-    var res = await Request.get("/list");
-    print("response: $res");
   }
 }

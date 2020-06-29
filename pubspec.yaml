@@ -26,6 +26,7 @@ dependencies:
   dio: ^3.0.9
   fluttertoast: ^4.0.0
   webview_flutter: ^0.3.21
+  extended_nested_scroll_view: ^1.0.0
 
 dev_dependencies:
   flutter_test:

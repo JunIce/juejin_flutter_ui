@@ -170,18 +170,7 @@ class _TagManagePage extends State<TagManagePage>
           ),
         ),
         title: Text("Go"),
-        subtitle: Container(
-          child: Row(
-            children: [
-              Text("71582人关注"),
-              Container(
-                width: 10,
-                child: Text("·"),
-              ),
-              Text("5000篇文章"),
-            ],
-          ),
-        ),
+        subtitle: Text("71582人关注 · 5000篇文章", maxLines: 1, overflow: TextOverflow.ellipsis,),
         trailing: _renderButton(active),
       ),
     );

@@ -25,7 +25,8 @@ class _SettingPage extends State<SettingPage> {
   }
 
   Widget renderBody() {
-    return Column(
+    return SingleChildScrollView(child:Flex(
+      direction: Axis.vertical,
       children: [
         SizedBox(
           height: 10,
@@ -145,7 +146,7 @@ class _SettingPage extends State<SettingPage> {
           ),
         )
       ],
-    );
+    ) ,);
   }
 
   Widget renderCard(List widgets) {
