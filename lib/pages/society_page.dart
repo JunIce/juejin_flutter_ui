@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/config.dart';
-import 'package:flutter_app/common/util.dart';
-import 'package:flutter_app/components/home-list-item3.dart';
-import 'package:flutter_app/components/home_list_item1.dart';
-import 'package:flutter_app/components/home_list_item2.dart';
+import 'package:juejin/common/config.dart';
+import 'package:juejin/common/util.dart';
+import 'package:juejin/components/home-list-item3.dart';
+import 'package:juejin/components/home_list_item1.dart';
+import 'package:juejin/components/home_list_item2.dart';
 
 class SocietyPage extends StatefulWidget {
   @override

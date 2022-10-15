@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/offline-activity-item.dart';
+import 'package:juejin/components/offline-activity-item.dart';
 
 class OfflineActivityPage extends StatefulWidget {
   @override

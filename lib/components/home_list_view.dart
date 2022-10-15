@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/home_list_item1.dart';
-import 'package:flutter_app/components/home_list_item2.dart';
+import 'package:juejin/components/home_list_item1.dart';
+import 'package:juejin/components/home_list_item2.dart';
 
 class HomeListView extends StatefulWidget {
   final ScrollController controller;

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_app/common/config.dart';
+import 'package:juejin/common/config.dart';
 
 var dio = new Dio(BaseOptions(
     baseUrl: Config.baseUrl,

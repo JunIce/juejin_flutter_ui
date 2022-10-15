@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/item_panel.dart';
+import 'package:juejin/components/item_panel.dart';
 
 class HomeFollowPage extends StatelessWidget {
   Widget build(BuildContext context) => _HomeFollowPages();

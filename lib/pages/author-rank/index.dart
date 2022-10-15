@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/author-rank-item.dart';
+import 'package:juejin/components/author-rank-item.dart';
 
 
 class AuthorRankPage extends StatefulWidget {

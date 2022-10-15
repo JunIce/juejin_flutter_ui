@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/article-list-item.dart';
-import 'package:flutter_app/pages/detail/detail.dart';
+import 'package:juejin/components/article-list-item.dart';
+import 'package:juejin/pages/detail/detail.dart';
 
 class ReadArticles extends StatefulWidget {
   @override

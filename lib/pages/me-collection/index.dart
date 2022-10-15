@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/tag-manage/collection-item.dart';
+import 'package:juejin/pages/tag-manage/collection-item.dart';
 
 class CollectionPage extends StatefulWidget {
   @override

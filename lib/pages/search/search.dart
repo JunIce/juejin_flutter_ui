@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/config.dart';
+import 'package:juejin/common/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class SearchPage extends StatefulWidget {

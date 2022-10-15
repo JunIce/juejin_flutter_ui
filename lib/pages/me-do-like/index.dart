@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/article-list-item.dart';
+import 'package:juejin/components/article-list-item.dart';
 
 class MeDoLikePage extends StatefulWidget {
   @override

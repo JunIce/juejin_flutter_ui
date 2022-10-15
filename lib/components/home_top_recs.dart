@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_app/components/custom_list_item.dart';
+import 'package:juejin/components/custom_list_item.dart';
 
 class HomeTopRec extends StatelessWidget {
   List<dynamic> data = [];

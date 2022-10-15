@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/home_list_view.dart';
-import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
+import 'package:juejin/components/home_list_view.dart';
+import 'package:juejin/pages/tag-manage/tag-manage.dart';
 
 import '../search/search.dart';
 

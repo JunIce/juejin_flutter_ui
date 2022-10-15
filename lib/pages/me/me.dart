@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/me-collection/index.dart';
-import 'package:flutter_app/pages/me-do-like/index.dart';
-import 'package:flutter_app/pages/me-read-articles/index.dart';
-import 'package:flutter_app/pages/me-setting/index.dart';
-import 'package:flutter_app/pages/me-setting/me-item.dart';
-import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
-import 'package:flutter_app/pages/user/personal.dart';
+import 'package:juejin/pages/me-collection/index.dart';
+import 'package:juejin/pages/me-do-like/index.dart';
+import 'package:juejin/pages/me-read-articles/index.dart';
+import 'package:juejin/pages/me-setting/index.dart';
+import 'package:juejin/pages/me-setting/me-item.dart';
+import 'package:juejin/pages/tag-manage/tag-manage.dart';
+import 'package:juejin/pages/user/personal.dart';
 
 class MePage extends StatefulWidget {
   @override

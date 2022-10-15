@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/search/search.dart';
+import 'package:juejin/pages/search/search.dart';
 
 class TagManagePage extends StatefulWidget {
   @override

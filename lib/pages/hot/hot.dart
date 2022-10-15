@@ -2,16 +2,16 @@ import 'dart:async';
 import 'dart:core';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/config.dart';
-import 'package:flutter_app/common/util.dart';
-import 'package:flutter_app/components/article-list-item.dart';
-import 'package:flutter_app/components/icon-text.dart';
-import 'package:flutter_app/components/list_item_listtile.dart';
-import 'package:flutter_app/pages/activity/activity.dart';
-import 'package:flutter_app/pages/author-rank/index.dart';
-import 'package:flutter_app/pages/offline-activity/index.dart';
-import 'package:flutter_app/pages/tag-manage/tag-manage.dart';
-import 'package:flutter_app/pages/topics/index.dart';
+import 'package:juejin/common/config.dart';
+import 'package:juejin/common/util.dart';
+import 'package:juejin/components/article-list-item.dart';
+import 'package:juejin/components/icon-text.dart';
+import 'package:juejin/components/list_item_listtile.dart';
+import 'package:juejin/pages/activity/activity.dart';
+import 'package:juejin/pages/author-rank/index.dart';
+import 'package:juejin/pages/offline-activity/index.dart';
+import 'package:juejin/pages/tag-manage/tag-manage.dart';
+import 'package:juejin/pages/topics/index.dart';
 
 class SearchPage extends StatefulWidget {
   @override

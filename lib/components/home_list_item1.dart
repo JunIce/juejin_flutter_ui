@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/icon-text.dart';
-import 'package:flutter_app/pages/user/personal.dart';
+import 'package:juejin/components/icon-text.dart';
+import 'package:juejin/pages/user/personal.dart';
 
 class HomeListItem1 extends StatelessWidget {
   final String avatar;

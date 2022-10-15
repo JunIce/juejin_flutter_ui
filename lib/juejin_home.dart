@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/book/book.dart';
-import 'package:flutter_app/pages/me/me.dart';
-import 'package:flutter_app/pages/nest-scroll-view.dart';
-import 'package:flutter_app/pages/user/personal.dart';
+import 'package:juejin/pages/book/book.dart';
+import 'package:juejin/pages/me/me.dart';
+import 'package:juejin/pages/nest-scroll-view.dart';
+import 'package:juejin/pages/user/personal.dart';
 import 'pages/home/index.dart';
 import 'pages/society_page.dart';
 import 'pages/hot/hot.dart';

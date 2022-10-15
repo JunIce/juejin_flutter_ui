@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/common/TabBarPersistentHeaderDelegate.dart';
-import 'package:flutter_app/common/config.dart';
-import 'package:flutter_app/components/article-list-item.dart';
+import 'package:juejin/common/TabBarPersistentHeaderDelegate.dart';
+import 'package:juejin/common/config.dart';
+import 'package:juejin/components/article-list-item.dart';
 
 class ActivityPage extends StatefulWidget {
   @override

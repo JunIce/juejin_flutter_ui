@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/title-tag.dart';
+import 'package:juejin/components/title-tag.dart';
 
 class AuthorRankItem extends StatelessWidget {
 

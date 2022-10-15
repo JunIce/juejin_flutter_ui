@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/book-detail/index.dart';
+import 'package:juejin/pages/book-detail/index.dart';
 
 class BookPage extends StatefulWidget {
   @override

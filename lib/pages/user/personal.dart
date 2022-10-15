@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_app/common/TabBarPersistentHeaderDelegate.dart';
-import 'package:flutter_app/common/util.dart';
+import 'package:juejin/common/TabBarPersistentHeaderDelegate.dart';
+import 'package:juejin/common/util.dart';
 
 class UserPersonalPage extends StatefulWidget {
   @override

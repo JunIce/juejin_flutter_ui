@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/icon-text.dart';
+import 'package:juejin/components/icon-text.dart';
 
 class MeArticleInfo extends StatefulWidget {
   @override

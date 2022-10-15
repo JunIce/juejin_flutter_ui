@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/detail/detail.dart';
+import 'package:juejin/pages/detail/detail.dart';
 
 class ContentButton extends StatelessWidget {
   final Widget child;
