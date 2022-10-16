@@ -12,7 +12,7 @@ class SocietyPage extends StatefulWidget {
 
 class _SocietyPageState extends State<SocietyPage>
     with SingleTickerProviderStateMixin {
-  TabController _controller;
+  late TabController _controller;
 
   List<Tab> tabList = [
     Tab(text: '关注'),
@@ -67,7 +67,7 @@ class _SocietyPageState extends State<SocietyPage>
                                   ),
                                   title: Text("掘金小册"),
                                   subtitle: Text("掘金首席体验官"),
-                                  trailing: OutlineButton(
+                                  trailing: OutlinedButton(
                                     onPressed: () {},
                                     child: Text("关注"),
                                   ),
@@ -83,9 +83,9 @@ class _SocietyPageState extends State<SocietyPage>
                       Container(
                         padding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        child: FlatButton(
-                            color: Colors.blue,
-                            textColor: Colors.white,
+                        child: TextButton(
+                            // color: Colors.blue,
+                            // textColor: Colors.white,
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
@@ -143,8 +143,11 @@ class _SocietyPageState extends State<SocietyPage>
             controller: _controller, children: _renderList(context)));
   }
 
-  List _renderList(context) {
-    List<Widget> list = List();
+  List<Widget> _renderList(context) {
+    // ignore: deprecated_member_use
+    // List<Widget> list = List();
+    List<Widget> list =
+        List.filled(tabList.length, 0 as Widget, growable: true);
 
     String avatar =
         "https://p0.ssl.qhimgs1.com/bdr/326__/t0157d6c71e66dd5324.jpg";

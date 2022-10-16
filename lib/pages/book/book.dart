@@ -10,7 +10,7 @@ class BookPage extends StatefulWidget {
 }
 
 class _Bookpage extends State<BookPage> with SingleTickerProviderStateMixin {
-  TabController _controller;
+  late TabController _controller;
 
   var tabs = <Tab>[
     Tab(
@@ -159,7 +159,7 @@ class _Bookpage extends State<BookPage> with SingleTickerProviderStateMixin {
               SizedBox(
                 width: 10,
               ),
-              FlatButton(
+              TextButton(
                   onPressed: () {},
                   child: Text(
                     '19.9',
@@ -167,10 +167,15 @@ class _Bookpage extends State<BookPage> with SingleTickerProviderStateMixin {
                       color: Colors.blue,
                     ),
                   ),
-                  color: Color(0xfff4f4f4),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0)),
-                  clipBehavior: Clip.hardEdge)
+                style: ButtonStyle(
+//  backgroundColor: Color(0xfff4f4f4),
+                    // shape: RoundedRectangleBorder(
+                    // borderRadius: BorderRadius.circular(20.0)
+                    ),
+              ),
+
+              // clipBehavior: Clip.hardEdge
+                  
             ],
           ),
         ));

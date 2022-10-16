@@ -9,16 +9,16 @@ class AuthorRankItem extends StatelessWidget {
   final String readCount;
   final String favorCount;
   final String level;
-  final Function onTap;
+  final Function()? onTap;
 
   const AuthorRankItem({
-    Key key,
-    this.avatar,
-    this.username,
-    this.userSign,
-    this.readCount,
-    this.favorCount,
-    this.level,
+    Key? key,
+      this.avatar = "",
+      this.username = "",
+      this.userSign = "",
+      this.readCount = "",
+      this.favorCount = "",
+      this.level = "",
     this.onTap
   }) : super(key: key);
 
@@ -69,7 +69,8 @@ class AuthorRankItem extends StatelessWidget {
             ),
           ),
 
-          OutlineButton.icon(onPressed: onTap, icon: Icon(Icons.add), label: Text("关注"))
+          OutlinedButton.icon(
+              onPressed: onTap, icon: Icon(Icons.add), label: Text("关注"))
         ],
       ),
     );

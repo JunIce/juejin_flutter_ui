@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class IconText extends StatelessWidget {
   final IconData icon;
   final String text;
-  final Function onTap;
+  final Function()? onTap;
   final double iconSize;
   final Color iconColor;
   final double textSize;
@@ -11,9 +11,9 @@ class IconText extends StatelessWidget {
   final Axis direction;
 
   const IconText(
-      {Key key,
-      this.icon,
-      this.text,
+      {Key? key,
+      required this.icon,
+      this.text = '',
       this.onTap,
       this.iconSize = 14,
       this.textSize = 12,
@@ -40,7 +40,7 @@ class IconText extends StatelessWidget {
       )
     ];
 
-    Widget child = null;
+    Widget? child = null;
     if(direction == Axis.horizontal) {
       child = Row(
         children: children,

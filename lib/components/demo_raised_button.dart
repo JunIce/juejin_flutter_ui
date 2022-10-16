@@ -3,7 +3,7 @@ class DemoRaisedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return RaisedButton(
+    return ElevatedButton(
       color: Colors.red,
       textColor: Colors.white,
       child: Text("raised Button"),

@@ -6,7 +6,7 @@ import 'package:juejin/components/custom_list_item.dart';
 class HomeTopRec extends StatelessWidget {
   List<dynamic> data = [];
 
-  HomeTopRec({this.data});
+  HomeTopRec({required this.data});
 
   final divider = Divider(height: 0,);
 

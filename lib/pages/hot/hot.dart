@@ -107,7 +107,7 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   List<Widget> _renderFirstChild() {
-    List<Widget> list = List();
+    List<Widget> list = [];
 
     // Loading
     list.add(Offstage(

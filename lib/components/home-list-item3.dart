@@ -10,21 +10,22 @@ class HomeListItem3 extends StatelessWidget {
   final String likeCount;
   final List<String> images;
   final String commentCount;
-  final Function onTap;
+  final Function()? onTap;
   final String extra;
   final String tag;
 
   const HomeListItem3(
-      {Key key,
-      this.avatar,
-      this.username,
-      this.title,
-      this.content,
-      this.likeCount,
-      this.commentCount,
+      {Key? key,
+      this.avatar = '',
+      this.username = '',
+      this.title = '',
+      this.content = '',
+      this.likeCount = '',
+      this.commentCount = '',
       this.onTap,
-      this.extra,
-      this.images, this.tag})
+      this.extra = '',
+      required this.images,
+      this.tag = ''})
       : super(key: key);
 
   @override
@@ -93,7 +94,7 @@ class HomeListItem3 extends StatelessWidget {
               ],
             ),
           )),
-          OutlineButton.icon(
+          OutlinedButton.icon(
               onPressed: () {}, icon: Icon(Icons.add), label: Text("关注")),
           IconButton(
             icon: Icon(Icons.more_horiz),

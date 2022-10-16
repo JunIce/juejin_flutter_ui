@@ -58,14 +58,19 @@ class _BookDetail extends State<BookDetail> {
       ),
       child: Row(
         children: [
-          Expanded(flex: 1,child:OutlineButton(onPressed: () {}, child: Text("试读"),)),
+          Expanded(
+              flex: 1,
+              child: OutlinedButton(
+                onPressed: () {},
+                child: Text("试读"),
+              )),
           SizedBox(width: 10,),
           Expanded(
               flex: 2,
-              child: FlatButton(
+              child: ElevatedButton(
                 onPressed: () {}, child: Text("购买 29.9"),
-                color: Colors.blue,
-                textColor: Colors.white,
+                // color: Colors.blue,
+                // textColor: Colors.white,
               ))
 
         ],

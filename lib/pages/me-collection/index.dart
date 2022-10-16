@@ -16,7 +16,7 @@ class _CollectionPage extends State<CollectionPage> with SingleTickerProviderSta
     Tab(text: "关注的"),
   ];
 
-  TabController _tabController;
+  late TabController _tabController;
 
   @override
   void initState() {

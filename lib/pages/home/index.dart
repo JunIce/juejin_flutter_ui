@@ -11,7 +11,7 @@ class HomeIndexPage extends StatefulWidget {
 
 class _JueJinHomeState extends State<HomeIndexPage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  late TabController _tabController;
   ScrollController _scrollController = new ScrollController();
   int _initIndex = 0;
   bool isShow = true;
@@ -54,10 +54,13 @@ class _JueJinHomeState extends State<HomeIndexPage>
   ];
 
   List<Widget> _renderPages() {
-    List<Widget> list = List();
+    List<Widget> list = [];
 
     for (int i = 0; i < _tabs.length; i++) {
-      list.add(HomeListView(list: List(50), type: i,));
+      list.add(HomeListView(
+        list: List.filled(50, 0),
+        type: i,
+      ));
     }
 
     return list;
@@ -73,7 +76,7 @@ class _JueJinHomeState extends State<HomeIndexPage>
 
 
   // 状态栏
-  Widget renderAppBar() {
+  PreferredSizeWidget renderAppBar() {
     return PreferredSize(
       child: Container(
           padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
@@ -107,7 +110,11 @@ class _JueJinHomeState extends State<HomeIndexPage>
             ),
             IconButton(
               color: Colors.white,
-              icon: Icon(Icons.flash_on, color: Colors.white,),
+              icon: Icon(
+                Icons.flash_on,
+                color: Colors.white,
+              ),
+              onPressed: () {},
             )
           ],
         )

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ListItemListTile extends StatelessWidget {
-  ListItemListTile({Key key,
-    @required this.title,
-    this.image
+  ListItemListTile({Key? key, required this.title, required this.image
   }):super(key: key);
 
   bool show = true;

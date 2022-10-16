@@ -7,9 +7,17 @@ class CollectionItem extends StatelessWidget {
   final String count;
   final String followerCount;
   final String username;
-  final Function onTap;
+  final Function()? onTap;
 
-  const CollectionItem({Key key, this.imageUrl, this.title, this.count, this.followerCount, this.username, this.onTap}) : super(key: key);
+  const CollectionItem(
+      {Key? key,
+      this.imageUrl = '',
+      this.title = '',
+      this.count = '',
+      this.followerCount = '',
+      this.username = '',
+      this.onTap})
+      : super(key: key);
 
 
   @override

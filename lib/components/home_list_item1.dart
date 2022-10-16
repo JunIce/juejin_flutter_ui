@@ -13,15 +13,15 @@ class HomeListItem1 extends StatelessWidget {
   final String commentCount;
 
   const HomeListItem1(
-      {Key key,
-      this.avatar,
-      this.username,
-      this.category,
-      this.title,
-      this.content,
-      this.titlePic,
-      this.likeCount,
-      this.commentCount})
+      {Key? key,
+      this.avatar = '',
+      this.username = '',
+      this.category = '',
+      this.title = '',
+      this.content = '',
+      this.titlePic = '',
+      this.likeCount = '',
+      this.commentCount = ''})
       : super(key: key);
 
   @override

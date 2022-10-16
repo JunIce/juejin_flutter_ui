@@ -24,7 +24,7 @@ class _DetailPage extends State<DetailPage> {
   }
 
   // 顶部状态栏
-  Widget renderAppBar() {
+  PreferredSizeWidget renderAppBar() {
     return AppBar(
       backgroundColor: Colors.white,
       iconTheme: IconThemeData(color: Colors.black),

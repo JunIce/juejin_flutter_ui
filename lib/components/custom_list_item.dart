@@ -8,12 +8,12 @@ class CustomListItem extends StatelessWidget {
    String pubtime;
 
   CustomListItem(
-      Key key,
-      @required this.title,
-      this.trailingImageUrl,
-      this.favoriteNum,
-      this.username,
-      this.pubtime
+      Key? key,
+      required this.title,
+      this.trailingImageUrl = '',
+      this.favoriteNum = 0,
+      this.username = '',
+      this.pubtime = ''
       );
 
 

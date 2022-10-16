@@ -6,15 +6,15 @@ class OfflineActivityItem extends StatelessWidget {
   final String date;
   final String location;
   final bool isOutDate;
-  final Function onTap;
+  final Function()? onTap;
 
   const OfflineActivityItem(
-      {Key key,
-      this.bgImage,
-      this.title,
-      this.date,
-      this.location,
-      this.isOutDate,
+      {Key? key,
+      this.bgImage = '',
+      this.title = '',
+      this.date = '',
+      this.location = '',
+      this.isOutDate = false,
       this.onTap})
       : super(key: key);
 

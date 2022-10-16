@@ -26,7 +26,7 @@ class _SearchPage extends State<SearchPage> {
 
 
   // 渲染顶部输入框
-  Widget renderAppBar() {
+  PreferredSizeWidget renderAppBar() {
     return AppBar(
         leading: GestureDetector(
           onTap: () {
@@ -50,7 +50,7 @@ class _SearchPage extends State<SearchPage> {
   }
 
   List<Widget> _renderList() {
-    List<Widget> list = List();
+    List<Widget> list = [];
 
     for (int i = 0; i < 5; i++) {
       list

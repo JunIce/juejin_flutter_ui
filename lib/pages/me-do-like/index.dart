@@ -15,7 +15,7 @@ class _MeDoLikePage extends State<MeDoLikePage> with TickerProviderStateMixin {
     Tab(text: "沸点"),
   ];
 
-  TabController _tabController;
+  late TabController _tabController;
 
   @override
   void initState() {

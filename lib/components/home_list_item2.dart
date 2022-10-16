@@ -14,19 +14,19 @@ class HomeListItem2 extends StatelessWidget {
   final String likeCount;
   final String commentCount;
   final bool isSpecial;
-  final Function onTap;
+  final Function()? onTap;
 
   const HomeListItem2(
-      {Key key,
-      this.avatar,
-      this.username,
-      this.newstime,
-      this.readCount,
-      this.title,
-      this.content,
-      this.titlePic,
-      this.likeCount,
-      this.commentCount,
+      {Key? key,
+      this.avatar = '',
+      this.username = '',
+      this.newstime = '',
+      this.readCount = '',
+      this.title = '',
+      this.content = '',
+      this.titlePic = '',
+      this.likeCount = '',
+      this.commentCount = '',
       this.isSpecial = false,
       this.onTap})
       : super(key: key);
@@ -120,7 +120,7 @@ class HomeListItem2 extends StatelessWidget {
           )
         : Container();
 
-    Widget _context = null;
+    Widget? _context = null;
     if (titlePic != null) {
       _context = Row(
         children: [

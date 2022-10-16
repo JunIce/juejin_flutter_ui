@@ -6,6 +6,7 @@ import 'package:juejin/pages/me-setting/index.dart';
 import 'package:juejin/pages/me-setting/me-item.dart';
 import 'package:juejin/pages/tag-manage/tag-manage.dart';
 import 'package:juejin/pages/user/personal.dart';
+import './components/more-func.dart';
 
 class MePage extends StatefulWidget {
   @override
@@ -131,6 +132,10 @@ class _MePage extends State<MePage> {
               },
             )
           ]),
+          SizedBox(
+            height: 16
+          ),
+          MoreFuncComp(),
         ],
       ),
     );

@@ -21,7 +21,7 @@ class _AuthorRankPage  extends State<AuthorRankPage> with TickerProviderStateMix
     Tab(text: "IOS"),
   ];
 
-  TabController _tabController;
+  late TabController _tabController;
 
   @override
   void initState() {

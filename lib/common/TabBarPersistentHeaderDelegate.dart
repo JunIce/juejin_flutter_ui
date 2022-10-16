@@ -3,9 +3,9 @@ import 'dart:math';
 
 class TabBarPersistentHeaderDelegate extends SliverPersistentHeaderDelegate {
   TabBarPersistentHeaderDelegate({
-    @required this.minHeight,
-    @required this.maxHeight,
-    @required this.child,
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
   });
 
   final double minHeight;

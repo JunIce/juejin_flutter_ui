@@ -15,7 +15,7 @@ class _UserPeronalPage extends State<UserPersonalPage>
     with SingleTickerProviderStateMixin {
   ScrollController _scrollController =
       new ScrollController(initialScrollOffset: 0);
-  TabController _tabController;
+  late TabController _tabController;
 
   List<Tab> _tabs = [
     Tab(
@@ -160,7 +160,7 @@ class _UserPeronalPage extends State<UserPersonalPage>
       height: 40,
       color: Colors.white,
       child: Stack(
-        overflow: Overflow.visible,
+        // overflow: Overflow.visible,
         children: [
           Positioned(
             top: -40,
@@ -196,8 +196,8 @@ class _UserPeronalPage extends State<UserPersonalPage>
                 "自行车",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              OutlineButton.icon(
-                  textColor: Colors.green,
+              OutlinedButton.icon(
+                  // textColor: Colors.green,
                   onPressed: () {},
                   icon: Icon(Icons.add),
                   label: Text("关注")),
@@ -280,7 +280,7 @@ class _UserPeronalPage extends State<UserPersonalPage>
   }
 
   List<Widget> _renderTabView() {
-    List<Widget> list = List();
+    List<Widget> list = List.filled(_tabs.length, 0 as Widget, growable: true);
     for (int i = 0; i < _tabs.length; i++) {
       list.add(Container(
         color: Util.slRandomColor(),

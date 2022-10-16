@@ -9,7 +9,8 @@ class DemoAboutDialog extends StatelessWidget {
         title: Text("AboutDialog"),
       ),
       body: Center(
-        child: RaisedButton(onPressed: () {
+        child: ElevatedButton(
+          onPressed: () {
           showAboutDialog(
             context: context,
             applicationIcon: FlutterLogo(),

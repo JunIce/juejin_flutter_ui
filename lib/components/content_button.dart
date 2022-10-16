@@ -5,7 +5,7 @@ class ContentButton extends StatelessWidget {
   final Widget child;
 
   ContentButton({
-    @required this.child
+    required this.child
   });
 
   @override

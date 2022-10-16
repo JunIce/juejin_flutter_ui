@@ -13,7 +13,7 @@ class TagManagePage extends StatefulWidget {
 
 class _TagManagePage extends State<TagManagePage>
     with SingleTickerProviderStateMixin {
-  TabController _controller;
+  late TabController _controller;
 
   var tabs = <Tab>[
     Tab(
@@ -178,20 +178,23 @@ class _TagManagePage extends State<TagManagePage>
 
   Widget _renderButton(bool active) {
     if (active) {
-      return FlatButton.icon(
+      return TextButton.icon(
           icon: Icon(Icons.check),
           label: Text("已关注"),
           onPressed: () {},
-          color: Color(0xff6cbd45),
-          textColor: Colors.white);
+        // color: Color(0xff6cbd45),
+        // textColor: Colors.white
+      );
     } else {
-      return OutlineButton.icon(
+      return OutlinedButton.icon(
           icon: Icon(Icons.add),
           label: Text("关注"),
           onPressed: () {},
-          textColor: Color(0xff6cbd45),
-          borderSide: BorderSide(
-              color: Color(0xff6cbd45), width: 2.0, style: BorderStyle.solid));
+        // textColor: Color(0xff6cbd45),
+        // borderSide: BorderSide(
+        //     color: Color(0xff6cbd45), width: 2.0, style: BorderStyle.solid
+        //     )
+      );
     }
   }
 }

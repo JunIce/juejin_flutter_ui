@@ -7,10 +7,10 @@ class TitleTag extends StatelessWidget {
   final Color fontColor;
 
   const TitleTag(
-      {Key key,
+      {Key? key,
       this.color = Colors.blue,
       this.fontSize = 8,
-      @required this.text,
+      required this.text,
       this.fontColor = Colors.white})
       : super(key: key);
 

@@ -8,7 +8,7 @@ class TagDetailPage extends StatefulWidget {
 
 class _StickyDemoState extends State<TagDetailPage>
     with SingleTickerProviderStateMixin {
-  TabController tabController;
+  late TabController tabController;
 
   @override
   void initState() {
@@ -61,7 +61,7 @@ class _StickyDemoState extends State<TagDetailPage>
 class StickyTabBarDelegate extends SliverPersistentHeaderDelegate {
   final PreferredSizeWidget child;
 
-  StickyTabBarDelegate({@required this.child});
+  StickyTabBarDelegate({required this.child});
 
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {

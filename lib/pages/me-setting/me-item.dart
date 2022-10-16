@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 
 class MeListItem extends StatelessWidget {
-  final IconData icon;
+  final IconData? icon;
   final double iconGap;
   final String title;
   final dynamic trailing;
   final double iconSize;
   final Color iconColor;
-  final Function onTap;
+  final Function()? onTap;
   final double height;
   const MeListItem(
-      {Key key,
+      {Key? key,
         this.icon,
-        this.title,
+      this.title = '',
         this.trailing,
         this.iconSize = 18,
         this.iconColor = Colors.blue,
-        @required this.onTap,
+      required this.onTap,
         this.iconGap = 10,
         this.height = 50})
       : super(key: key);

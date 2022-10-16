@@ -123,14 +123,11 @@ class _ShareArticle extends State<ShareArticle> {
 
 class TagItem extends StatelessWidget {
   final String text;
-  final Function onTap;
+  final Function()? onTap;
   final bool active;
 
   TagItem({
-    Key key,
-    this.text,
-    this.onTap,
-    this.active
+    Key? key, this.text = "", this.onTap, this.active = false
   }):super(key: key);
 
   @override

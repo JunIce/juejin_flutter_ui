@@ -15,7 +15,7 @@ class ActivityPage extends StatefulWidget {
 
 class _ActivityPage extends State<ActivityPage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  late TabController _tabController;
   int _currentTab = 0;
 
   ScrollController _ListScrollController = new ScrollController();
@@ -79,7 +79,7 @@ class _ActivityPage extends State<ActivityPage>
             return ArticleListItem(
               title: title,
             extra: extra,
-              coverImage: random.nextBool() ? image : null,
+              coverImage: random.nextBool() ? image : '',
             );
           }),
       ListView.separated(
@@ -91,7 +91,7 @@ class _ActivityPage extends State<ActivityPage>
             return ArticleListItem(
               title: title,
               extra: extra,
-              coverImage: random.nextBool() ? image : null,
+              coverImage: random.nextBool() ? image : '',
             );
           }),
     ]);
@@ -144,7 +144,7 @@ class _ActivityPage extends State<ActivityPage>
 
 // 渲染关注人列表
   Widget renderJoinMan() {
-    List<Widget> list = List();
+    List<Widget> list = [];
 
     for (var i = 0; i < 5; i++) {
       list.add(Container(
@@ -204,7 +204,7 @@ class _ActivityPage extends State<ActivityPage>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(width: 100, child: renderFollower()),
-                        OutlineButton.icon(
+                        OutlinedButton.icon(
                           onPressed: () {},
                           icon: Icon(Icons.add),
                           label: Text("关注"),

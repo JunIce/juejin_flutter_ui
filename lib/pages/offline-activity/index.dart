@@ -13,7 +13,7 @@ class OfflineActivityPage extends StatefulWidget {
 
 class _offlineActivityPage extends State<OfflineActivityPage>
     with TickerProviderStateMixin {
-  TabController _tabController;
+  late TabController _tabController;
 
   List<Tab> _tabs = [
     Tab(

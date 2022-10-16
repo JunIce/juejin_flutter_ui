@@ -5,17 +5,19 @@ import 'package:juejin/components/home_list_item1.dart';
 import 'package:juejin/components/home_list_item2.dart';
 
 class HomeListView extends StatefulWidget {
-  final ScrollController controller;
+  // final ScrollController controller;
   final List list;
   final int type;
-  final TabController tabController;
+  // final TabController tabController;
 
   HomeListView(
-      {Key key,
-        @required this.controller,
-        @required this.list,
-        @required this.type,
-        this.tabController})
+      {
+    Key? key,
+    // required this.controller,
+    required this.list,
+    required this.type,
+    // required this.tabController
+  })
       : super(key: key);
 
   @override
@@ -106,7 +108,7 @@ class _HomeListView extends State<HomeListView> {
             title: title,
             content: content,
             isSpecial: random.nextBool(),
-            titlePic: random.nextBool() ? titlePic : null,
+            titlePic: random.nextBool() ? titlePic : '',
             onTap: () {},
           );
         }
@@ -117,7 +119,7 @@ class _HomeListView extends State<HomeListView> {
           category: "Python / Flutter",
           title: title,
           content: content,
-          titlePic: random.nextBool() ? titlePic : null,
+          titlePic: random.nextBool() ? titlePic : '',
           commentCount: "4367",
           likeCount: "2343",
         );
@@ -133,9 +135,10 @@ class _HomeListView extends State<HomeListView> {
 class CircleTag extends StatelessWidget {
   final String text;
   final bool checked;
-  final Function onTap;
+  final Function()? onTap;
 
-  const CircleTag({Key key, this.text, this.checked = false, this.onTap}) : super(key: key);
+  const CircleTag({Key? key, this.text = '', this.checked = false, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

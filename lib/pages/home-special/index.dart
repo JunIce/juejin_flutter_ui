@@ -48,20 +48,8 @@ class _HomeSpecialPageState extends State<HomeSpecialPage> {
             print("drag target onleave $data");
           },
          onWillAccept: (int fromIndex) {
-           final accept = fromIndex != index;
-           print("drag target $fromIndex, $index");
-//           if (accept) {
-//             _willAcceptIndex = index;
-//
-//             final fromData = _list[fromIndex];
-//             setState(() {
-//               _list.removeAt(fromIndex);
-//               _list.insert(index, fromData);
-//             });
-//           }
-//           return accept;
-//
-           return true;
+          //  final accept = fromIndex != index;
+          return fromIndex;
          },
       ),
       feedback: _list[index],

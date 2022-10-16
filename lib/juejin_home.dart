@@ -13,7 +13,7 @@ class JueJinHome extends StatefulWidget {
 }
 
 class _JueJinHome extends State<JueJinHome> {
-  int _tabIndex;
+  late int _tabIndex;
 
   List _bottomTabs = ['home', 'refresh', 'search', 'book', 'read'];
   List _bottomIcons = [
@@ -53,7 +53,8 @@ class _JueJinHome extends State<JueJinHome> {
             .asMap()
             .keys
             .map((t) => BottomNavigationBarItem(
-                icon: _bottomIcons[t], title: Container()))
+                  icon: _bottomIcons[t],
+                ))
             .toList(),
         onTap: (int index) {
           print(index);
@@ -82,7 +83,7 @@ class _JueJinHome extends State<JueJinHome> {
             ),
           ),
           actions: <Widget>[
-            new FlatButton(
+            TextButton(
               child: new Text('确定'),
               onPressed: () {
                 Navigator.of(context).pop();

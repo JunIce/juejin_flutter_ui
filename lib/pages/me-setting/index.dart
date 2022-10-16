@@ -167,7 +167,7 @@ class _SettingPage extends State<SettingPage> {
         ));
   }
 
-  Widget renderItem(String title, {Widget child}) {
+  Widget renderItem(String title, {Widget? child}) {
     List<Widget> list = [
       Text(
         title,

@@ -4,10 +4,14 @@ class ArticleListItem extends StatelessWidget {
   final String title;
   final String extra;
   final String coverImage;
-  final Function onTap;
+  final Function()? onTap;
 
   const ArticleListItem(
-      {Key key, this.title, this.extra, this.coverImage, this.onTap})
+      {Key? key,
+      this.title = "",
+      this.extra = "",
+      this.coverImage = "",
+      this.onTap})
       : super(key: key);
 
   @override

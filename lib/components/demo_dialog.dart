@@ -6,7 +6,7 @@ class DemoDialog extends StatelessWidget {
     // TODO: implement build
     return Column(
       children: [
-        RaisedButton(
+      ElevatedButton(
           child: Text("点击"),
             onPressed: () {
             _showDialog(context);
@@ -21,12 +21,14 @@ class DemoDialog extends StatelessWidget {
     return AlertDialog(
       title: Text("sdfhjjlfksd"),
       actions: [
-        FlatButton(
+        TextButton(
+          onPressed: () => {},
           child: Text(
             '1'
           ),
         ),
-        FlatButton(
+        TextButton(
+          onPressed: () => {},
           child: Text(
               '2'
           ),
@@ -43,7 +45,7 @@ class DemoDialog extends StatelessWidget {
             title: Text('确认退出登陆？'),
             // content: Text('退出登陆后将没法进行'),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   // 退出登陆
                   print("退出");
@@ -53,7 +55,7 @@ class DemoDialog extends StatelessWidget {
                   style: TextStyle(color: Colors.red),
                 ),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },

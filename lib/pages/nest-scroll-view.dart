@@ -10,7 +10,7 @@ class PullToRefreshDemo extends StatefulWidget {
 
 class _PullToRefreshDemoState extends State<PullToRefreshDemo>
     with TickerProviderStateMixin {
-  TabController primaryTC;
+  late TabController primaryTC;
   int _length1 = 50;
   final int _length2 = 50;
   DateTime lastRefreshTime = DateTime.now();

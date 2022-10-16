@@ -23,7 +23,7 @@ class BottomShareCard extends StatelessWidget {
                   return _buildCardItem(index.toString());
                 }),
           ),
-          FlatButton(
+          TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
