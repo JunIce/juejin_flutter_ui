@@ -6,8 +6,7 @@
          In most cases you can leave this as-is, but you if you want to provide
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
-    <application
-        android:name="io.flutter.app.FlutterApplication"
+    <application android:name="${applicationName}"
         android:label="juejin"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -21,13 +20,18 @@
                  until Flutter renders its first frame. It can be removed if
                  there is no splash screen (such as the default splash screen
                  defined in @style/LaunchTheme). -->
-            <meta-data
+            <!-- remove -->
+            <!-- <meta-data
                 android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
-                android:value="true" />
+            android:value="true" /> -->            <meta-data android:name="io.flutter.embedding.android.NormalTheme" android:resource="@style/NormalTheme" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+            <item name="android:windowBackground">@drawable/launch_background</item>
+        </style>
+        <meta-data android:name="flutterEmbedding" android:value="2" />
     </application>
 </manifest>
