@@ -47,10 +47,10 @@ class _HomeSpecialPageState extends State<HomeSpecialPage> {
           onLeave: (data) {
             print("drag target onleave $data");
           },
-         onWillAccept: (int fromIndex) {
-          //  final accept = fromIndex != index;
-          return fromIndex;
-         },
+        //  onWillAccept: () {
+        //   //  final accept = fromIndex != index;
+        //   return true;
+        //  },
       ),
       feedback: _list[index],
       childWhenDragging: _list[index],

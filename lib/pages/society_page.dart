@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:juejin/common/config.dart';
 import 'package:juejin/common/util.dart';
 import 'package:juejin/components/home-list-item3.dart';
-import 'package:juejin/components/home_list_item1.dart';
-import 'package:juejin/components/home_list_item2.dart';
 
 class SocietyPage extends StatefulWidget {
   @override
@@ -144,10 +142,8 @@ class _SocietyPageState extends State<SocietyPage>
   }
 
   List<Widget> _renderList(context) {
-    // ignore: deprecated_member_use
     // List<Widget> list = List();
-    List<Widget> list =
-        List.filled(tabList.length, 0 as Widget, growable: true);
+    List<Widget> list = [];
 
     String avatar =
         "https://p0.ssl.qhimgs1.com/bdr/326__/t0157d6c71e66dd5324.jpg";

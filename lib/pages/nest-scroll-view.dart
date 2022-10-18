@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart' hide NestedScrollView;
-import 'dart:async';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
+import 'package:flutter/material.dart';
 
 
 class PullToRefreshDemo extends StatefulWidget {
@@ -45,8 +44,12 @@ class _PullToRefreshDemoState extends State<PullToRefreshDemo>
     //statusBar height
     statusBarHeight +
         //pinned SliverAppBar height in header
-        kToolbarHeight;
-    return NestedScrollView(
+            kToolbarHeight;
+
+    // return Container(
+    //   child: Text("hello world"),
+    // );
+    return ExtendedNestedScrollView(
       controller: _scrollController,
       headerSliverBuilder: (BuildContext c, bool f) {
         return <Widget>[
@@ -65,13 +68,13 @@ class _PullToRefreshDemoState extends State<PullToRefreshDemo>
         return pinnedHeaderHeight;
       },
       //2.[inner scrollables in tabview sync issue](https://github.com/flutter/flutter/issues/21868)
-      innerScrollPositionKeyBuilder: () {
-        String index = 'Tab';
+      // innerScrollPositionKeyBuilder: () {
+      //   String index = 'Tab';
 
-        index += primaryTC.index.toString();
+      //   index += primaryTC.index.toString();
 
-        return Key(index);
-      },
+      //   return Key(index);
+      // },
       body: Column(
         children: <Widget>[
           TabBar(

@@ -54,6 +54,7 @@ class _JueJinHome extends State<JueJinHome> {
             .keys
             .map((t) => BottomNavigationBarItem(
                   icon: _bottomIcons[t],
+                  label: ""
                 ))
             .toList(),
         onTap: (int index) {
