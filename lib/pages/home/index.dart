@@ -4,6 +4,9 @@ import 'package:juejin/pages/tag-manage/tag-manage.dart';
 
 import '../search/search.dart';
 
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:juejin/store/counter.dart';
+
 class HomeIndexPage extends StatefulWidget {
   @override
   _JueJinHomeState createState() => _JueJinHomeState();
@@ -15,6 +18,8 @@ class _JueJinHomeState extends State<HomeIndexPage>
   ScrollController _scrollController = new ScrollController();
   int _initIndex = 0;
   bool isShow = true;
+
+  final Counter _counter = Counter();
 
   @override
   void initState() {
@@ -125,6 +130,28 @@ class _JueJinHomeState extends State<HomeIndexPage>
   Widget renderBody() {
     return Column(
       children: [
+        Column(
+          children: [
+            Observer(
+              builder: (_) => Text(
+                '${_counter.value}',
+                style: TextStyle(
+                  color: Colors.red,
+                ),
+              ),
+            ),
+            TextButton(
+                onPressed: () {
+                  _counter.increment();
+                },
+                child: Text("increase")),
+            TextButton(
+                onPressed: () {
+                  _counter.decrement();
+                },
+                child: Text("decrement"))
+          ],
+        ),
         renderTabBar(),
         Expanded(
             child: TabBarView(
