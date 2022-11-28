@@ -46,4 +46,10 @@ class IconFontIcons {
   static const IconData iconNotes = IconData(0xe6f3, fontFamily: 'IconFont');
   // 数据管理
   static const IconData iconDatas = IconData(0xe8b9, fontFamily: 'IconFont');
+
+  // 列表
+  // 点赞
+  static const IconData iconZan = IconData(0xe870, fontFamily: 'IconFont');
+  // 评论
+  static const IconData iconComment = IconData(0xe667, fontFamily: 'IconFont');
 }

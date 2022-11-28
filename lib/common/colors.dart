@@ -5,7 +5,7 @@ class AppColor {
   static final tabTextColor = Color.fromRGBO(142, 147, 158, 100);
   static final tabTextActiveColor = Color.fromRGBO(25, 25, 25, 100);
 
-  static final textColor1 = Colors.green;
+  static final textColor1 = Colors.grey[400];
 
 //  static final primaryBgColor = Color(0xd4d4d4);
 }
