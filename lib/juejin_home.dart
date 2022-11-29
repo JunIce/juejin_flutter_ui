@@ -81,6 +81,8 @@ class _JueJinHome extends State<JueJinHome> {
         currentIndex: _tabIndex,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
+        iconSize: 22,
+        selectedFontSize: 12,
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         items: _bottomTabs

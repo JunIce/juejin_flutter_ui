@@ -53,6 +53,10 @@ class IconFontIcons {
   // 评论
   static const IconData iconComment = IconData(0xe667, fontFamily: 'IconFont');
 
+  // 直播icon
+  static const IconData iconZhibo = IconData(0xe60b, fontFamily: 'IconFont');
+// 签到icon
+  static const IconData iconQiandao = IconData(0xe6b3, fontFamily: 'IconFont');
   // tabbar
   static const IconData iconTabHot = IconData(0xe753, fontFamily: 'IconFont');
   static const IconData iconTabHotActive =
