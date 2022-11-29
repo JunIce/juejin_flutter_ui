@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:juejin/icons/index.dart';
 import 'package:juejin/pages/book/book.dart';
 import 'package:juejin/pages/me/me.dart';
 import 'package:juejin/pages/nest-scroll-view.dart';
@@ -12,17 +13,50 @@ class JueJinHome extends StatefulWidget {
   _JueJinHome createState() => _JueJinHome();
 }
 
+class TabItem {
+  const TabItem({required this.icon, this.name, this.label, this.activeIcon});
+  final String? name;
+  final Icon icon;
+  final Icon? activeIcon;
+  final String? label;
+}
+
 class _JueJinHome extends State<JueJinHome> {
   late int _tabIndex;
 
-  List _bottomTabs = ['home', 'refresh', 'search', 'book', 'read'];
-  List _bottomIcons = [
-    Icon(Icons.home),
-    Icon(Icons.refresh),
-    Icon(Icons.search),
-    Icon(Icons.book),
-    Icon(Icons.supervised_user_circle)
+  List<TabItem> _bottomTabs = [
+    TabItem(
+      icon: Icon(Icons.home),
+      activeIcon: Icon(Icons.home),
+      name: "home",
+      label: "首页",
+    ),
+    TabItem(
+      icon: Icon(IconFontIcons.iconTabHot),
+      activeIcon: Icon(IconFontIcons.iconTabHotActive),
+      name: "home",
+      label: "沸点",
+    ),
+    TabItem(
+      icon: Icon(IconFontIcons.iconTabCompass),
+      activeIcon: Icon(IconFontIcons.iconTabCompassActive),
+      name: "home",
+      label: "发现",
+    ),
+    TabItem(
+      icon: Icon(IconFontIcons.iconTabBook),
+      activeIcon: Icon(IconFontIcons.iconTabBookActive),
+      name: "home",
+      label: "课程",
+    ),
+    TabItem(
+      icon: Icon(Icons.supervised_user_circle),
+      activeIcon: Icon(Icons.supervised_user_circle),
+      name: "home",
+      label: "我",
+    ),
   ];
+
   var _tabs = [
     HomeIndexPage(),
     SocietyPage(),
@@ -50,12 +84,8 @@ class _JueJinHome extends State<JueJinHome> {
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         items: _bottomTabs
-            .asMap()
-            .keys
             .map((t) => BottomNavigationBarItem(
-                  icon: _bottomIcons[t],
-                  label: ""
-                ))
+                icon: t.icon, label: t.label, activeIcon: t.activeIcon))
             .toList(),
         onTap: (int index) {
           print(index);
@@ -64,7 +94,7 @@ class _JueJinHome extends State<JueJinHome> {
           });
         },
       ),
-      floatingActionButton: _renderButton(),
+      // floatingActionButton: _renderButton(),
     );
   }
 

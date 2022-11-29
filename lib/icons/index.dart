@@ -52,4 +52,18 @@ class IconFontIcons {
   static const IconData iconZan = IconData(0xe870, fontFamily: 'IconFont');
   // 评论
   static const IconData iconComment = IconData(0xe667, fontFamily: 'IconFont');
+
+  // tabbar
+  static const IconData iconTabHot = IconData(0xe753, fontFamily: 'IconFont');
+  static const IconData iconTabHotActive =
+      IconData(0xe781, fontFamily: 'IconFont');
+
+  static const IconData iconTabBook = IconData(0xe7b3, fontFamily: 'IconFont');
+  static const IconData iconTabBookActive =
+      IconData(0xe854, fontFamily: 'IconFont');
+
+  static const IconData iconTabCompass =
+      IconData(0xe77d, fontFamily: 'IconFont');
+  static const IconData iconTabCompassActive =
+      IconData(0xe846, fontFamily: 'IconFont');
 }
