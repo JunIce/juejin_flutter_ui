@@ -3,6 +3,7 @@ import 'package:juejin/common/colors.dart';
 import 'package:juejin/components/home_list_view.dart';
 import 'package:juejin/icons/index.dart';
 import 'package:juejin/pages/home/tab-view/page-follow.dart';
+import 'package:juejin/pages/home/tab-view/page-hot.dart';
 import 'package:juejin/pages/home/tab-view/page-recommend.dart';
 import 'package:juejin/pages/tag-manage/tag-manage.dart';
 
@@ -20,7 +21,7 @@ class _JueJinHomeState extends State<HomeIndexPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   ScrollController _scrollController = new ScrollController();
-  int _initIndex = 0;
+  int _initIndex = 2;
   bool isShow = true;
 
   final Counter _counter = Counter();
@@ -63,8 +64,9 @@ class _JueJinHomeState extends State<HomeIndexPage>
 
     list.add(IndexPageFollow());
     list.add(IndexPageRecommend());
+    list.add(IndexPageHot());
 
-    for (int i = 2; i < _tabs.length; i++) {
+    for (int i = 3; i < _tabs.length; i++) {
       list.add(HomeListView(
         list: List.filled(50, 0),
         type: i,
