@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:juejin/components/home_list_view.dart';
 import 'package:juejin/components/item_panel.dart';
+import 'package:juejin/icons/index.dart';
 import 'package:juejin/pages/home/components/index-list-item.dart';
 
 class IndexPageHot extends StatelessWidget {
@@ -22,16 +23,77 @@ class _HomeFollowPage extends State<_HomeFollowPages> {
         Expanded(
             child: CustomScrollView(
           // scrollDirection: ,
-          slivers: <Widget>[_firstItem()],
-          // itemCount: 10,
-          // itemBuilder: (context, index) {
-          //   if (index == 0) return _firstItem();
-
-          //   return _otherItem();
-          // },
+          slivers: <Widget>[
+            // 首行tab
+            _firstItem(),
+            // 列表标题
+            _renderListHeader(),
+            // 主列表
+            _renderList()
+          ],
         ))
       ],
     );
+  }
+
+  Widget _renderList() {
+    return SliverFixedExtentList(
+      itemExtent: 70.0,
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return _renderListItem((index + 1).toString());
+        },
+      ),
+    );
+  }
+
+  Widget _renderListHeader() {
+    return SliverToBoxAdapter(
+        child: Container(
+      margin: EdgeInsets.only(top: 10),
+      color: Colors.white,
+      padding: EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "热门文章榜",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          Row(
+            children: [
+              _renderHeaderTag("收藏榜"),
+              SizedBox(
+                width: 10,
+              ),
+              _renderHeaderTag("作者榜")
+            ],
+          )
+        ],
+      ),
+    ));
+  }
+
+  Widget _renderHeaderTag(String name) {
+    Color textColor = Color.fromRGBO(28, 127, 251, 1);
+    return ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(4)),
+        child: Container(
+            padding: EdgeInsets.only(top: 6, bottom: 6, left: 8, right: 8),
+            color: Color.fromRGBO(233, 243, 255, 1),
+            child: Row(
+              children: [
+                Text(
+                  name,
+                  style: TextStyle(color: textColor),
+                ),
+                Icon(
+                  Icons.arrow_right_sharp,
+                  color: textColor,
+                  size: 16,
+                )
+              ],
+            )));
   }
 
   Widget _firstItem() {
@@ -63,23 +125,96 @@ class _HomeFollowPage extends State<_HomeFollowPages> {
                             });
                           },
                         ),
-                      ))
+                      )),
                 ]),
           )),
     );
   }
 
-  Widget _otherItem() {
+  Widget _renderListItem(String index) {
+    Color textBg = Colors.white;
+    switch (index) {
+      case "1":
+        textBg = Color.fromRGBO(254, 76, 64, 1);
+        break;
+      case "2":
+        textBg = Color.fromRGBO(251, 134, 62, 1);
+        break;
+      case "3":
+        textBg = Color.fromRGBO(252, 199, 5, 1);
+        break;
+      default:
+    }
+
+    Color tipTxtColor = Color.fromRGBO(143, 148, 155, 1);
+
     return Container(
-        child: IndexListItem(
-      title: "如何使用CSS创建高级动画，这个函数必须掌握",
-      content:
-          "因此如果我们要将相机实时流 CameraImage 转为yuv 或 rgba 后给opencv 或 tflite 来做后续动作，那么建议使用 ffi / method channel将数据传给 c++ 层 opencv 的 cvtColor 来转换，效率高很多！当然如果对实时流的效率要求没那么高，imageLib.Image 也是完全足以的",
-      username: "摹刻",
-      category: "前端",
-      likeCount: "10002",
-      commentCount: "237",
-    ));
+        padding: EdgeInsets.all(10),
+        color: Colors.white,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 26,
+              height: 26,
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(right: 10),
+              decoration: BoxDecoration(
+                  color: textBg,
+                  borderRadius: BorderRadius.all(Radius.circular(4))),
+              child: Text(
+                index,
+                style: TextStyle(
+                    fontSize: 16,
+                    color: int.parse(index) < 4
+                        ? Colors.white
+                        : Color.fromRGBO(138, 142, 156, 1)),
+              ),
+            ),
+            Expanded(
+                child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Vue3如何实现一个全局搜索框",
+                    textAlign: TextAlign.left,
+                    maxLines: 2,
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                SizedBox(
+                  height: 6,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "前端要努力",
+                      style: TextStyle(color: tipTxtColor),
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "热度",
+                          style: TextStyle(color: tipTxtColor),
+                        ),
+                        Text(
+                          "3278",
+                          style: TextStyle(color: tipTxtColor),
+                        ),
+                        Icon(
+                          IconFontIcons.iconTabHot,
+                          size: 16,
+                          color: tipTxtColor,
+                        )
+                      ],
+                    )
+                  ],
+                )
+              ],
+            ))
+          ],
+        ));
   }
 }
 
