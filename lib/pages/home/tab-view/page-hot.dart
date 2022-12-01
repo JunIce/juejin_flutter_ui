@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:juejin/components/home_list_view.dart';
 import 'package:juejin/components/item_panel.dart';
 import 'package:juejin/icons/index.dart';
+import 'package:juejin/pages/detail/detail.dart';
 import 'package:juejin/pages/home/components/index-list-item.dart';
 
 class IndexPageHot extends StatelessWidget {
@@ -119,6 +120,8 @@ class _HomeFollowPage extends State<_HomeFollowPages> {
                         child: CircleTag(
                           text: item.label,
                           checked: _checkedTag == item.key,
+                          checkedTextColor: Color.fromRGBO(28, 127, 251, 1),
+                          checkedBgColor: Color.fromRGBO(233, 243, 255, 1),
                           onTap: () {
                             setState(() {
                               _checkedTag = item.key;
@@ -148,7 +151,13 @@ class _HomeFollowPage extends State<_HomeFollowPages> {
 
     Color tipTxtColor = Color.fromRGBO(143, 148, 155, 1);
 
-    return Container(
+    return GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return DetailPage();
+          }));
+        },
+        child: Container(
         padding: EdgeInsets.all(10),
         color: Colors.white,
         child: Row(
@@ -214,7 +223,8 @@ class _HomeFollowPage extends State<_HomeFollowPages> {
               ],
             ))
           ],
-        ));
+            )));
+    
   }
 }
 
