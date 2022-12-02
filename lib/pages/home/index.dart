@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:juejin/common/colors.dart';
 import 'package:juejin/components/home_list_view.dart';
+import 'package:juejin/icons/index.dart';
 import 'package:juejin/pages/home/tab-view/page-follow.dart';
+import 'package:juejin/pages/home/tab-view/page-hot.dart';
 import 'package:juejin/pages/home/tab-view/page-recommend.dart';
 import 'package:juejin/pages/tag-manage/tag-manage.dart';
 
@@ -19,7 +21,7 @@ class _JueJinHomeState extends State<HomeIndexPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   ScrollController _scrollController = new ScrollController();
-  int _initIndex = 0;
+  int _initIndex = 2;
   bool isShow = true;
 
   final Counter _counter = Counter();
@@ -62,8 +64,9 @@ class _JueJinHomeState extends State<HomeIndexPage>
 
     list.add(IndexPageFollow());
     list.add(IndexPageRecommend());
+    list.add(IndexPageHot());
 
-    for (int i = 2; i < _tabs.length; i++) {
+    for (int i = 3; i < _tabs.length; i++) {
       list.add(HomeListView(
         list: List.filled(50, 0),
         type: i,
@@ -168,6 +171,20 @@ class _JueJinHomeState extends State<HomeIndexPage>
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: [
+            Padding(
+              padding: EdgeInsets.only(right: 10),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return TagManagePage();
+                  }));
+                },
+                child: Icon(
+                  IconFontIcons.iconZhibo,
+                  // size: 20,
+                ),
+              ),
+            ),
             Expanded(
               child: Container(
                   width: double.maxFinite,
@@ -202,30 +219,18 @@ class _JueJinHomeState extends State<HomeIndexPage>
                         )),
                   )),
             ),
-            Container(
+            Padding(
+              padding: EdgeInsets.only(left: 8),
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return TagManagePage();
                   }));
                 },
-                child: Row(children: [
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Icon(
-                    Icons.settings,
-                    color: Colors.black,
-                    size: 14,
-                  ),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  Text(
-                    "标签",
-                    style: TextStyle(color: Colors.black, fontSize: 14),
-                  )
-                ]),
+                child: Icon(
+                  IconFontIcons.iconQiandao,
+                  // size: ,
+                ),
               ),
             )
           ],

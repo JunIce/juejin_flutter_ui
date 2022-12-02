@@ -10,15 +10,13 @@ class HomeListView extends StatefulWidget {
   final int type;
   // final TabController tabController;
 
-  HomeListView(
-      {
+  HomeListView({
     Key? key,
     // required this.controller,
     required this.list,
     required this.type,
     // required this.tabController
-  })
-      : super(key: key);
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -28,8 +26,6 @@ class HomeListView extends StatefulWidget {
 }
 
 class _HomeListView extends State<HomeListView> {
-
-
   List<String> _tabs = [
     "全部",
     "Java",
@@ -72,13 +68,17 @@ class _HomeListView extends State<HomeListView> {
     List<Widget> _list = [];
     for (int i = 0; i < _tabs.length; i++) {
       _list.add(Container(
-          margin: EdgeInsets.only(left: 10), child: CircleTag(text: _tabs[i], checked: _checkedIndex == i, onTap: (){
-            print(i);
-            setState((){
-                  _checkedIndex = i;
-                }
-            );
-      },)));
+          margin: EdgeInsets.only(left: 10),
+          child: CircleTag(
+            text: _tabs[i],
+            checked: _checkedIndex == i,
+            onTap: () {
+              print(i);
+              setState(() {
+                _checkedIndex = i;
+              });
+            },
+          )));
     }
 
     return Container(
@@ -135,23 +135,41 @@ class _HomeListView extends State<HomeListView> {
 class CircleTag extends StatelessWidget {
   final String text;
   final bool checked;
+  final Color checkedTextColor;
+  final Color uncheckedTextColor;
+
+  final Color checkedBgColor;
+  final Color uncheckedBgColor;
+
   final Function()? onTap;
 
-  const CircleTag({Key? key, this.text = '', this.checked = false, this.onTap})
+  const CircleTag(
+      {Key? key,
+      this.text = '',
+      this.checked = false,
+      this.checkedTextColor = Colors.white,
+      this.uncheckedTextColor = Colors.black,
+      this.checkedBgColor = Colors.blue,
+      this.uncheckedBgColor = const Color(0xfff4f4f4),
+      this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return GestureDetector(onTap: onTap,child: Container(
-      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 15),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: checked ? Colors.blue : Color(0xfff4f4f4)),
-      child: Text(
-        text,
-        style: TextStyle(color: checked ? Colors.white : Colors.grey),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 6, horizontal: 15),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: checked ? checkedBgColor : uncheckedBgColor),
+        child: Text(
+          text,
+          style:
+              TextStyle(color: checked ? checkedTextColor : uncheckedTextColor),
+        ),
       ),
-    ),);
+    );
   }
 }

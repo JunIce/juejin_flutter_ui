@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:juejin/common/colors.dart';
 import 'package:juejin/components/icon-text.dart';
 import 'package:juejin/icons/index.dart';
+import 'package:juejin/pages/detail/detail.dart';
 import 'package:juejin/pages/user/personal.dart';
 
 class IndexListItem extends StatelessWidget {
@@ -28,7 +29,11 @@ class IndexListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return DetailPage();
+          }));
+        },
         child: Container(
           padding: EdgeInsets.only(top: 20, bottom: 20, left: 12, right: 12),
           color: Colors.white,

@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3708578 */
-  src: url('iconfont.woff2?t=1669636309396') format('woff2'),
-       url('iconfont.woff?t=1669636309396') format('woff'),
-       url('iconfont.ttf?t=1669636309396') format('truetype');
+  src: url('iconfont.woff2?t=1669724328877') format('woff2'),
+       url('iconfont.woff?t=1669724328877') format('woff'),
+       url('iconfont.ttf?t=1669724328877') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,46 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-compass:before {
+  content: "\e77d";
+}
+
+.icon-book:before {
+  content: "\e7b3";
+}
+
+.icon-compass-fill:before {
+  content: "\e846";
+}
+
+.icon-book-fill:before {
+  content: "\e854";
+}
+
+.icon-user:before {
+  content: "\e665";
+}
+
+.icon-hot:before {
+  content: "\e753";
+}
+
+.icon-hot-fill:before {
+  content: "\e781";
+}
+
+.icon-home-fill:before {
+  content: "\e7ae";
+}
+
+.icon-zhibo:before {
+  content: "\e60b";
+}
+
+.icon-qiandao:before {
+  content: "\e6b3";
 }
 
 .icon-comment:before {

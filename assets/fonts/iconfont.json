@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "4765724",
+      "name": "compass",
+      "font_class": "compass",
+      "unicode": "e77d",
+      "unicode_decimal": 59261
+    },
+    {
+      "icon_id": "4766454",
+      "name": "book",
+      "font_class": "book",
+      "unicode": "e7b3",
+      "unicode_decimal": 59315
+    },
+    {
+      "icon_id": "4936503",
+      "name": "compass-fill",
+      "font_class": "compass-fill",
+      "unicode": "e846",
+      "unicode_decimal": 59462
+    },
+    {
+      "icon_id": "4936587",
+      "name": "book-fill",
+      "font_class": "book-fill",
+      "unicode": "e854",
+      "unicode_decimal": 59476
+    },
+    {
+      "icon_id": "6360771",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "11488058",
+      "name": "hot",
+      "font_class": "hot",
+      "unicode": "e753",
+      "unicode_decimal": 59219
+    },
+    {
+      "icon_id": "11488266",
+      "name": "hot-fill",
+      "font_class": "hot-fill",
+      "unicode": "e781",
+      "unicode_decimal": 59265
+    },
+    {
+      "icon_id": "11674925",
+      "name": "home-fill",
+      "font_class": "home-fill",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    },
+    {
+      "icon_id": "15002769",
+      "name": "zhibo",
+      "font_class": "zhibo",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "22691032",
+      "name": "qiandao",
+      "font_class": "qiandao",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    },
+    {
       "icon_id": "30416",
       "name": "comment",
       "font_class": "comment",

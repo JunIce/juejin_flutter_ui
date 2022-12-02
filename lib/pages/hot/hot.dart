@@ -69,34 +69,41 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
         backgroundColor: Config.primaryBgColor,
         appBar: AppBar(
+          backgroundColor: Config.primaryBgColor,
           title: Container(
-              color: Colors.blue[300],
+              color: Colors.grey[300],
               padding: EdgeInsets.all(10),
               height: 40,
               child: Row(
                 children: <Widget>[
                   Icon(
                     Icons.search,
-                    color: Colors.white,
+                    color: Colors.black54,
                     size: 18,
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Text(
-                    '搜索文章、用户、标签',
-                    style: TextStyle(color: Colors.white, fontSize: 14),
+                    '搜索稀土掘金',
+                    style: TextStyle(color: Colors.black54, fontSize: 14),
                   )
                 ],
               )),
         ),
         body: RefreshIndicator(
-            child: ListView(
+            child: CustomScrollView(
                 controller: _scrollController,
-                children: _renderFirstChild().toList()),
-            onRefresh: _refresh
-        )
-    );
+              slivers: [
+                // 加载中
+                _loadingText(),
+                // banner
+                _renderBanner(),
+
+                _renderGridMenu(),
+              ],
+            ),
+            onRefresh: _refresh));
   }
 
   Future<Null> _refresh() async {
@@ -106,42 +113,56 @@ class _SearchPageState extends State<SearchPage> {
     return;
   }
 
-  List<Widget> _renderFirstChild() {
-    List<Widget> list = [];
-
-    // Loading
-    list.add(Offstage(
+  Widget _loadingText() {
+    return SliverToBoxAdapter(
+      child: Offstage(
         offstage: _hideloading,
         child: Container(
           height: 100,
           child: Center(
             child: Text("正在加载数据，请稍后..."),
           ),
-        )));
+          )),
+    );
+  }
 
-    // Banner
-    list.add(Container(
-      height: 180,
+  Widget _renderBanner() {
+    return SliverToBoxAdapter(
+      child: Container(
+        height: 200,
       decoration: BoxDecoration(
           image: DecorationImage(
               image: NetworkImage(
-                  'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1551606381887&di=bbd9625453a6e0efa1b25a2e990862f0&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F0df3d7ca7bcb0a46b2ac46146063f6246b60af15.jpg'),
+                    'https://p.qqan.com/up/2022-12/20221211424213803.jpg'),
               fit: BoxFit.fill)),
-    ));
+      ),
+    );
+  }
 
-    // GridView
-    list.add(GridView.count(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+  Widget _renderGridMenu() {
+    return SliverGrid.count(
       crossAxisCount: 5,
-      childAspectRatio: 1.1,
+      childAspectRatio: 1,
       children: _renderGridList().toList(),
-    ));
+    );
+  }
+
+  List<Widget> _renderFirstChild() {
+    List<Widget> list = [];
+
+    // // GridView
+    // list.add(GridView.count(
+    //   shrinkWrap: true,
+    //   physics: NeverScrollableScrollPhysics(),
+    //   crossAxisCount: 5,
+    //   childAspectRatio: 1.1,
+    //   children: _renderGridList().toList(),
+    // ));
 
     // Divider
-    list.add(SizedBox(
-      height: 10,
-    ));
+    // list.add(SizedBox(
+    //   height: 10,
+    // ));
 
     // title
     list.add(Container(
@@ -183,17 +204,18 @@ class _SearchPageState extends State<SearchPage> {
     list.add(ListView.separated(
         shrinkWrap: true,
         physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (BuildContext context,int index) {
+        itemBuilder: (BuildContext context, int index) {
           return ArticleListItem(
             title: "圣诞节狂欢凤凰科技符合健康",
             extra: "114人赞 前端谨记着 11小时前",
           );
         },
-        separatorBuilder: (BuildContext context,int index) {
-          return Divider(height: 1,);
+        separatorBuilder: (BuildContext context, int index) {
+          return Divider(
+            height: 1,
+          );
         },
-        itemCount: _datalist.length
-    ));
+        itemCount: _datalist.length));
 
     // Loading
     list.add(Visibility(
@@ -212,7 +234,7 @@ class _SearchPageState extends State<SearchPage> {
   List<Widget> _renderGridList() {
     List<Widget> _list = [];
     _list
-        ..add(Container(
+      ..add(Container(
           padding: EdgeInsets.only(top: 20, bottom: 0),
           color: Colors.white,
           child: IconText(
@@ -222,81 +244,66 @@ class _SearchPageState extends State<SearchPage> {
             textSize: 14,
             iconColor: Util.slRandomColor(),
             text: "文章榜",
-            )
-          )
-        )
-        ..add(
-            Container(
-                padding: EdgeInsets.only(top: 20, bottom: 0),
-                color: Colors.white,
-                child: IconText(
-                  direction: Axis.vertical,
-                  icon: Icons.favorite,
-                  iconSize: 18,
-                  textSize: 14,
-                  iconColor: Util.slRandomColor(),
-                  text: "作者榜",
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                      return AuthorRankPage();
-                    }));
-                  },
-                )
-            )
-        )
-      ..add(
-          Container(
-              padding: EdgeInsets.only(top: 20, bottom: 0),
-              color: Colors.white,
-              child: IconText(
-                direction: Axis.vertical,
-                icon: Icons.local_activity,
-                iconColor: Util.slRandomColor(),
-                text: "看一看",
-                iconSize: 18,
-                textSize: 14,
-              )
-          )
-      )
-      ..add(
-          Container(
-              padding: EdgeInsets.only(top: 20, bottom: 0),
-              color: Colors.white,
-              child: IconText(
-                direction: Axis.vertical,
-                icon: Icons.local_cafe,
-                iconColor: Util.slRandomColor(),
-                text: "话题广场",
-                iconSize: 18,
-                textSize: 14,
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                    return TopicListPage();
-                  }));
-                },
-              )
-          )
-      )
-      ..add(
-          Container(
-              padding: EdgeInsets.only(top: 20, bottom: 0),
-              color: Colors.white,
-              child: IconText(
-                direction: Axis.vertical,
-                icon: Icons.local_bar,
-                iconColor: Util.slRandomColor(),
-                text: "活动",
-                iconSize: 18,
-                textSize: 14,
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                    return OfflineActivityPage();
-                  }));
-                },
-              )
-          )
-      );
-
+          )))
+      ..add(Container(
+          padding: EdgeInsets.only(top: 20, bottom: 0),
+          color: Colors.white,
+          child: IconText(
+            direction: Axis.vertical,
+            icon: Icons.favorite,
+            iconSize: 18,
+            textSize: 14,
+            iconColor: Util.slRandomColor(),
+            text: "作者榜",
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return AuthorRankPage();
+              }));
+            },
+          )))
+      ..add(Container(
+          padding: EdgeInsets.only(top: 20, bottom: 0),
+          color: Colors.white,
+          child: IconText(
+            direction: Axis.vertical,
+            icon: Icons.local_activity,
+            iconColor: Util.slRandomColor(),
+            text: "看一看",
+            iconSize: 18,
+            textSize: 14,
+          )))
+      ..add(Container(
+          padding: EdgeInsets.only(top: 20, bottom: 0),
+          color: Colors.white,
+          child: IconText(
+            direction: Axis.vertical,
+            icon: Icons.local_cafe,
+            iconColor: Util.slRandomColor(),
+            text: "话题广场",
+            iconSize: 18,
+            textSize: 14,
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return TopicListPage();
+              }));
+            },
+          )))
+      ..add(Container(
+          padding: EdgeInsets.only(top: 20, bottom: 0),
+          color: Colors.white,
+          child: IconText(
+            direction: Axis.vertical,
+            icon: Icons.local_bar,
+            iconColor: Util.slRandomColor(),
+            text: "活动",
+            iconSize: 18,
+            textSize: 14,
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return OfflineActivityPage();
+              }));
+            },
+          )));
 
     return _list;
   }
