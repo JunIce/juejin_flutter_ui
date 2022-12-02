@@ -13,13 +13,7 @@ class _SocietyPageState extends State<SocietyPage>
   late TabController _controller;
 
   List<Tab> tabList = [
-    Tab(text: '关注'),
-    Tab(text: '推荐'),
-    Tab(text: '热门'),
-    Tab(text: '内推招聘'),
-    Tab(text: '掘金相亲'),
-    Tab(text: '开源推荐'),
-    Tab(text: '上班摸鱼'),
+    Tab(text: '发现'), Tab(text: '关注')
   ];
 
   @override
@@ -28,112 +22,30 @@ class _SocietyPageState extends State<SocietyPage>
     _controller = TabController(length: tabList.length, vsync: this);
   }
 
-  void _showDialog() {
-    Size size = MediaQuery.of(context).size;
-    showDialog(
-        barrierDismissible: true,
-        context: context,
-        builder: (BuildContext context) {
-          return Dialog(
-            insetPadding: EdgeInsets.symmetric(vertical: 140, horizontal: 30),
-            backgroundColor: Colors.transparent,
-            child: Center(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Container(
-                        height: 100,
-                        color: Colors.blue,
-                        child: Center(
-                          child: Text(
-                            "关注掘金官方账号",
-                            style: TextStyle(color: Colors.white, fontSize: 24),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                          child: ListView.separated(
-                              itemBuilder: (BuildContext context, int index) {
-                                return ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundImage: NetworkImage(
-                                        "https://p3.ssl.qhimgs1.com/bdr/326__/t01f262da6a4d90f8f3.jpg"),
-                                  ),
-                                  title: Text("掘金小册"),
-                                  subtitle: Text("掘金首席体验官"),
-                                  trailing: OutlinedButton(
-                                    onPressed: () {},
-                                    child: Text("关注"),
-                                  ),
-                                );
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return Divider(
-                                  height: 1,
-                                );
-                              },
-                              itemCount: 4)),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        child: TextButton(
-                            // color: Colors.blue,
-                            // textColor: Colors.white,
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text("关注全部4人， 进入沸点")),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Config.primaryBgColor,
         appBar: PreferredSize(
           child: Container(
-              padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-              width: double.maxFinite,
-              color: Colors.blue,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TabBar(
-                      isScrollable: true,
-                      //是否可以滚动
-                      indicatorWeight: 2,
-                      indicatorColor: Colors.white,
-                      controller: _controller,
-                      labelColor: Colors.white,
-                      unselectedLabelColor: Colors.blue[70],
-                      labelStyle: TextStyle(fontSize: 16.0),
-                      tabs: tabList,
-                    ),
-                  ),
-                  IconButton(
-                    color: Colors.white,
-                    icon: Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      _showDialog();
-                    },
-                  )
-                ],
-              )),
+            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TabBar(
+                  isScrollable: true,
+                  //是否可以滚动
+                  indicatorWeight: 2,
+                  indicatorColor: Colors.blue,
+                  controller: _controller,
+                  labelColor: Colors.blue,
+                  unselectedLabelColor: Colors.black,
+                  labelStyle: TextStyle(fontSize: 16.0),
+                  tabs: tabList,
+                )
+              ],
+            ),
+          ),
           preferredSize:
               Size(MediaQuery.of(context).size.width, double.maxFinite),
         ),
@@ -170,8 +82,7 @@ class _SocietyPageState extends State<SocietyPage>
                   likeCount: "382984",
                   commentCount: "473847",
                   images: images,
-                  tag: '上班摸鱼'
-              );
+                  tag: '上班摸鱼');
             },
             separatorBuilder: (BuildContext context, int index) => SizedBox(
                   height: 10,
