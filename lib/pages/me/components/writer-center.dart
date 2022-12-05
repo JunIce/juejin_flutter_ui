@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:juejin/components/icon-text.dart';
 import 'package:juejin/icons/index.dart';
 
-class MoreFuncComp extends StatelessWidget {
-  const MoreFuncComp({Key? key}) : super(key: key);
+class WriterCenter extends StatelessWidget {
+  const WriterCenter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,10 @@ class MoreFuncComp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                '更多功能',
+                '创作者中心',
                 style: TextStyle(fontSize: 16, color: Colors.black),
               ),
-              // Icon(IconFontIcons.iconArrowRight),
+              Icon(IconFontIcons.iconArrowRight),
             ],
           ),
           SizedBox(
