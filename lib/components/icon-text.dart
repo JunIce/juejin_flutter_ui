@@ -5,6 +5,7 @@ class IconText extends StatelessWidget {
   final String text;
   final Function()? onTap;
   final double iconSize;
+  final double gutter;
   final Color iconColor;
   final double textSize;
   final Color textColor;
@@ -17,6 +18,7 @@ class IconText extends StatelessWidget {
       this.onTap,
       this.iconSize = 14,
       this.textSize = 12,
+      this.gutter = 4,
       this.iconColor = const Color(0xff999999),
       this.textColor = const Color(0xff999999),
         this.direction = Axis.horizontal
@@ -32,7 +34,8 @@ class IconText extends StatelessWidget {
         size: iconSize,
       ),
       SizedBox(
-        width: 4,
+        width: gutter,
+        height: gutter,
       ),
       Text(
         text,
