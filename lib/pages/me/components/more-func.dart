@@ -1,9 +1,26 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:juejin/components/icon-text.dart';
 import 'package:juejin/icons/index.dart';
+import 'package:juejin/types/swiper-item.dart';
+import 'dart:math';
 
 class MoreFuncComp extends StatelessWidget {
-  const MoreFuncComp({Key? key}) : super(key: key);
+  MoreFuncComp({Key? key}) : super(key: key);
+
+  List<SwiperItem> menus = [
+    SwiperItem(label: "课程中心", icon: IconFontIcons.iconActivity),
+    SwiperItem(label: "推广中心", icon: IconFontIcons.iconActivity),
+    SwiperItem(label: "闪念笔记", icon: IconFontIcons.iconActivity),
+    SwiperItem(label: "我的优惠券", icon: IconFontIcons.iconActivity),
+    SwiperItem(label: "我的圈子", icon: IconFontIcons.iconActivity),
+    SwiperItem(label: "阅读记录", icon: IconFontIcons.iconActivity),
+    SwiperItem(label: "邀请有礼", icon: IconFontIcons.iconActivity),
+    SwiperItem(label: "意见反馈", icon: IconFontIcons.iconActivity),
+    SwiperItem(label: "标签管理", icon: IconFontIcons.iconActivity),
+    SwiperItem(label: "我的报名", icon: IconFontIcons.iconActivity),
+    SwiperItem(label: "简历管理", icon: IconFontIcons.iconActivity),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,68 +45,35 @@ class MoreFuncComp extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                      child: IconText(
-                        iconColor: Color(0xff333333),
-                        textColor: Color(0xff333333),
-                        iconSize: 22,
-                        textSize: 14,
-                        gutter: 6,
-                        icon: IconFontIcons.iconContent,
-                        direction: Axis.vertical,
-                        text: "内容数据",
-                      ),
-                    )),
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                      child: IconText(
-                        iconColor: Color(0xff333333),
-                        textColor: Color(0xff333333),
-                        iconSize: 22,
-                        textSize: 14,
-                        gutter: 6,
-                        icon: IconFontIcons.iconDatas,
-                        direction: Axis.vertical,
-                        text: "关注者数据",
-                      ),
-                    )),
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                        child: Container(
-                      child: IconText(
-                        iconColor: Color(0xff333333),
-                        textColor: Color(0xff333333),
-                        iconSize: 22,
-                        textSize: 14,
-                        gutter: 6,
-                        icon: IconFontIcons.iconPromotion,
-                        direction: Axis.vertical,
-                        text: "创作活动",
-                      ),
-                    ))),
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                      child: IconText(
-                        iconColor: Color(0xff333333),
-                        textColor: Color(0xff333333),
-                        iconSize: 22,
-                        textSize: 14,
-                        gutter: 6,
-                        icon: IconFontIcons.iconDraft,
-                        direction: Axis.vertical,
-                        text: "草稿箱",
-                      ),
-                    ))
-              ])
+          ConstrainedBox(
+              child: Swiper(
+                outer: false,
+                loop: false,
+                itemBuilder: (c, i) {
+                  return GridView.count(
+                    crossAxisCount: 4,
+                    children: menus
+                        .getRange(i * 8, min((i + 1) * 8, menus.length))
+                        .map((e) => Container(
+                            alignment: Alignment.center,
+                            padding: EdgeInsets.only(top: 8),
+                            child: Column(
+                              children: [
+                                Icon(e.icon),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(e.label),
+                              ],
+                            )))
+                        .toList(),
+                  );
+                },
+                pagination: SwiperPagination(margin: EdgeInsets.all(5.0)),
+                itemCount: (menus.length / 8).ceil(),
+              ),
+              constraints: BoxConstraints.loose(
+                  Size(MediaQuery.of(context).size.width, 170.0))),
         ]),
       ),
     );

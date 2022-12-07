@@ -59,76 +59,13 @@ class _MePage extends State<MePage> {
           _renderUserCard(),
           // 用户数据
           _renderUserData(),
-          // renderCard([
-          //   MeListItem(
-          //     icon: Icons.ring_volume,
-          //     title: "消息中心",
-          //     onTap: () {},
-          //   ),
-          //   MeListItem(
-          //     icon: Icons.favorite,
-          //     title: "我赞过的",
-          //     trailing: "16篇",
-          //     onTap: () {
-          //       Navigator.of(context)
-          //           .push(MaterialPageRoute(builder: (context) {
-          //         return MeDoLikePage();
-          //       }));
-          //     },
-          //   ),
-          //   MeListItem(
-          //     icon: Icons.star,
-          //     iconColor: Colors.red,
-          //     title: "收藏集",
-          //     trailing: "4个",
-          //     onTap: () {
-          //       Navigator.of(context)
-          //           .push(MaterialPageRoute(builder: (context) {
-          //         return CollectionPage();
-          //       }));
-          //     },
-          //   ),
-          //   MeListItem(
-          //     icon: Icons.star,
-          //     iconColor: Colors.red,
-          //     title: "已购小册",
-          //     trailing: "0本",
-          //     onTap: () {},
-          //   ),
-          //   MeListItem(
-          //     icon: Icons.remove_red_eye,
-          //     iconColor: Colors.red,
-          //     title: "阅读过的文章",
-          //     trailing: "3000篇",
-          //     onTap: () {
-          //       Navigator.of(context)
-          //           .push(MaterialPageRoute(builder: (context) {
-          //         return ReadArticles();
-          //       }));
-          //     },
-          //   ),
-          //   MeListItem(
-          //     icon: Icons.filter_vintage,
-          //     iconColor: Colors.red,
-          //     title: "标签管理",
-          //     trailing: "21个",
-          //     onTap: () {
-          //       Navigator.of(context)
-          //           .push(MaterialPageRoute(builder: (context) {
-          //         return TagManagePage();
-          //       }));
-          //     },
-          //   )
-          // ]),
-          SizedBox(
-            height: 16,
-          ),
 
-          WriterCenter(),
-          SizedBox(
-            height: 16,
+          
+          
+          Container(margin: EdgeInsets.only(top: 10), child: WriterCenter()
           ),
-          MoreFuncComp(),
+          Container(margin: EdgeInsets.only(top: 10), child: MoreFuncComp()
+          ),
         ],
       ),
     );
