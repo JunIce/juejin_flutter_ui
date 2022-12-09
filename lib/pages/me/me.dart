@@ -52,6 +52,9 @@ class _MePage extends State<MePage> {
           _renderUserCard(),
           // 用户数据
           _renderUserData(),
+
+          _renderVipContainer(),
+          
           // 用户操作栏
           _renderActionCard(),
           
@@ -59,6 +62,37 @@ class _MePage extends State<MePage> {
           ),
           Container(margin: EdgeInsets.only(top: 10), child: MoreFuncComp()
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _renderVipContainer() {
+    Color text_color = Color.fromARGB(255, 244, 205, 137);
+
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+      margin: EdgeInsets.only(top: 10, left: 15, right: 15),
+      decoration: BoxDecoration(
+          color: Color.fromRGBO(52, 55, 90, 1),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "会员有效期至 2023-07-19",
+            style: TextStyle(color: text_color, fontSize: 12),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 2, horizontal: 6),
+            decoration: BoxDecoration(
+                border: Border.all(width: 1, color: text_color),
+                borderRadius: BorderRadius.circular(20)),
+            child: Text(
+              "会员中心",
+              style: TextStyle(color: text_color, fontSize: 12),
+            ),
+          )
         ],
       ),
     );
