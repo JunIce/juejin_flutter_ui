@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:juejin/components/icon-text.dart';
-import 'package:juejin/pages/me-collection/index.dart';
-import 'package:juejin/pages/me-do-like/index.dart';
-import 'package:juejin/pages/me-read-articles/index.dart';
 import 'package:juejin/pages/me-setting/index.dart';
-import 'package:juejin/pages/me-setting/me-item.dart';
 import 'package:juejin/pages/me/components/writer-center.dart';
-import 'package:juejin/pages/tag-manage/tag-manage.dart';
-import 'package:juejin/pages/user/personal.dart';
 import './components/more-func.dart';
 
 class MePage extends StatefulWidget {
@@ -60,7 +53,10 @@ class _MePage extends State<MePage> {
           // 用户数据
           _renderUserData(),
 
+          _renderVipContainer(),
           
+          // 用户操作栏
+          _renderActionCard(),
           
           Container(margin: EdgeInsets.only(top: 10), child: WriterCenter()
           ),
@@ -71,23 +67,109 @@ class _MePage extends State<MePage> {
     );
   }
 
-  Widget renderCard(List widgets) {
-    List<Widget> list = [];
-
-    for (int i = 0; i < widgets.length; i++) {
-      list
-        ..add(widgets[i])
-        ..add(Divider(
-          height: 1,
-        ));
-    }
-    list.removeLast();
+  Widget _renderVipContainer() {
+    Color text_color = Color.fromARGB(255, 244, 205, 137);
 
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 14),
+      margin: EdgeInsets.only(top: 10, left: 15, right: 15),
+      decoration: BoxDecoration(
+          color: Color.fromRGBO(52, 55, 90, 1),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "会员有效期至 2023-07-19",
+            style: TextStyle(color: text_color, fontSize: 12),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 2, horizontal: 6),
+            decoration: BoxDecoration(
+                border: Border.all(width: 1, color: text_color),
+                borderRadius: BorderRadius.circular(20)),
+            child: Text(
+              "会员中心",
+              style: TextStyle(color: text_color, fontSize: 12),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  // 用户操作栏
+  Widget _renderActionCard() {
+    return Container(
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        margin: EdgeInsets.only(top: 10, left: 15, right: 15),
+        decoration: BoxDecoration(
         color: Colors.white,
-        child: Column(
-          children: list.toList(),
-        ));
+            borderRadius: BorderRadius.all(Radius.circular(10))),
+        height: 70,
+        child:
+            GridView.count(crossAxisCount: 4, mainAxisSpacing: 20, children: [
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 2),
+                child: Text(
+                  "56",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+              ),
+              Text(
+                "关注",
+                style: TextStyle(fontSize: 12, color: Color(0xff555555)),
+              )
+            ],
+          ),
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 2),
+                child: Text(
+                  "56",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+              ),
+              Text(
+                "关注",
+                style: TextStyle(fontSize: 12, color: Color(0xff555555)),
+              )
+            ],
+          ),
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 2),
+                child: Text(
+                  "56",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+              ),
+              Text(
+                "关注",
+                style: TextStyle(fontSize: 12, color: Color(0xff555555)),
+              )
+            ],
+          ),
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 2),
+                child: Text(
+                  "56",
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                ),
+              ),
+              Text(
+                "关注",
+                style: TextStyle(fontSize: 12, color: Color(0xff555555)),
+              )
+            ],
+          )
+        ]));
   }
 
   Widget _renderUserCard() {
