@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:juejin/icons/index.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class DetailPage extends StatefulWidget {
@@ -34,8 +35,8 @@ class _WebviewDetailPage extends State<DetailPage> {
       ),
       actions: [
         IconButton(
-          icon: Icon(Icons.share),
-          iconSize: 18,
+          icon: Icon(Icons.more_horiz_outlined),
+          iconSize: 22,
           onPressed: () {},
         )
       ],
@@ -55,29 +56,25 @@ class _WebviewDetailPage extends State<DetailPage> {
           Expanded(
             child: Container(
                 child: Container(
-              decoration: BoxDecoration(
-                  color: Color(0xffd1d1d1),
-                  border: Border.all(width: 1, color: Color(0xffddddd)),
-                  borderRadius: BorderRadius.all(Radius.circular(25.0))),
-              child: InkWell(
-                child: Center(
-                  child: Text(
-                    "友善发言的人运气不会太差",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            )),
+                    padding: EdgeInsets.symmetric(vertical: 6, horizontal: 10),
+                    decoration: BoxDecoration(
+                        color: Color(0xfff1f1f1),
+                        border: Border.all(width: 1, color: Color(0xffddddd)),
+                        borderRadius: BorderRadius.all(Radius.circular(6.0))),
+                    child: Text(
+                      "写评论...",
+                      style: TextStyle(color: Color(0xff666666)),
+                    ))),
           ),
           Container(
             padding: EdgeInsets.only(left: 12, right: 12),
             child: Row(
               children: [
                 Icon(
-                  Icons.title,
+                  Icons.comment_outlined,
                   color: Color(0xff999999),
                 ),
-                Text("43")
+                // Text("43")
               ],
             ),
           ),
@@ -86,10 +83,21 @@ class _WebviewDetailPage extends State<DetailPage> {
             child: Row(
               children: [
                 Icon(
-                  Icons.comment,
-                  color: Color(0xff999999),
+                  IconFontIcons.iconZan,
+                  // color: Color(0xff999999),
                 ),
-                Text("43")
+                // Text("43")
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 12, right: 4),
+            child: Row(
+              children: [
+                Icon(Icons.star_border_outlined
+                    // color: Color(0xff999999),
+                    ),
+                // Text("43")
               ],
             ),
           )
