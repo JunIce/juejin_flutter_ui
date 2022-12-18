@@ -9,6 +9,7 @@ import 'package:juejin/components/icon-text.dart';
 import 'package:juejin/icons/index.dart';
 import 'package:juejin/pages/home/components/index-list-item.dart';
 import 'package:juejin/pages/offline-activity/index.dart';
+import 'package:juejin/pages/tech-team/index.dart';
 import 'package:juejin/pages/topics/index.dart';
 
 class SearchPage extends StatefulWidget {
@@ -226,7 +227,12 @@ class _SearchPageState extends State<SearchPage> {
                             fontSize: 16, fontWeight: FontWeight.w600),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return PageTechTeam();
+                          }));
+                        },
                         child: Row(
                           children: [
                             Text(
