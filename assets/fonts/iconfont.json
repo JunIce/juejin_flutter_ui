@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "583327",
+      "name": "more",
+      "font_class": "more",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "886905",
+      "name": "屏蔽",
+      "font_class": "pingbi",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "949611",
+      "name": "aui-icon-weichat",
+      "font_class": "aui-icon-weichat",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "4553750",
+      "name": "在浏览器打开",
+      "font_class": "zailiulanqidakai",
+      "unicode": "e7e3",
+      "unicode_decimal": 59363
+    },
+    {
+      "icon_id": "4936987",
+      "name": "weibo",
+      "font_class": "weibo",
+      "unicode": "e882",
+      "unicode_decimal": 59522
+    },
+    {
+      "icon_id": "7674885",
+      "name": "链接",
+      "font_class": "lianjie",
+      "unicode": "e715",
+      "unicode_decimal": 59157
+    },
+    {
+      "icon_id": "9186714",
+      "name": "QQ",
+      "font_class": "QQ",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "11729724",
+      "name": "举报",
+      "font_class": "jubao",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "15559661",
+      "name": "朋友圈",
+      "font_class": "shejiaotubiao-02",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "17095577",
+      "name": "卡片",
+      "font_class": "224",
+      "unicode": "e735",
+      "unicode_decimal": 59189
+    },
+    {
       "icon_id": "4765724",
       "name": "compass",
       "font_class": "compass",

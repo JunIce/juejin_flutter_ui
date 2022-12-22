@@ -15,7 +15,7 @@ class _SocietyPageState extends State<SocietyPage>
 
   List<Tab> tabList = [Tab(text: '发现'), Tab(text: '关注')];
   String avatar =
-      "https://p3-passport.byteimg.com/img/user-avatar/b0994e8d2f6b2b3efbc135a9efb126eb~100x100.png";
+      "https://img0.baidu.com/it/u=1396456140,563000347&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1671814800&t=27b6c6275e8ceba219905d917cc116ac";
   var username = "JunIce";
   List<String> images = [
     "https://p1.ssl.qhimgs1.com/bdr/326__/t013bfdb724ccde6227.jpg",

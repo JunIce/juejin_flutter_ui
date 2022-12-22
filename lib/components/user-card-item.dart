@@ -109,6 +109,10 @@ class UserCardItem extends StatelessWidget {
             iconSize: 18,
             onPressed: () {
               showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  backgroundColor: Colors.white,
                   context: context,
                   builder: (BuildContext context) {
                     return BottomShareCard();

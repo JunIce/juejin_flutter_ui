@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3708578 */
-  src: url('iconfont.woff2?t=1669724328877') format('woff2'),
-       url('iconfont.woff?t=1669724328877') format('woff'),
-       url('iconfont.ttf?t=1669724328877') format('truetype');
+  src: url('iconfont.woff2?t=1671710371459') format('woff2'),
+       url('iconfont.woff?t=1671710371459') format('woff'),
+       url('iconfont.ttf?t=1671710371459') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,46 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-more:before {
+  content: "\e60d";
+}
+
+.icon-pingbi:before {
+  content: "\e61d";
+}
+
+.icon-aui-icon-weichat:before {
+  content: "\e633";
+}
+
+.icon-zailiulanqidakai:before {
+  content: "\e7e3";
+}
+
+.icon-weibo:before {
+  content: "\e882";
+}
+
+.icon-lianjie:before {
+  content: "\e715";
+}
+
+.icon-QQ:before {
+  content: "\e668";
+}
+
+.icon-jubao:before {
+  content: "\e607";
+}
+
+.icon-shejiaotubiao-02:before {
+  content: "\e641";
+}
+
+.icon-224:before {
+  content: "\e735";
 }
 
 .icon-compass:before {
