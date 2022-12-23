@@ -16,7 +16,7 @@ class ShareMenu {
  * 底部分享
  */
 class BottomShareCard extends StatelessWidget {
-  List<ShareMenu> menus = [
+  final List<ShareMenu> menus = [
     ShareMenu(
         "卡片分享",
         Icon(

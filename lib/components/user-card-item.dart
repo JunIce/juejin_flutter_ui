@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:juejin/pages/message-topic/topic-list.dart';
 import 'bottom-share-card.dart';
 import 'icon-text.dart';
 
@@ -51,7 +54,7 @@ class UserCardItem extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-                _renderItemBody()
+                _renderItemBody(context)
               ],
             ),
           ),
@@ -123,7 +126,7 @@ class UserCardItem extends StatelessWidget {
   }
 
   // 内容主体
-  Widget _renderItemBody() {
+  Widget _renderItemBody(BuildContext context) {
     Widget _context = Container();
 
     return Column(
@@ -157,17 +160,38 @@ class UserCardItem extends StatelessWidget {
               );
             },
           ),
-        _renderLike()
+        _renderLike(context)
       ],
     );
   }
 
-  Widget _renderLike() {
+  Widget _renderLike(BuildContext context) {
+    bool val = Random().nextBool();
     return Container(
       padding: EdgeInsets.only(top: 10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          val
+              ? GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return PageTopicList();
+                    }));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.blue),
+                    child: Text(
+                      "上班摸鱼",
+                      style: TextStyle(fontSize: 12, color: Colors.white),
+                    ),
+                  ),
+                )
+              : Container(),
           Text(
             "等人赞过",
             style: TextStyle(fontSize: 12, color: Color(0xff888888)),
