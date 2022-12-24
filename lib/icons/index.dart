@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class IconFontIcons {
@@ -70,4 +71,28 @@ class IconFontIcons {
       IconData(0xe77d, fontFamily: 'IconFont');
   static const IconData iconTabCompassActive =
       IconData(0xe846, fontFamily: 'IconFont');
+
+
+  // 分享
+  static const IconData iconShareFriendQuan =
+      IconData(0xe641, fontFamily: 'IconFont');
+  static const IconData iconShareQQ = IconData(0xe668, fontFamily: 'IconFont');
+  static const IconData iconShareWeibo =
+      IconData(0xe882, fontFamily: 'IconFont');
+  static const IconData iconShareWechat =
+      IconData(0xe633, fontFamily: 'IconFont');
+  static const IconData iconShareCard =
+      IconData(0xe735, fontFamily: 'IconFont');
+
+  //
+  static const IconData iconShareBlock =
+      IconData(0xe61d, fontFamily: 'IconFont');
+  static const IconData iconShareReport =
+      IconData(0xe607, fontFamily: 'IconFont');
+  static const IconData iconShareCopy =
+      IconData(0xe715, fontFamily: 'IconFont');
+  static const IconData iconShareBrowser =
+      IconData(0xe7e3, fontFamily: 'IconFont');
+  static const IconData iconShareMore =
+      IconData(0xe60d, fontFamily: 'IconFont');
 }

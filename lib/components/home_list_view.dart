@@ -137,6 +137,7 @@ class CircleTag extends StatelessWidget {
   final bool checked;
   final Color checkedTextColor;
   final Color uncheckedTextColor;
+  final Icon? icon;
 
   final Color checkedBgColor;
   final Color uncheckedBgColor;
@@ -147,6 +148,7 @@ class CircleTag extends StatelessWidget {
       {Key? key,
       this.text = '',
       this.checked = false,
+      this.icon,
       this.checkedTextColor = Colors.white,
       this.uncheckedTextColor = Colors.black,
       this.checkedBgColor = Colors.blue,
@@ -160,16 +162,20 @@ class CircleTag extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 6, horizontal: 15),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: checked ? checkedBgColor : uncheckedBgColor),
-        child: Text(
-          text,
-          style:
-              TextStyle(color: checked ? checkedTextColor : uncheckedTextColor),
-        ),
-      ),
+          padding: EdgeInsets.symmetric(vertical: 6, horizontal: 15),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: checked ? checkedBgColor : uncheckedBgColor),
+          child: Row(
+            children: [
+              if (this.icon != null) this.icon!,
+              Text(
+                text,
+                style: TextStyle(
+                    color: checked ? checkedTextColor : uncheckedTextColor),
+              ),
+            ],
+          )),
     );
   }
 }
