@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:juejin/common/config.dart';
-import 'package:juejin/common/util.dart';
-import 'package:juejin/components/home-list-item3.dart';
 import 'package:juejin/components/user-card-item.dart';
 
 class SocietyPage extends StatefulWidget {
@@ -13,7 +11,14 @@ class _SocietyPageState extends State<SocietyPage>
     with SingleTickerProviderStateMixin {
   late TabController _controller;
 
-  List<Tab> tabList = [Tab(text: '发现'), Tab(text: '关注')];
+  List<Widget> tabList = [
+    Container(
+      padding: EdgeInsets.only(right: 10, left: 10),
+      child: Tab(text: '发现'),
+    ),
+    Container(
+        padding: EdgeInsets.only(right: 10, left: 10), child: Tab(text: '关注'))
+  ];
   String avatar =
       "https://img0.baidu.com/it/u=1396456140,563000347&fm=253&app=138&size=w931&n=0&f=JPEG&fmt=auto?sec=1671814800&t=27b6c6275e8ceba219905d917cc116ac";
   var username = "JunIce";
@@ -35,34 +40,33 @@ class _SocietyPageState extends State<SocietyPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Config.primaryBgColor,
-        appBar: PreferredSize(
-          child: Container(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      backgroundColor: Config.primaryBgColor,
+      appBar: PreferredSize(
+        child: Container(
+          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
           color: Colors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TabBar(
-                  isScrollable: true,
-                  //是否可以滚动
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TabBar(
+                //是否可以滚动
+                isScrollable: true,
                 indicatorWeight: 3,
                 indicatorColor: Color.fromRGBO(26, 117, 237, 1),
-                  controller: _controller,
+                controller: _controller,
                 labelColor: Color.fromRGBO(26, 117, 237, 1),
-                  unselectedLabelColor: Colors.black,
-                  labelStyle: TextStyle(fontSize: 16.0),
-                  tabs: tabList,
-                )
-              ],
-            ),
+                indicatorSize: TabBarIndicatorSize.label,
+                unselectedLabelColor: Colors.black,
+                labelStyle: TextStyle(fontSize: 16.0),
+                tabs: tabList,
+              )
+            ],
           ),
-          preferredSize:
-              Size(MediaQuery.of(context).size.width, double.maxFinite),
         ),
+        preferredSize:
+            Size(MediaQuery.of(context).size.width, double.maxFinite),
+      ),
       body: TabBarView(controller: _controller, children: [
-        // 发现列表
-        _renderListFind(),
         // 关注列表
         _renderListFollowed(),
       ]),
@@ -92,106 +96,6 @@ class _SocietyPageState extends State<SocietyPage>
         ),
       ),
     );
-  }
-
-  Widget _renderListFind() {
-    return CustomScrollView(
-      slivers: [_renderTagScrollList(), _renderFindList()],
-    );
-  }
-
-  Widget _renderTagScrollList() {
-    return SliverToBoxAdapter(
-        child: Container(
-            child: Column(
-      children: [
-        Container(
-          color: Colors.white,
-          padding: EdgeInsets.only(top: 10, bottom: 10, left: 15, right: 15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "推荐圈子",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: Row(
-                  children: [
-                    Text(
-                      "我加入的圈子",
-                      style: TextStyle(fontSize: 13, color: Color(0xff999999)),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-        Container(
-          color: Colors.white,
-          padding: EdgeInsets.only(bottom: 10),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [..._tabList()],
-            ),
-          ),
-        )
-      ],
-    )));
-  }
-
-  SliverList _renderFindList() {
-    return SliverList(
-        delegate: SliverChildBuilderDelegate((context, index) {
-      return Container(
-        margin: EdgeInsets.only(bottom: 10),
-        child: UserCardItem(
-            avatar: avatar,
-            username: username,
-            extra: "1星期前",
-            title: "圣诞节看风景看韩剧的经济开发",
-            content: "但是空间氛围返回跨境电商科技发达口角是非见客户维科家纺很快就收到话费科技",
-            likeCount: "4",
-            commentCount: "5",
-            tag: '上班摸鱼'),
-      );
-    }, childCount: 30));
-  }
-
-  List<Widget> _tabList() {
-    List<Widget> _list = [];
-    for (int i = 0; i < 10; i++) {
-      _list.add(Container(
-        margin: EdgeInsets.only(left: 15, right: i == 9 ? 15 : 0),
-        child: Column(children: [
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(3),
-              image: DecorationImage(
-                  image: NetworkImage(
-                      "https://p.qqan.com/up/2022-11/202211241010365671.jpg"),
-                  fit: BoxFit.cover),
-            ),
-          ),
-          Container(
-              margin: EdgeInsets.only(top: 4),
-              width: 80,
-              child: Text(
-                "树洞一下双电的军事科技发达",
-                style: TextStyle(fontSize: 12),
-                textAlign: TextAlign.center,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ))
-        ]),
-      ));
-    }
-    return _list;
   }
 
   Widget _renderListFollowed() {

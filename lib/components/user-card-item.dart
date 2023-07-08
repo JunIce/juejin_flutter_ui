@@ -193,7 +193,7 @@ class UserCardItem extends StatelessWidget {
                 )
               : Container(),
           Text(
-            "等人赞过",
+            "赞过",
             style: TextStyle(fontSize: 12, color: Color(0xff888888)),
           )
         ],
