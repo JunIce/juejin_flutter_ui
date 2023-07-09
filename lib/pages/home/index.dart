@@ -6,11 +6,7 @@ import 'package:juejin/pages/home/tab-view/page-follow.dart';
 import 'package:juejin/pages/home/tab-view/page-hot.dart';
 import 'package:juejin/pages/home/tab-view/page-recommend.dart';
 import 'package:juejin/pages/tag-manage/tag-manage.dart';
-
 import '../search/search.dart';
-
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:juejin/store/counter.dart';
 
 class HomeIndexPage extends StatefulWidget {
   @override
@@ -23,8 +19,6 @@ class _JueJinHomeState extends State<HomeIndexPage>
   ScrollController _scrollController = new ScrollController();
   int _initIndex = 2;
   bool isShow = true;
-
-  final Counter _counter = Counter();
 
   @override
   void initState() {
@@ -134,28 +128,6 @@ class _JueJinHomeState extends State<HomeIndexPage>
   Widget renderBody() {
     return Column(
       children: [
-        // Column(
-        //   children: [
-        //     Observer(
-        //       builder: (_) => Text(
-        //         '${_counter.value}',
-        //         style: TextStyle(
-        //           color: Colors.red,
-        //         ),
-        //       ),
-        //     ),
-        //     TextButton(
-        //         onPressed: () {
-        //           _counter.increment();
-        //         },
-        //         child: Text("increase")),
-        //     TextButton(
-        //         onPressed: () {
-        //           _counter.decrement();
-        //         },
-        //         child: Text("decrement"))
-        //   ],
-        // ),
         renderTabBar(),
         Expanded(
             child: TabBarView(
@@ -239,7 +211,6 @@ class _JueJinHomeState extends State<HomeIndexPage>
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _scrollController.dispose();
     _tabController.dispose();
 

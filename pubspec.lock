@@ -385,6 +385,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  sliver_header_delegate:
+    dependency: "direct main"
+    description:
+      name: sliver_header_delegate
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.5"
   source_gen:
     dependency: transitive
     description:
